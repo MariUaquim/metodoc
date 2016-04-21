@@ -1,0 +1,2 @@
+module VersionDescriptionHelper
+end

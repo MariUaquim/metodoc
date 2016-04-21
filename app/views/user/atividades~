@@ -1,0 +1,38 @@
+<div class="menu-lateral">
+<%=render :partial => 'form_menu_lateral' %>
+</div>
+
+<div class="tela">
+<div class="content-header">
+
+<h1><%=@user.name%></h1>
+
+<hr id="hr"></hr>
+
+</div>
+
+<div class="content">
+<table>
+		   <tr>
+			<td class="tituloTable">Suas Atividades Pendentes</td>
+			   <td>Ontologia a que se relaciona</td>
+		   </tr>
+		   <%if !@atividades.nil?%>
+		      <%@atividades.each do |a|%>
+		         <tr>
+			   <td><%=a.name%></td>
+                           <%if !a.document.version_id.nill?%>
+			      <td><%=a.document.version.ontology.name%></td>
+			   <%else%>
+			      <td><%=a.document.ontology.name%></td>
+			   <%end%>
+		         </tr>
+		      <%end%>
+		   <%else%>
+		         <tr>
+			   <td>Você não tem atividades pendentes</td>
+		         </tr>
+		   <%end%>
+		</table>
+</div>
+

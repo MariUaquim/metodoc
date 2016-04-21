@@ -1,0 +1,14 @@
+<label for="project_feasibility_opportunities">Oportunidades:</label><br />
+<%= text_area :project_feasibility, :opportunities, :rows=>10, :cols=>100%><br />
+<label for="project_feasibility_problems">Problemas:</label><br />
+<%= text_area :project_feasibility, :problems, :rows=>10, :cols=>100%><br />
+<label for="project_feasibility_solutions">Soluções Potenciais:</label><br />
+<%= text_area :project_feasibility, :solutions, :rows=>10, :cols=>100%><br />
+<label for="project_feasibility_features">Recursos:</label><br />
+<%= text_area :project_feasibility, :features, :rows=>10, :cols=>100%><br />
+<label for="project_feasibility_conclusion">Conclusão:</label><br />
+<%= text_area :project_feasibility, :conclusion, :rows=>10, :cols=>100%><br />
+<label for="project_feasibility_artefact_status_id">Status do Artefato:</label>
+<%=select :project_feasibility, :artefact_status_id, @artefact_status %><br />
+<%=hidden_field :project_feasibility, :ontology_id, :value =>@ontology_id%>
+<%= submit_tag 'Salvar', :confirm => "Salvar Documento?" %>

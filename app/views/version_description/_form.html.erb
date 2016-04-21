@@ -1,0 +1,7 @@
+<label for="version_description_purpose">Propósito/objetivo:</label><br />
+<%= text_area :version_description, :purpose, :rows=>20, :cols=>100%><br />
+<label for="version_description_obs">Observações:</label><br />
+<%= text_area :version_description, :obs, :rows=>20, :cols=>100%><br />
+<%=hidden_field :version_description, :version_id, :value =>@version_id%><br />
+
+<%= submit_tag 'Salvar'%>

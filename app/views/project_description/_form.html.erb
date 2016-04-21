@@ -1,0 +1,8 @@
+<label for="project_description_purpose">Propósito/objetivo:</label><br />
+<%= text_area :project_description, :purpose%><br />
+<label for="project_description_obs">Observações:</label><br />
+<%= text_area :project_description, :obs, :rows=>20, :cols=>100%><br />
+<label for="project_description_artefact_status_id">Status do Artefato:</label>
+<%=select :project_description, :artefact_status_id, @artefact_status %><br />
+<%=hidden_field :project_description, :ontology_id, :value =>@ontology_id%>
+<%= submit_tag 'Salvar', :confirm => "Salvar Documento?"%>

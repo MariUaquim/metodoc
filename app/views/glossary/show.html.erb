@@ -1,0 +1,56 @@
+<%content_for :css do%>
+  <style type="text/css" media="all">
+      .glossary-menu li{
+        float:left;
+      }
+      .glossary-menu li a{
+        padding: 0 10px 0 10px;
+      }
+  </style>
+<%end%>
+
+<div class="menu-lateral">
+<%=render :partial => 'form_menu_lateral' %>
+</div>
+
+<div class="tela">
+<div class="content-header">
+<%if !@documento.ontology_id.nil? %>
+   <h1><%=@documento.ontology.name%></h1>
+   <%url = "/ontology/show/" + @documento.ontology.id.to_s %>
+<%else%>
+   <h1 style="margin-bottom:0px;"><%=@documento.version.ontology.name%> - V. <%=@documento.version.number%></h1>
+   <%url = "/version/show/" + @documento.version.id.to_s + "?ontology_id=" +  @documento.version.ontology.id.to_s %>
+<%end%>
+<p>Documento: <b class="texto2"><%=@documento.doc_type.name%></b></p>
+
+
+<hr id="hr"></hr>
+<div class="menu-horizontal" style="height:30px;">
+  <ul id="abas-nav" class="page-inter">
+      <li><a class="btVoltar" href="<%=url%>" ></a></li>
+      <li><a class="btimprimir" href="#"></a></li>
+  </ul>
+</div>
+</div>
+
+<div class="content">
+  <ul class="glossary-menu">
+    <% @term_types.each do |t| %>
+      <li><%=link_to t[0], :action=>'show', :version_id=>@version_id, :term_type=>t[1]%></li>
+    <%end%>
+  </ul>
+  <div class="clear"></div>
+</div>
+<% if @glossary.size > 0 %>
+<% @glossary.each do |t| %>
+  <div class="content">
+    <h2><%=t.name%></h2>
+    <p><%=t.description%></p>
+  </div>
+<%end%>
+<%else%>
+  <div class="content">
+    <h2>Sem vocábulos do tipo "<%=@term_type.description%>" cadastrados(as)</h2>
+  </div>
+<%end%>

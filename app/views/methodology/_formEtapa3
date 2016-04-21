@@ -1,0 +1,49 @@
+<table style="align:center;" width="250px">
+<%
+if !@methodstep.doc_type.empty?  
+ @methodstep.doc_type.each do |doc_type|%>
+
+	<%configEspec = doc_type.doc_type_config.first%>
+	<tr>
+	   <td width="100%" height="20px">
+		<%if !configEspec.nil? and !configEspec.doc_config_espec_id.nil?%>
+ 		   <a href="javascript:mostraEsconde('especDiv<%=doc_type.id%>')"><%=doc_type.name%></a>
+		<%else%>
+ 		   <a href="javascript:mostraEsconde('parametrosDiv<%=doc_type.id%>')"><%=doc_type.name%></a>
+	        <%end%>
+	   </td>
+	</tr>
+        <tr>
+ 		<td>
+		<div id="parametrosDiv<%=doc_type.id%>" class="info-box">
+		<a href="javascript:troca('parametrosDiv<%=doc_type.id%>','especDiv<%=doc_type.id%>');" class="change"></a><br>
+		<%config ||= Array.new
+		doc_type.doc_type_config.each do |d|
+		  config.push(d.params_config_Type_Doc_id);
+		end
+		%>
+		<%@parametros.each do |p|%>
+			<input type="checkbox" name="doc_type_config" id="<%=@methodstep.id%>-<%=doc_type.id%>-<%=p.id%>" <%if config.include?(p.id)%>checked<%end%> >
+			<%=p.description%><br>
+		<%end%>
+
+	     </div>
+	     <div id="especDiv<%=doc_type.id%>" class="info-box">
+		<a href="javascript:troca('especDiv<%=doc_type.id%>', 'parametrosDiv<%=doc_type.id%>');" class="change"></a><br>
+		<%@docEspec.each do |p|%>
+			<input type="radio" value='<%=p.id%>' name="radio<%=doc_type.id%>" id="<%=@methodstep.id%>-<%=doc_type.id%>-<%=p.id%>" <%if !configEspec.nil? and configEspec.doc_config_espec_id == p.id%>checked<%end%> >
+			<%=p.name%><br>
+		<%end%>
+
+	     </div>
+	</td>
+     </tr>
+     <div class="clear"></div>
+  <%end%>
+<%else%>
+   <tr><td>Não Existem tipos de Documento cadastrados</td></tr>
+<%end%>
+
+</table>
+
+

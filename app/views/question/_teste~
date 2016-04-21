@@ -1,0 +1,35 @@
+<%@questoes.each do |q|%>
+<br><br><label><%=q.question%></label><br>
+
+   <%if q.answer_type == 3 %>
+          <%@respostas.each do |r|
+	      if r.question_id == q.id
+               @checked = r.type_answer_id
+              end%>
+          <%end%>
+	           <%= radio_button "answer_", q.id , '1', :checked=>(@checked == 1)%>
+	           <%= label :answer, :type_answer_id, "Ruim" %><br>
+	           <%= radio_button "answer_", q.id , '2', :checked=>(@checked == 2)%>
+	           <%= label :answer, :type_answer_id, "Regular" %><br>
+	           <%= radio_button "answer_", q.id , '3', :checked=>(@checked == 3)%>
+	           <%= label :answer, :type_answer_id, "Bom" %><br>
+	           <%= radio_button "answer_", q.id , '4', :checked=>(@checked == 4)%>
+	           <%= label :answer, :type_answer_id, "Ótimo" %><br>
+              
+
+   <%else%>
+	<textarea id="answer_<%=q.id%>" rows="20" cols="100" name="answer_<%=q.id%>" >
+
+		<%@respostas.each do |r|
+			if r.question_id == q.id%>
+				<%=r.answer%>
+			<%end%>
+		<%end%>
+	</textarea>
+   <%end%>
+<%end%>
+
+
+<div class="buttons" style="margin-top:50px;">
+   <%= submit_tag 'Salvar', :class=>'button'%>
+</div>

@@ -1,0 +1,22 @@
+<% content_for :content_header do %>
+<h1>Plano de Análise de Viablidade do Ciclo de Vida</h1>
+<p>Artefato com informações da análise de viabilidade para o desenvolvimento do ciclo de vida da ontologia</p>
+<ul class="page-menu">
+  <li><%=link_to 'Disponibilizar em HTML', :action=>'print', :id=>@document.id%></li>
+  <li><%=link_to 'Disponibilizar em XML', :action=>'print_xml', :id=>@document.id%></li>
+</ul>
+<%end%>
+
+<div class="content">
+  <h2>Documento:</h2><p>Plano de Análise de Viabilidade do Ciclo de Vida</p>
+  <h2>Projeto:</h2><p><%=@document.version.ontology.project_name%></p>
+  <h2>Nome da Ontologia:</h2><p><%=@document.version.ontology.name%></p>
+  <h2>Data:</h2> <p><%=my_date(DateTime.now)%></p>
+  <h2>Domínio:</h2><p><%=@document.version.ontology.domain%></p>
+  <h2>Responsável:</h2><p><%=@document.responsible%></p>
+  <h2>Oportunidades:</h2><p><%=@document.opportunities%></p>
+  <h2>Problemas:</h2><p><%=@document.problems%></p>
+  <h2>Soluções Potenciais:</h2><p><%=@document.solutions%></p>
+  <h2>Recursos:</h2><p><%=@document.features%></p>
+  <h2>Conclusão:</h2><p><%=@document.conclusion%></p>
+</div>

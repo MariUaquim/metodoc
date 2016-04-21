@@ -1,0 +1,15 @@
+<h1>New doc_artefact</h1>
+
+<% form_for(@doc_artefact) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :answer %><br />
+    <%= f.text_area :answer %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', doc_artefacts_path %>

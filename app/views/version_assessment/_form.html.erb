@@ -1,0 +1,8 @@
+<label for="version_assessment_technical_assessment">Avaliação Técnica:</label><br />
+<%= text_area :version_assessment, :technical_assessment, :rows=>20, :cols=>100%><br />
+<label for="version_assessment_user_assessment">Avaliação Perante Usuário:</label><br />
+<%= text_area :version_assessment, :user_assessment, :rows=>20, :cols=>100%><br />
+<label for="version_assessment_artefact_status_id">Status do Artefato:</label>
+<%=select :version_assessment, :artefact_status_id, @artefact_status %><br />
+<%=hidden_field :version_assessment, :version_id, :value =>@version_id%><br />
+<%= submit_tag 'Salvar'%>

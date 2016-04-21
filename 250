@@ -1,0 +1,27 @@
+      exists  app/models/
+      exists  app/controllers/
+      exists  app/helpers/
+      create  app/views/params_configs
+      exists  app/views/layouts/
+      exists  test/functional/
+      exists  test/unit/
+      exists  public/stylesheets/
+      create  app/views/params_configs/index.html.erb
+      create  app/views/params_configs/show.html.erb
+      create  app/views/params_configs/new.html.erb
+      create  app/views/params_configs/edit.html.erb
+      create  app/views/layouts/params_configs.html.erb
+   identical  public/stylesheets/scaffold.css
+      create  app/controllers/params_configs_controller.rb
+      create  test/functional/params_configs_controller_test.rb
+      create  app/helpers/params_configs_helper.rb
+       route  map.resources :params_configs
+  dependency  model
+      exists    app/models/
+      exists    test/unit/
+      exists    test/fixtures/
+      create    app/models/params_config.rb
+      create    test/unit/params_config_test.rb
+      create    test/fixtures/params_configs.yml
+      exists    db/migrate
+      create    db/migrate/20150929213734_create_params_configs.rb

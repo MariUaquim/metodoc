@@ -1,0 +1,21 @@
+<h1>Artefato:<%=@documento.doc_type.name%></h1>
+<%if @documento.ontology_id.nil? %>
+  @ontology_val = @documento.ontology
+<%else%>
+  @ontology_val = @documento.version.ontology
+  @version_val = @documento.version
+<%end%>
+<h2>Projeto</h2><p><%=@ontology_val.project_name%></p>
+<h2>Nome da Ontologia</h2><p><%=@ontology_val.name%></p>
+<h2>Versão da Ontologia</h2><p><%=@documento.version.number%></p>
+<h2>Data</h2><p><%=my_date(@documento.date)%></p>
+<h2>Domínio</h2><p><%=@ontology_val.domain%></p>
+<%@documento.responsable.each do |r| %>
+<h2><%=r.user.name%></h2>
+<%end%>
+
+<!--<h2>Responsável</h2><p><%=@document.responsible%></p>-->
+<%@documento.doc_artefact.each do |d| %>
+<h2><%=d.param_config_type_doc.name%>:</h2><p><%=d.answer%></p>
+<%end%>
+

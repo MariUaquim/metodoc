@@ -1,0 +1,7 @@
+<label for="term_term_type_id">Tipo:</label>
+<%=select :term, :term_type_id, @term_types %><br />
+<label for="term_name">Nome:</label><br />
+<%=text_field :term, :name%><br />
+<label for="term_description">Descrição:</label><br />
+<%= text_area :term, :description, :rows=>10, :cols=>50%><br />
+

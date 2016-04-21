@@ -1,0 +1,65 @@
+<div class="menu-lateral">
+<%=render :partial => 'form_menu_lateral' %>
+</div>
+
+<div class="tela">
+<div class="content-header">
+
+<h1 style="margin-bottom:0px;">Ontologias</h1>
+
+<hr id="hr"></hr>
+</div>
+
+<% if @ontologies.size > 0 %>
+  <% @ontologies.each do |o| %>
+    <div class="content">
+      <h2><%=o.name%></h2>
+      <p><span>Projeto: </span><%=o.project_name%></p>
+      <p><span>Domínio: </span><%=o.domain%></p>
+      <p><span>Grau de Formalidade: </span><%=o.formality_degree.name%></p>
+      <div id="div<%=o.id%>" class="info-box">
+	      <p><span>Versão Atual:</span>
+	      <% if o.versions.empty? %>
+		Sem versão
+	      <%else%>
+		<%=o.versions.last.number%>
+	      <%end%></p>
+	      <p><span>Colaboradores:</span>
+	       <ul>
+		 <% o.ontology_user.all.each do |y|%>
+		   <li><%=y.paper.paper%>-<%=y.user.name%></li>
+		 <%end%>
+	      </ul></p>
+      </div>
+      <a href="javascript:mostraEsconde('div<%=o.id%>')">[...]</a>
+      <%@ontology = o%>
+      <div class="page-menu">
+	<%=render :partial=>'menu'%>
+      </div>
+      <div class="clear"></div>
+    </div>
+<div id="janela<%=o.id%>" class="window middle" >
+    <div class="modal-titulo">Titulo</div>
+    <p>Preencha o formulário abaixo com as informações gerais da ontologia</p>
+    <div class="content">
+	<%@ontology = o%>
+       <% form_tag :action => 'edit', :id => @ontology do %>
+       <%=render :partial => 'form' %>
+
+        <div id="buttons" align="center" class="buttons">
+	   <%=link_to 'Cancelar', { }, {:id =>  'fecharWindow', :class => 'button'}%>
+	   <input value='Adicionar' name='commit' type='submit' class ='button'>
+	</div>
+        <% end %>
+    </div>
+</div>
+        
+  <%end%>
+<% else %>
+  <div class="content">
+    <h2>Sem ontologias</h2>
+    <p>Você ainda não possui uma ontologia ou colabora com o desenvolvimento de uma.</p>
+  </div>
+<% end %>
+
+

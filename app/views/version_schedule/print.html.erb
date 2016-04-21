@@ -1,0 +1,21 @@
+<h1>Artefato: Cronograma de Atividades</h1>
+<h1>Ontologia <%=@version.ontology.name%> - Versão <%=@version.number%></h1>
+<h2>Projeto:</h2><p><%=@version.ontology.project_name%></p>
+<h2>Data:</h2> <p><%=my_date(DateTime.now)%></p>
+<h2>Domínio:</h2><p><%=@version.ontology.domain%></p>
+<% if @activities.size > 0 %>
+<h2>Atividades:</h2>
+<% @activities.each do |a| %>
+  <div class="content">
+    <h3><%=my_date(a.activity_date)%> - <%=a.activity_name%></h3>
+    <p><%=a.activity_description%></p>
+  </div>
+<%end%>
+
+<%else%>
+
+<div class="content">
+  <h3>Nenhuma atividade incluída</h3>
+</div>
+
+<%end%>

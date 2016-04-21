@@ -1,0 +1,548 @@
+<% content_for :content_header do %>
+<h1>Metodologia Monto</h1>
+<%end%>
+
+<div class="content">
+<div class="texto1" style="padding:5px 20px 40px 20px;">
+  <h2>Etapas da Monto</h2>
+	As principais etapas a serem abordadas na elaboração da Monto são:<br>
+	<ul class="texto2" style="padding-left:30px">
+	   <li class = "disc">Planejamento Inicial</li>
+	   <li class = "disc">Etapas do ciclo de vida:
+	      <ul> 
+		   <li class = "circ">Planejamento do Ciclo de Vida</li>
+		   <li class = "circ">Especificação</li> 
+		   <li class = "circ">Conceitualização</li> 
+		   <li class = "circ">Formalização</li> 
+		   <li class = "circ">Integração</li>
+		   <li class = "circ">Disponibilização</li> 
+	      </ul></li>
+	   <li class = "disc">Etapas de Suporte: 
+	      <ul>
+	           <li class = "circ">Avaliação</li> 
+	           <li class = "circ">Documentação</li>
+              </ul></li> 
+       </ul>
+
+<p>&nbsp;</p>
+
+	A Monto está estruturada, apresentando todas as etapas organizadas de acordo com a ordem de suas execuções, permitindo que se possa entender, avaliar e acompanhar passo a passo todo o processo de construção de ontologias. Para iniciar suas atividades, a primeira etapa a ser executada é de planejamento inicial. Depois se inicia o ciclo de vida executando as etapas de especificação, conceitualização, formalização, integração e disponibilização, nessa ordem e sem deixar de executar nem uma das etapas. Pode, no entento, haver a necessidade de durante a fase de conceitualização revisitar a etapa de especificação e durante a fase de integração revisitar a etapa de conceitualização. As etapas de suporte, como avaliação e documentação, são executadas em paralelo com cada uma das etapas do ciclo de vida.<br><br>
+
+
+<img src="../images/monto-atual.png" style="display:block;margin-left:auto;margin-right:auto;" ><br>
+
+<p>&nbsp;</p>
+
+<b class="texto3">Planejamento Inicial</b><br>
+
+
+ O objetivo da etapa de planejamento inicial é elaborar o plano de  construção da ontologia, no qual deve ser detalhado a intenção da implementação do projeto  bem como o escopo e o propósito da ontologia que será criada. Esta etapa visa também  estudar a viabilidade da construção da ontologia, sendo um instrumento de diminuição de  riscos para o projeto;
+<br><br>
+<ul>
+	<li dir="ltr" class="disc">
+	<b class="texto2">Descrever o projeto:</b>
+	<br>
+	Especificação Conceitualização Formalização Implantação Etapas do ciclo de vida Manutenção Planejamento Figura 3 – Visão geral da Monto Aquisição de Conhecimento Documentação Integração Avaliação Etapas de Suporte. O objetivo é obter uma visão global do projeto a ser desenvolvido e uma identificação geral das áreas de conhecimento envolvidas.<br><br>
+	
+	<ul>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Entender o problema:</b><br class="kix-line-break" />
+
+		Identifica&ccedil;&atilde;o do problema e defini&ccedil;&atilde;o de porqu&ecirc; a ontologia deve ser constru&iacute;da.
+		</li><br>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Investigar o dom&iacute;nio de conhecimento:</b><br class="kix-line-break" />
+		Identifica&ccedil;&atilde;o do dom&iacute;nio de conhecimento da ontologia a ser constru&iacute;da e das poss&iacute;veis &aacute;reas de conhecimento envolvidas, para um melhor entendimento do projeto.
+		</li><br>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Identificar Grau de Formalidade:</b><br class="kix-line-break" />
+		Classifica&ccedil;&atilde;o do grau de formalidade da ontologia, realizado com base na formalidade com que o vocabul&aacute;rio &eacute; criado, bem como seu significado. Elas podem ser classificadas como: altamente informais, que s&atilde;o expressas em linguagem natural; semi&shy;informais, que &nbsp;s&atilde;o expressas em linguagem natural, de forma restrita; semi&shy;formais, que s&atilde;o expressas em &nbsp;linguagem artificial, definida formalmente, e as altamente formais, que s&atilde;o definidas com sem&acirc;ntica formal, teoremas e provas (USHOLD e GRUNINGER, 1996).
+		</li><br>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Definir o objetivo do projeto: </b><br class="kix-line-break" />
+		Descri&ccedil;&atilde;o geral do projeto, descrevendo para que e como a ontologia ser&aacute; utilizada, de forma concreta e clara, e dos poss&iacute;veis benef&iacute;cios esperados para a institui&ccedil;&atilde;o.
+		</li>
+	</ul>
+	</li>
+</ul>
+
+<ul>
+	<li dir="ltr" class="disc">
+	<b class="texto2">Planejar Viabilidade do projeto:</b></p>
+
+	<ul>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Analisar Oportunidades:</b><br>
+		Descrever o cen&aacute;rio atual de uma forma abrangente e mostrar o &nbsp;porqu&ecirc; o desenvolvimento da ontologia realmente &eacute; necess&aacute;ria. Documentar no artefato as &nbsp;oportunidades que demandam o desenvolvimento da ontologia ou das aplica&ccedil;&otilde;es que far&atilde;o &nbsp;uso dela;
+		</li><br>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Analisar Problemas:</b><br>
+		Descrever problemas vis&iacute;veis que prejudicam ou prejudicar&atilde;o o &nbsp;desenvolvimento do projeto como falta de fontes de conhecimento, informa&ccedil;&otilde;es confi&aacute;veis, &nbsp;padronizadas, etc. Documentar no artefato estes problemas que afetam o desenvolvimento da &nbsp;ontologia ou dos projetos que far&atilde;o uso dela;
+		</li><br>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Analisar Solu&ccedil;&otilde;es Potenciais:</b><br>
+		Descrever as potenciais solu&ccedil;&otilde;es encontradas para erradicar ou &nbsp;minimizar os problemas descritos anteriormente;
+		</li><br>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Analisar Recursos:</b><br>
+		<span style="font-size:16px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Descrever os meios utilizados para a execu&ccedil;&atilde;o das tarefas necess&aacute;rias para &nbsp;a constru&ccedil;&atilde;o da ontologia. Documentar no artefato a descri&ccedil;&atilde;o dos recursos humanos, tecnol&oacute;gicos (hardware, linguagens, ferramentas) e financeiros.</span></p>
+		</li>
+	</ul>
+	</li>
+</ul>
+
+
+
+<b class="texto3">Planejamento do Ciclo de Vida</b><br>
+
+
+
+Cada ciclo de vida na metodologia Monto deve ser iniciado &nbsp;com o planejamento de todo o processo a executar (PEDROZO, 2009). Ent&atilde;o nesta etapa, &nbsp;busca&shy;se definir as determina&ccedil;&otilde;es e objetivos que ser&atilde;o executados e esperados com a &nbsp;realiza&ccedil;&atilde;o do ciclo de vida. Devem ser tra&ccedil;ados e documentados a viabilidade para &nbsp;realiza&ccedil;&atilde;o da itera&ccedil;&atilde;o assim como o planejamento da avalia&ccedil;&atilde;o e organiza&ccedil;&atilde;o da execu&ccedil;&atilde;o.
+<br>
+
+<ul>
+	<li dir="ltr" class="disc">
+	<b class="texto2">Planejar organiza&ccedil;&atilde;o de Ciclo de Vida:</b><br>
+	O plano de organiza&ccedil;&atilde;o trata da forma como o projeto ser&aacute; organizado para executar as atividades e atender aos usu&aacute;rios de maneira eficiente, o que ser&aacute; de fundamental import&acirc;ncia na determina&ccedil;&atilde;o do seu sucesso. A organiza&ccedil;&atilde;o visa criar condi&ccedil;&otilde;es para que cada pessoa do grupo de trabalho consiga realizar seu trabalho, satisfazendo os objetivos globais e os individuais.
+	
+
+<ul>
+	<li>
+	<ul>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Organizar Equipes</b><br>
+		- Equipe de ger&ecirc;ncia: Atua no processo de planejar, organizar, controlar, pesquisar e gerenciar atividades e recursos para alcan&ccedil;ar o objetivo.<br>
+		- Equipe de desenvolvedor: Atua no processo de pesquisar, construir e avaliar a ontologia que est&aacute; sendo desenvolvida. 
+		</li>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Construir Cronograma</b><br>
+		Constru&ccedil;&atilde;o de um cronograma para organizar e controlar as atividades a serem realizadas. O cronograma conter&aacute; as seguintes informa&ccedil;&otilde;es: <br>
+		- A data de in&iacute;cio e fim de cada atividade; <br>
+		- A seq&uuml;&ecirc;ncia de execu&ccedil;&atilde;o das atividades; <br>
+		- Quais os resultados esperados de cada atividade executada; <br>
+		- Quem &eacute; a pessoa respons&aacute;vel por cada atividade; <br>
+		- Quais os recursos a serem utilizados para execu&ccedil;&atilde;o de cada atividade<br>
+		</li>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Definir Tarefas</b><br>
+		- Quais s&atilde;o as suas tarefas; <br>
+		- Quais s&atilde;o os resultados esperados;<br>
+		- Quais s&atilde;o os passos e meios a serem utilizados para obter os resultados esperados;<br>
+		- O padr&atilde;o de desempenho esperado;<br>
+		- O relacionamento de uma determinada tarefa com outras tarefas; <br>
+		- A quem deve responder; <br>
+		- A quem deve comandar; <br>
+		- O seu grau de autoridade; <br>
+		- Qual a sua responsabilidade.<br>
+		</li>
+	</ul>
+	</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+	<li dir="ltr" class="disc">
+	<b class="texto2">Planejar Organiza&ccedil;&atilde;o do Ciclo de Vida:</b><br>
+	Representa a principal fonte de refer&ecirc;ncia e controle da resolu&ccedil;&atilde;o do projeto, sendo utilizado pelo grupo de trabalho para conduzir suas atividades dentro dos par&acirc;metros planejados, corrigir falhas e se adaptar &agrave;s novas condi&ccedil;&otilde;es decorrentes de mudan&ccedil;as. A an&aacute;lise dos resultados obtidos em determinado per&iacute;odo da constru&ccedil;&atilde;o de ontologia &eacute; extremamente importante para que se possa avaliar o desempenho, a efici&ecirc;ncia, a confiabilidade, a reusabilidade, a manutenibilidade, a interoperabilidade, a portabilidade e a corretitude, comparando os resultados esperados com os resultados obtidos. Os crit&eacute;rios de qualidade a serem adotados devem estar devidamente definidos para garantir a qualidade da ontologia. 1 Os crit&eacute;rios de qualidade enumerados pela engenharia de sistemas [Pressman, 1992] ser&atilde;o adotados para a constru&ccedil;&atilde;o de ontologia. Estes crit&eacute;rios s&atilde;o:
+	
+
+<ul>
+	<li>
+	<ul>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Corretitude:</b> A ontologia est&aacute; de acordo com suas quest&otilde;es de compet&ecirc;ncia.
+		</li>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Confiabilidade:</b> A ontologia &eacute; confi&aacute;vel se o usu&aacute;rio pode depender dela, se opera como esperado em um dado intervalo de tempo e se n&atilde;o ocorre erro.
+		</li>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Desempenho:</b> A ontologia &eacute; eficiente se ela usa economicamente os recursos de computa&ccedil;&atilde;o, podendo reduzir a produtividade do usu&aacute;rio. </span></p>
+		</li>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Manutenibilidade:</b> Facilidade com que a ontologia pode ser corrigida. 
+		</li>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Portabilidade:</b> Capacidade de poder ser utilizada em v&aacute;rios ambientes (hardware e software). 
+		</li>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Interoperabilidade:</b> Capacidade de a ontologia coexistir e cooperar com outras ontologias. 
+		</li>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Reusabilidade:</b> Capacidade de utilizar a ontologia novamente, em um outro ambiente, com poucas mudan&ccedil;as. 
+		</li>
+	</ul>
+	</li>
+</ul>
+
+Tamb&eacute;m ser&atilde;o adotados os crit&eacute;rios de qualidade enumerados por [Gruber, 1995]. Estes crit&eacute;rios est&atilde;o descritos a seguir: 
+
+<ul>
+	<li>
+	<ul>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Clareza:</b> Uma ontologia deve definir de forma objetiva o significado dos termos definidos. As defini&ccedil;&otilde;es devem ser completas e documentadas em linguagem natural, de modo a refor&ccedil;ar a clareza. 
+		</li>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Coer&ecirc;ncia:</b> Uma ontologia deve ser coerente, isto &eacute;, deve comportar apenas infer&ecirc;ncias consistentes com as defini&ccedil;&otilde;es. Coer&ecirc;ncia deve ser observada, tamb&eacute;m, em rela&ccedil;&atilde;o a conceitos definidos informalmente. Se uma senten&ccedil;a pass&iacute;vel de ser inferida a partir dos axiomas da ontologia contradiz uma defini&ccedil;&atilde;o ou exemplo dado informalmente, ent&atilde;o a ontologia &eacute; incoerente. 
+		</li>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Extensibilidade:</b> Na ontologia deve ser poss&iacute;vel definir novos termos para usos especiais, com base no vocabul&aacute;rio existente, sem haver necessidade de rever defini&ccedil;&otilde;es existentes e, portanto, sua representa&ccedil;&atilde;o deve poder ser estendida e especializada. 
+		</li>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Compromissos de codifica&ccedil;&atilde;o m&iacute;nimos:</b> A conceitua&ccedil;&atilde;o deve ser especificada no n&iacute;vel de conhecimento sem depender de uma tecnologia particular de representa&ccedil;&atilde;o de conhecimento. Uma tend&ecirc;ncia de codifica&ccedil;&atilde;o surge quando escolhas de representa&ccedil;&atilde;o s&atilde;o feitas puramente para a conveni&ecirc;ncia de nota&ccedil;&atilde;o ou implementa&ccedil;&atilde;o. Assim, essa tend&ecirc;ncia deve ser minimizada, j&aacute; que agentes compartilhando conhecimento podem ser implementados em diferentes sistemas e paradigmas de representa&ccedil;&atilde;o.
+		</li>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Compromissos ontol&oacute;gicos m&iacute;nimos:</b> O conjunto de compromissos ontol&oacute;gicos de uma ontologia deve ser o menor poss&iacute;vel, capaz de suportar as atividades planejadas de compartilhamento de conhecimento. Uma ontologia deve fazer t&atilde;o poucas imposi&ccedil;&otilde;es quanto poss&iacute;vel sobre o mundo que est&aacute; sendo modelado, permitindo que as partes comprometidas com a ontologia fiquem livres para especializar e instanciar a ontologia na medida do necess&aacute;rio. Uma vez que compromissos ontol&oacute;gicos s&atilde;o baseados no uso consistente de um vocabul&aacute;rio, eles podem ser minimizados atrav&eacute;s da especifica&ccedil;&atilde;o de uma teoria mais fraca (que admita um maior n&uacute;mero de modelos), contendo defini&ccedil;&otilde;es restritas apenas para os termos essenciais &agrave; comunica&ccedil;&atilde;o consistente do conhecimento da teoria. 
+		</li>
+	</ul>
+	</li>
+</ul>
+
+</li>
+</ul>
+
+
+<b class="texto3">Especifica&ccedil;&atilde;o</b><br>
+
+
+
+O objetivo &eacute; extrair, descobrir, obter, analisar e avaliar o m&aacute;ximo de informa&ccedil;&otilde;es sobre o dom&iacute;nio de conhecimento para descrever as quest&otilde;es de compet&ecirc;ncia que a ontologia dever&aacute; responder.
+<br>
+Na fase de especifica&ccedil;&atilde;o se inicia com o ciclo de Aquisi&ccedil;&atilde;o de conhecimento, este consiste na extra&ccedil;&atilde;o de informa&ccedil;&otilde;es de dom&iacute;nio e posteriormente estudando estas informa&ccedil;&otilde;es, tal estudo pode gerar d&uacute;vidas sobre o dom&iacute;nio carecendo assim a extra&ccedil;&atilde;o de novas informa&ccedil;&otilde;es, que acarreta em um clico(Pedroso, 2009).
+
+<br>
+
+<ul>
+	<li dir="ltr" class="disc">
+	<b class="texto2">Adquirir Conhecimento:</b>
+
+	<ul>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Extrair Informa&ccedil;&otilde;es do Dom&iacute;nio</b><br>
+		&Eacute; um processo explorat&oacute;rio, que deve servir de base para o processo de constru&ccedil;&atilde;o de ontologias e auxiliar o entendimento do problema, obtendo com os fornecedores das informa&ccedil;&otilde;es um conhecimento b&aacute;sico do dom&iacute;nio de conhecimento.<br>
+		As atividades a serem realizadas para obten&ccedil;&atilde;o das informa&ccedil;&otilde;es sobre o dom&iacute;nio de conhecimento da ontologia s&atilde;o descritas a seguir: <br>
+
+		<ul>
+			<li dir="ltr" class="square">
+			Identificar as pessoas que entendem o dom&iacute;nio de conhecimento; 
+			</li>
+			<li dir="ltr" class="square">
+			Identificar as fontes de informa&ccedil;&otilde;es a serem analisadas;
+			</li>
+			<li dir="ltr" class="square">
+			Obter diferentes vis&otilde;es do dom&iacute;nio de conhecimento;
+			</li>
+			<li dir="ltr" class="square">
+			Investigar o dom&iacute;nio, utilizando os seguintes meios:
+			<ul>
+				<li dir="ltr" class="disc">Entrevistas;</li>
+				<li dir="ltr" class="disc">Reuni&otilde;es de debates e gera&ccedil;&otilde;es de id&eacute;ias;</li>
+				<li dir="ltr" class="disc">Documenta&ccedil;&otilde;es da institui&ccedil;&atilde;o;</li>
+				<li dir="ltr" class="disc">Livros; o Artigos; o Internet;</li>
+				<li dir="ltr" class="disc">Revistas cientificas;</li>
+				<li dir="ltr" class="disc">Institui&ccedil;&otilde;es com dom&iacute;nios semelhantes;</li>
+				<li dir="ltr" class="disc">E outros meios que sejam adequados.</li>
+			</ul>
+			</li>
+			<li dir="ltr" class="square">Elaborar um formul&aacute;rio com todas as perguntas a serem feitas na realiza&ccedil;&atilde;o da entrevista;</li>
+			<li dir="ltr" class="square">Elaborar um roteiro com os temas a serem tratados na realiza&ccedil;&atilde;o da reuni&atilde;o;</li>
+			<li dir="ltr" class="square">Coletar o m&aacute;ximo de informa&ccedil;&otilde;es;</li>
+			<li dir="ltr" class="square">Identificar as expectativas e necessidades dos usu&aacute;rios;</li>
+			<li dir="ltr" class="square">Identificar, de forma geral, as fun&ccedil;&otilde;es solicitadas para a ontologia.</li>
+		</ul>
+		</li>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Analisar Informa&ccedil;&otilde;es do Dom&iacute;nio</b><br>
+		A an&aacute;lise a ser feita na documenta&ccedil;&atilde;o gerada pela etapa da especifica&ccedil;&atilde;o, busca selecionar as informa&ccedil;&otilde;es realmente &uacute;teis, obter um consenso, entre os construtores da ontologia, sobre o entendimento das informa&ccedil;&otilde;es e dos componentes da ontologia, identificar os problemas, obter as solu&ccedil;&otilde;es dos problemas e adquirir o m&aacute;ximo de conhecimento necess&aacute;rio para o processo de constru&ccedil;&atilde;o da ontologia. Uma avalia&ccedil;&atilde;o mais minuciosa das informa&ccedil;&otilde;es &uacute;teis procura detectar o m&aacute;ximo de erros que possam ser corrigidos, resolver vis&otilde;es conflitantes, eliminar inconsist&ecirc;ncia e ambig&uuml;idades e detectar informa&ccedil;&otilde;es incompletas. Depois de realizar a an&aacute;lise e avalia&ccedil;&atilde;o, as informa&ccedil;&otilde;es, at&eacute; ent&atilde;o conhecidas, devem ser organizadas de modo mais adequado, para facilitar as futuras avalia&ccedil;&otilde;es e an&aacute;lises. As an&aacute;lises realizadas devem gerar uma documenta&ccedil;&atilde;o mais consistente e precisa.
+		</li>
+	</ul>
+	</li>
+	<li dir="ltr" class="disc">
+	<b class="texto2">Definir Quest&otilde;es de Compet&ecirc;ncia</b><br>
+	Com o conhecimento adquirido sobre o dom&iacute;nio de conhecimento e sobre os problemas e as suas solu&ccedil;&otilde;es &eacute; poss&iacute;vel elaborar as quest&otilde;es de compet&ecirc;ncias, visando auxiliar a an&aacute;lise da ontologia, com um conjunto de perguntas que ir&aacute; surgir: 
+
+	<ul>
+		<li dir="ltr" class="circ">Que problemas esta ontologia deve resolver?</li>
+		<li dir="ltr" class="circ">Quais s&atilde;o as quest&otilde;es que a ontologia deve responder?</li>
+	</ul>
+	</li>
+</ul>
+
+As informa&ccedil;&otilde;es realmente &uacute;teis devem ser descritas respeitando certas condi&ccedil;&otilde;es necess&aacute;rias que garantem gerar uma documenta&ccedil;&atilde;o devidamente estruturada para que a continuidade do processo de constru&ccedil;&atilde;o de ontologias satisfa&ccedil;a os crit&eacute;rios de qualidade estabelecidos. As condi&ccedil;&otilde;es necess&aacute;rias s&atilde;o descritas a seguir:
+
+<ul>
+	<li>
+	<ul>
+		<li dir="ltr" class="circ">Os objetivos devem est&aacute; claros e consistentes;</li>
+		<li dir="ltr" class="circ">Todas as fun&ccedil;&otilde;es devem estar adequadamente descritas;</li>
+		<li dir="ltr" class="circ">Os fluxos de informa&ccedil;&otilde;es devem traduzir a realidade que se deseja representar;</li>
+		<li dir="ltr" class="circ">As informa&ccedil;&otilde;es devem est&aacute; organizadas de uma forma l&oacute;gica e clara;</li>
+		<li dir="ltr" class="circ">Tem que existir um consenso, entre os construtores da ontologia, sobre o entendimento das informa&ccedil;&otilde;es e dos componentes da ontologia;</li>
+		<li dir="ltr" class="circ">N&atilde;o devem existir inconsist&ecirc;ncias, omiss&otilde;es e redund&acirc;ncias de informa&ccedil;&otilde;es;</li>
+		<li dir="ltr" class="circ">A documenta&ccedil;&atilde;o deve estar devidamente avaliada e aprovada pelos construtores da ontologia e por todos os usu&aacute;rios;</li>
+		<li dir="ltr" class="circ">A investiga&ccedil;&atilde;o do dom&iacute;nio deve estar amplamente explorada e analisada.</li>
+	</ul>
+	</li>
+</ul>
+
+No fim da execu&ccedil;&atilde;o desta etapa, deve ter como produto gerado uma documenta&ccedil;&atilde;o bastante madura e confi&aacute;vel sobre a ontologia que se deseja construir.
+
+<br><br>
+
+
+<b class="texto3">Conceitualiza&ccedil;&atilde;o</b><br>
+
+O objetivo &eacute; elaborar um modelo conceitual do dom&iacute;nio de conhecimento a partir das informa&ccedil;&otilde;es analisadas na etapa de aquisi&ccedil;&atilde;o de conhecimento. &nbsp;O foco desta etapa &eacute; como traduzir as informa&ccedil;&otilde;es obtidas na aquisi&ccedil;&atilde;o de conhecimento para o modelo conceitual, o qual visa gerar uma representa&ccedil;&atilde;o da ontologia com detalhes suficientes para que possa ser formalizado. Observa-se que o processo de definir novas classes e obter rela&ccedil;&otilde;es &eacute; interativo e pode se repetir muitas vezes, at&eacute; mesmo ap&oacute;s a obten&ccedil;&atilde;o de um modelo conceitual aceit&aacute;vel, j&aacute; que a aquisi&ccedil;&atilde;o de conhecimento se aplica durante todo o ciclo de vida. A conceitualiza&ccedil;&atilde;o utilizou tamb&eacute;m os estudos de [Noy &amp; Guinnes, 2001], como base para a orienta&ccedil;&atilde;o das atividades no desenvolvimento de um modelo conceitual. A constru&ccedil;&atilde;o do modelo conceitual consiste das seguintes atividades:
+
+<ul>
+	<li dir="ltr" class="disc">
+	<b class="texto2">Construir Lista de componentes</b><br>
+	Quem &eacute; conceito, rela&ccedil;&atilde;o, fun&ccedil;&atilde;o, axioma e inst&acirc;ncia. Todos os componentes devem ser descritos em linguagem natural.
+	</li>
+	<li dir="ltr" class="disc" >
+	<b class="texto2">Construir &Aacute;rvores Taxon&ocirc;mica</b><br>
+	Pode ser constru&iacute;da com a utiliza&ccedil;&atilde;o da ferramenta especifica indicada no plano de recursos. Para a constru&ccedil;&atilde;o da &aacute;rvore s&atilde;o executadas as seguintes sub-atividades:
+
+	<ul>
+		<li dir="ltr" class="circ">Representar as classes, que s&atilde;o os conceitos, na &aacute;rvore;</li>
+		<li dir="ltr" class="circ">Organizar as classes em uma taxonomia definindo rela&ccedil;&otilde;es tais como: subclasse de, superclasse de e exclusividade m&uacute;tua entre classes;</li>
+		<li dir="ltr" class="circ">Definir as propriedades (rela&ccedil;&otilde;es, fun&ccedil;&otilde;es, axiomas) das classes, levando em considera&ccedil;&atilde;o que todas as subclasses de uma classe herdam as rela&ccedil;&otilde;es daquela classe;</li>
+		<li dir="ltr" class="circ">Definir as restri&ccedil;&otilde;es sobre as rela&ccedil;&otilde;es: As restri&ccedil;&otilde;es descrevem caracter&iacute;sticas limitantes para as classes. Algumas restri&ccedil;&otilde;es poss&iacute;veis s&atilde;o: cardinalidade da rela&ccedil;&atilde;o, o tipo de valor da rela&ccedil;&atilde;o (string, n&uacute;mero, booleano, etc), a faixa de valores poss&iacute;veis para a rela&ccedil;&atilde;o e as rela&ccedil;&otilde;es definidas para uma classe;</li>
+		<li dir="ltr" class="circ">Definir as inst&acirc;ncias: Cria&ccedil;&atilde;o de inst&acirc;ncias individuais na hierarquia. Para definir uma inst&acirc;ncia &eacute; preciso escolher uma classe, criar uma inst&acirc;ncia individual daquela classe e preencher os valores das rela&ccedil;&otilde;es (tipo-inst&acirc;ncia) e poss&iacute;veis restri&ccedil;&otilde;es;</li>
+		<li dir="ltr" class="circ">Verificar a consist&ecirc;ncia (n&atilde;o devem existir ciclos na &aacute;rvore) e a concis&atilde;o (n&atilde;o deve existir repeti&ccedil;&atilde;o de conceitos) na &aacute;rvore.</li>
+	</ul>
+	</li>
+</ul>
+
+
+
+No fim da constru&ccedil;&atilde;o da &aacute;rvore de classifica&ccedil;&atilde;o de conceitos, esta etapa deve ter como produto gerado o modelo conceitual da ontologia.
+
+<br><br>
+
+<b class="texto3">Formaliza&ccedil;&atilde;o</b><br>
+
+O objetivo &eacute; transformar o modelo conceitual em um modelo formal, utilizando uma linguagem formal e uma ferramenta que possa traduzi-lo para o ambiente computacional.
+
+<ul>
+	<li dir="ltr" class="disc">
+	<b class="texto2">Formalizar Modelo Conceitual</b><br>
+	Pode ser feito de forma modular, sendo mais f&aacute;cil de ser desenvolvida e mantida. Os m&oacute;dulos devem ser bem estruturados, claramente definidos de forma que a ontologia possa ser reutilizada. <br>
+Como a ontologia &eacute; constru&iacute;da de uma forma modular, deve ser realizado teste individual dos m&oacute;dulos, integra&ccedil;&atilde;o dos m&oacute;dulos formando a ontologia e teste de integra&ccedil;&atilde;o dos m&oacute;dulos, que compreende o teste da ontologia com todos os m&oacute;dulos.Esta etapa &eacute; desenvolvida com a utiliza&ccedil;&atilde;o das ferramentas indicadas no plano de recursos e tem como produto final a ontologia ou uma vers&atilde;o da ontologia testada.
+	</li>
+</ul>
+
+<b class="texto3">Integra&ccedil;&atilde;o</b><br>
+
+<ul>
+	<li dir="ltr" class="disc">
+	<b class="texto2">Formalizar Ontologia em uma Mesma Linguagem</b>
+	</li>
+	<li dir="ltr" class="disc">
+	<b class="texto2">Integrar Ontologias</b>
+
+	<ul>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Resolver Conflitos Sint&aacute;ticos</b>
+		</li>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Resolver Redund&acirc;ncias Sem&acirc;nticas</b>
+		</li>
+		<li dir="ltr" class="circ">
+		<b class="texto2">Adaptar Ontologias aos Novos Elementos</b>
+		</li>
+	</ul>
+	</li>
+</ul>
+
+<b class="texto3">Disponibiliza&ccedil;&atilde;o</b><br>
+
+O objetivo desta etapa &eacute; colocar a ontologia em uso no ambiente real, sendo utilizada pelos usu&aacute;rios finais com acompanhamento de uma parte do grupo de trabalho. A etapa de disponibiliza&ccedil;&atilde;o realiza as seguintes atividades:
+
+<ul>
+	<li dir="ltr" class="disc">
+		<b class="texto2">Validar Ontologia</b>
+
+		<ul>
+			<li dir="ltr" class="circ">
+				<b class="texto2">Instalar a ontologia no ambiente real;</b>
+			</li>
+			<li dir="ltr" class="circ">
+				<b class="texto2">Testar a ontologia;</b>
+			</li>
+			<li dir="ltr" class="circ">
+				<b class="texto2">Analisar, descobrir e corrigir as causas dos erros encontrados;</b>
+			</li>
+		</ul>
+	</li>
+	<li dir="ltr" class="disc">
+		<b class="texto2">Construir Manual da Ontologia</b>
+
+		<ul>
+			<li dir="ltr" class="circ">
+				<b class="texto2">Descrever dom&iacute;nio e objetivos da ontologia </b>
+			</li>
+			<li dir="ltr" class="circ">
+				<b class="texto2">Listar compet&ecirc;ncias da ontologia </b>
+			</li>
+			<li dir="ltr" class="circ">
+				<b class="texto2">Anexar lista de termos da ontologia </b>
+			</li>
+			<li dir="ltr" class="circ">
+				<b class="texto2">Descrever hist&oacute;rico de atualiza&ccedil;&otilde;es </b>
+			</li>
+		</ul>
+	</li>
+</ul>
+
+
+Os testes previstos nesta compor&atilde;o a etapa de avalia&ccedil;&atilde;o. Esta fase ser&aacute; focada na prepara&ccedil;&atilde;o da ontologia para o uso gen&eacute;rico. Instala&ccedil;&atilde;o num sistema, uma integra&ccedil;&atilde;o com outra ontologia, etc. A confec&ccedil;&atilde;o de um manual sobre a ontologia &eacute; atividade essencial.
+
+<br><br>
+
+<b class="texto3">Documenta&ccedil;&atilde;o</b><br>
+
+O objetivo &eacute; armazenar a explica&ccedil;&atilde;o completa e exaustiva de todos os recursos e etapas existentes, visando facilitar futuro reuso e manuten&ccedil;&atilde;o da ontologia. Justamente para dar suporte a essa etapa &eacute; que SILVA (2010) construiu a ferramenta MontoDoc, que ser&aacute; explicitada posteriormente. 
+
+A documenta&ccedil;&atilde;o deve ser executada em todas as etapas do processo de constru&ccedil;&atilde;o de ontologia, sendo que em cada etapa as seguintes informa&ccedil;&otilde;es devem ser registradas: 
+
+
+
+<ul>
+	<li dir="ltr" class="disc" >
+	<b class="texto2">Planejamento Inicial:</b> Descri&ccedil;&atilde;o de todos os procedimentos necess&aacute;rios para se elaborar o planejamento da ontologia que se deseja construir. &Eacute; o primeiro documento a ser registrado e vai servir de base para a realiza&ccedil;&atilde;o das pr&oacute;ximas etapas. 
+	</li>
+	<li dir="ltr" class="disc">
+	<b class="texto2">Planejamento do Ciclo de Vida:</b> Descri&ccedil;&atilde;o de todos os procedimentos necess&aacute;rios para se elaborar o planejamento de um determinado ciclo de vida. &Eacute; o primeiro documento a ser registrado no ciclo e vai servir de base para a realiza&ccedil;&atilde;o das etapas seguintes e dos ciclos posteriores, caso estes se fa&ccedil;am necess&aacute;rios.
+	</li>
+	<li dir="ltr" class="disc" >
+	<b class="texto2">Especifica&ccedil;&atilde;o:</b> Descri&ccedil;&atilde;o dos requisitos que ser&atilde;o utilizados para obten&ccedil;&atilde;o e an&aacute;lise das informa&ccedil;&otilde;es sobre o dom&iacute;nio de conhecimento da ontologia que se deseja construir, descri&ccedil;&atilde;o detalhada, passo a passo, da execu&ccedil;&atilde;o de cada um dos requisitos selecionados, descri&ccedil;&atilde;o das quest&otilde;es de compet&ecirc;ncias da ontologia e dos crit&eacute;rios necess&aacute;rios para a sua constru&ccedil;&atilde;o.
+	</li>
+	<li dir="ltr" class="disc" >
+	<b class="texto2">Conceitualiza&ccedil;&atilde;o:</b> Descri&ccedil;&atilde;o detalhada do processo de execu&ccedil;&atilde;o das atividades necess&aacute;rias para a constru&ccedil;&atilde;o do modelo conceitual.
+	</li>
+	<li dir="ltr" class="disc" >
+	<b class="texto2">Formaliza&ccedil;&atilde;o:</b> Descri&ccedil;&atilde;o detalhada do processo de execu&ccedil;&atilde;o das atividades necess&aacute;rias para a formaliza&ccedil;&atilde;o da ontologia e descri&ccedil;&atilde;o de como foram realizados os testes.
+	</li>
+	<li dir="ltr" class="disc" >
+	<b class="texto2">Integra&ccedil;&atilde;o:</b> Descri&ccedil;&atilde;o das ontologias coletadas, de como cada uma delas foram utilizadas e os resultados obtidos com a integra&ccedil;&atilde;o. Os erros, caso hajam, devem ser expostos com detalhes.
+	</li>
+	<li dir="ltr" class="disc" >
+	<b class="texto2">Disponibiliza&ccedil;&atilde;o:</b> Descri&ccedil;&atilde;o detalhada do processo de execu&ccedil;&atilde;o das atividades necess&aacute;rias para a implanta&ccedil;&atilde;o, anota&ccedil;&atilde;o da avalia&ccedil;&atilde;o da ontologia pelo usu&aacute;rio e manual da ontologia para facilitar seu entendimento e manipula&ccedil;&atilde;o pelo &nbsp;usu&aacute;rio final.
+	</li>
+	<li dir="ltr" class="disc" >
+	<b class="texto2">Avalia&ccedil;&atilde;o:</b> Descrever todas as avalia&ccedil;&otilde;es feitas e seus resultados em um relat&oacute;rio de avalia&ccedil;&otilde;es.
+	</li>
+</ul>
+
+<b class="texto3">Avalia&ccedil;&atilde;o</b></br>
+
+O objetivo &eacute; avaliar o desempenho de todo o processo de constru&ccedil;&atilde;o de ontologia, para garantir que ela tenha sido desenvolvida de maneira formalmente correta, de acordo com o processo de execu&ccedil;&atilde;o estabelecido por cada uma das etapas, visando assegurar os crit&eacute;rios de qualidade. A maior parte das atividades deve ser feita durante as etapas iniciais do ciclo de vida, de forma a diminuir a propaga&ccedil;&atilde;o de erros.
+
+<ul>
+	<li dir="ltr" class="disc">
+	<b class="texto2">Avaliar Ontologia Tecnicamente</b><br>
+	A avalia&ccedil;&atilde;o t&eacute;cnica, feita durante a constru&ccedil;&atilde;o da ontologia, deve ser realizada aplicando as seguintes atividades:
+
+	<ul>
+		<li dir="ltr" class="circ">
+		Acompanhar e controlar todo o processo de constru&ccedil;&atilde;o da ontologia;
+		</li>
+		<li dir="ltr" class="circ">
+		Verificar se todos os requisitos est&atilde;o bem definidos para que a ontologia possa ser confi&aacute;vel;
+		</li>
+		<li dir="ltr" class="circ">
+		Verificar se cada etapa do ciclo de vida satisfaz os crit&eacute;rios de qualidade;
+		</li>
+		<li dir="ltr" class="circ">
+		Verificar se o produto gerado por cada etapa atende as necessidades da etapa seguinte;
+		</li>
+		<li dir="ltr" class="circ">
+		Verificar se as tecnologias utilizadas satisfazem;
+		</li>
+		<li dir="ltr" class="circ">
+		Realizar compara&ccedil;&otilde;es t&eacute;cnicas, relacionadas com a ontologia e a documenta&ccedil;&atilde;o, com as ontologias coletadas na etapa de integra&ccedil;&atilde;o;
+		</li>
+		<li dir="ltr" class="circ">
+		Verificar se todas as fontes de informa&ccedil;&otilde;es s&atilde;o confi&aacute;veis;
+		</li>
+		<li dir="ltr" class="circ">
+		Verificar se todas as documenta&ccedil;&otilde;es produzidas nas etapas est&atilde;o corretas;
+		</li>
+		<li dir="ltr" class="circ">
+		Verificar se a ontologia esta sendo desenvolvida como estabelecida garantindo a sua qualidade;
+		</li>
+		<li dir="ltr" class="circ">
+		Verificar se a integridade das informa&ccedil;&otilde;es &eacute; mantida;
+		</li>
+		<li dir="ltr" class="circ">
+		Manter uma pasta de ocorr&ecirc;ncias da constru&ccedil;&atilde;o da ontologia:
+
+		<ul>
+			<li dir="ltr" class="square">
+			Com todos os documentos produzidos na etapa de avalia&ccedil;&atilde;o;
+			</li>
+			<li dir="ltr" class="square">
+			Hist&oacute;rico do projeto.
+			</li>
+		</ul>
+		</li>
+		<li dir="ltr" class="circ">
+		Verificar se o que foi planejado est&aacute; sendo executado, comparando os resultados obtidos com os planejados;
+		</li>
+		<li dir="ltr" class="circ">
+		Verificar se as ontologias integradas ao projeto combinam-se adequadamente;
+		</li>
+		<li dir="ltr" class="circ">
+		Acompanhar a evolu&ccedil;&atilde;o da constru&ccedil;&atilde;o de ontologia, utilizando os seguintes recursos:
+
+		<ul>
+			<li dir="ltr" class="square">
+			Realizar reuni&otilde;es;
+			</li>
+			<li dir="ltr" class="square">
+			Elaborar relat&oacute;rios;
+			</li>
+			<li dir="ltr" class="square">
+			Analisar cada atividade assim que for desenvolvida;
+			</li>
+			<li dir="ltr" class="square">
+			Revisar o plano de constru&ccedil;&atilde;o de ontologia (como por exemplo, mudan&ccedil;as no cronograma, no grupo de trabalho e etc), se necess&aacute;rio;
+			</li>
+		</ul>
+		</li>
+		<li dir="ltr" class="circ">
+		Avaliar o produto final.
+		</li>
+	</ul>
+	</li>
+</ul>
+
+
+
+<ul>
+	<li dir="ltr" class="disc">
+	<b class="texto2">Avaliar Perante Vis&atilde;o do Usu&aacute;rio</b><br>
+	A avalia&ccedil;&atilde;o da ontologia pelo usu&aacute;rio deve ser realizada aplicando as seguintes atividades: 
+
+	<ul>
+		<li dir="ltr" class="circ">
+		Acompanhar o processo de demonstra&ccedil;&atilde;o da ontologia para o usu&aacute;rio; 
+		</li>
+		<li dir="ltr" class="circ">
+		Solicitar ao usu&aacute;rio que seja registrado todos os problemas que forem encontrados;
+		</li>
+		<li dir="ltr" class="circ">
+		Aplicar com certa freq&uuml;&ecirc;ncia uma reavalia&ccedil;&atilde;o da ontologia, para verificar o seu desempenho e obter novas sugest&otilde;es do usu&aacute;rio.
+		</li>
+	</ul>
+	</li>
+</ul>
+
+As vantagens do uso constante de avalia&ccedil;&atilde;o durante todo o processo de constru&ccedil;&atilde;o de ontologias s&atilde;o para melhorar a qualidade, detectar erros mais cedo e melhorar a qualidade do acompanhamento do projeto.
+
+
+</div>
+</div>
+

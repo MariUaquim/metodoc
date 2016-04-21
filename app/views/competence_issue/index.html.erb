@@ -1,0 +1,56 @@
+<% content_for :css do %>
+  <style type="text/css" media="all">
+    table{
+      width: 100%;
+    }
+    tr th{
+      text-align: center;
+      background-color: #ddd
+    }
+  </style>
+<%end%>
+
+<%content_for :content_header do%>
+<h1>Questões de Competência de <%=@version.ontology.name%> - V. <%=@version.number%></h1>
+<p>Crie ou edite as questões de competência da versão da ontologia</p>
+<ul class="page-menu">
+  <li><%=link_to 'Voltar para a Versão', :controller=>'version', :action=>'show', :id=>@version.id%></li>
+  <li><%=link_to 'Nova Questão de Competência', :action => 'edit', :version_id => @version.id%></li>
+  <li><%=link_to 'Artefato', :action=>'show', :version_id=>@version.id%></li>
+</ul>
+<%end%>
+
+
+<div class="content">
+  <% if @questions.size > 0 %>
+  <table class="data">
+    <tr>
+      <th>Questão</th>
+      <th>Status</th>
+      <th>Opções</th>
+    </tr>
+    <% @questions.each do |a| %>
+    <tr>
+      <td><%=a.question %></td>
+      <td><%=a.artefact_status.description%></td>
+      <td class="center">
+        <%=link_to image_tag("icons/edit.png",
+                              :id=>'term_edit',
+                              :alt=>'Editar Termo',
+                              :title=>'Editar Termo'),
+                    :action => 'edit', :id => a.id%>
+        <%=link_to image_tag("icons/delete.png",
+                              :id=>'term_delete',
+                              :alt=>'Excluir Termo',
+                              :title=>'Excluir Termo'),
+                   :action => 'destroy', :id => a.id, :version_id=>a.version_id%>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <% else %>
+  <h2>Sem questões de competência</h2>
+  <% end %>
+</div>
+
+

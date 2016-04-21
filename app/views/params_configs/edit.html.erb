@@ -1,0 +1,20 @@
+<h1>Editing params_config</h1>
+
+<% form_for(@params_config) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label : %><br />
+    <%= f.text_field : %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @params_config %> |
+<%= link_to 'Back', params_configs_path %>

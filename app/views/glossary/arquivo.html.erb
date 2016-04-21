@@ -1,0 +1,205 @@
+<style>
+p.texto{
+display:none;
+}
+table{
+text-align:center;
+}
+</style>
+
+
+
+<%=render :partial => 'document/form_menus' %>
+
+<div class="content">
+
+
+<div class="activity-menu texto1">
+Documento: <b class="texto2"><%=@documento.doc_type.name%></b>
+<ul>
+   <li><%=link_to '', {:controller=>'document', :action => 'show', :id => @documento.id}, {:class=>'btdocument-min'}%></li>
+</ul>
+</div>
+
+
+<% flash.each do |key, msg| %>
+    <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_#{key}" %>
+<% end %>
+<% form_tag "arquivo?document_id="+params[:document_id]+"&version_id="+params[:version_id], { :multipart => true } do %>
+    <p>
+    <%= file_field_tag 'upload[file]' %>
+    </p>
+    <p>
+    	<%= submit_tag "Upload" %>
+    </p>
+<% end %>
+</div>
+
+<div class="content">
+<input type="button" value="atualizar" id="atualizar">
+<%
+nome_arquivo = @documento.id.to_s + ".owl"
+path = "/home/mariana/Documentos/montodoc/app/views/glossary/arquivos/" + nome_arquivo
+
+if !File.exists?(path)
+    %><p>Não existe arquivo</p><%
+
+else
+
+%>
+<table>
+<tr>
+<td colspan="2">Componentes Cadastrados:</td>
+</tr>
+<tr>
+<td>Nome</td>
+<td>Tipo de Termo</td>
+</tr>
+<%
+if @glossary.size > 0 
+   @glossary.each do |t| %>
+    <tr>
+       <td><%=t.name%></td>
+       <td><%=t.term_type.description%></td>
+    </tr><%
+   end 
+end
+
+
+a = File.readlines(path)
+arq = ""
+a.each.with_index do |line, index1|
+  arq << " " + line
+end
+
+
+declare = arq.split("<Declaration>")
+declare2 = arq.split("</Declaration>")
+subClass = arq.split("<SubClassOf>")
+
+declare.each do |d|
+
+   if d.include?("<ObjectProperty ")
+
+       tagProperty = d.split("<ObjectProperty ") #esse tem q mudar o [1]
+
+       init = tagProperty[1].index('=') + 3
+       fim = tagProperty[1].index('/') - 2
+       propriedade = tagProperty[1].to_s[init..fim]
+       %><p class="texto propriedade"><%=propriedade%></p><%
+
+  elsif d.include?("<Class ")
+
+       tagClasse = d.split("<Class ") #esse tem q mudar o [1]
+
+       if tagClasse.length > 2
+	  next
+       end
+
+       init = tagClasse[1].index('=') + 3
+       fim = tagClasse[1].index('/') - 2
+       classe = tagClasse[1].to_s[init..fim]
+       %><p class="texto classe"><%=classe%></p><%
+   else
+	next
+   end
+
+end
+
+subClass.each.with_index do |s, index|
+
+   if s.include?("<ObjectProperty ")
+      tagPropriedade = s.split("<ObjectProperty ") 
+      tagClass = s.split("<Class ")
+
+      init = tagPropriedade[1].index('=') + 3
+      fim = tagPropriedade[1].index('/') - 2
+      propriedade = tagPropriedade[1].to_s[init..fim]
+
+      init = tagClass[1].index('=') + 3
+      fim = tagClass[1].index('/') - 2
+      classe1 = tagClass[1].to_s[init..fim]
+
+      init = tagClass[2].index('=') + 3
+      fim = tagClass[2].index('/') - 2
+      classe2 = tagClass[2].to_s[init..fim]
+
+      %><p class="texto relacionamento"><%=classe1%> <%=propriedade%> <%=classe2%></p><%
+
+
+   else
+
+	   if index === 0
+		next
+	   end
+
+	   tagClasse = s.split("<Class ") #esse tem q mudar o [1]
+
+	   if s.include?("<ObjectProperty ")
+	     next
+	   end
+
+	   init = tagClasse[1].index('=') + 3
+	   fim = tagClasse[1].index('/') - 2
+	   classe1 = tagClasse[1].to_s[init..fim]
+
+	   init = tagClasse[2].index('=') + 3
+	   fim = tagClasse[2].index('/') - 2
+	   classe2 = tagClasse[2].to_s[init..fim]
+
+	   %><p class="texto subclasse"><%=classe1%> <%=classe2%></p><%
+   end
+end
+
+end
+%>
+
+</div>
+
+<SCRIPT TYPE="text/javascript">
+
+
+var vClasse = [];
+var vRelacao = [];
+var vPropriedade = [];
+var vSubclasse = [];
+
+      $(".classe").each(function(){
+
+        termo = $(this).text();
+        vClasse.push(termo);
+        });
+      $(".propriedade").each(function(){
+
+        propriedade = $(this).text();
+        vClasse.push(propriedade);
+	vPropriedade.push(propriedade);
+        });
+
+      $(".subclasse").each(function(){
+
+        subclasse = $(this).text();
+        vSubclasse.push(subclasse);
+        });
+
+      $(".relacionamento").each(function(){
+
+        relacao = $(this).text();
+        
+	rel = relacao.split(' ');
+        $.each(rel, function(i, val){
+          exp = new RegExp('\\b' + val + '\\b', 'g');
+          relacao = relacao.replace(exp, vClasse.indexOf(val));
+        }) 
+
+        vRelacao.push(relacao);
+
+        });
+
+        $("#atualizar").click(function(){
+             var url = "/glossary/edit?document_id=<%=params[:document_id]%>&version_id=<%=params[:version_id]%>&vClasse="+vClasse+"&vPropriedade="+ vPropriedade +"&vRelacao="+ vRelacao +"&vSubClasse="+ vSubclasse; 
+
+             window.location.href = url;
+        });
+
+</script>

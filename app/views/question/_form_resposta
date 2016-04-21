@@ -1,0 +1,49 @@
+<%@questoes.each do |q|%>
+<br><br><label><%=q.question%></label><br>
+
+   <%if q.answer_type == 3 %>
+          <%@respostas.each do |r|
+	      if r.question_id == q.id
+               @checked = r.type_answer_id
+              end%>
+          <%end%>
+	           <input type="radio" name= "answer_<%=q.id%>" value="1" <%if (@checked == 1) %>checked<%end%> >
+	           <%= label :answer, :type_answer_id, "Ruim" %><br>
+	           <input type="radio" name= "answer_<%=q.id%>" value="2" <%if (@checked == 2) %>checked<%end%> >
+	           <%= label :answer, :type_answer_id, "Regular" %><br>
+	           <input type="radio" name= "answer_<%=q.id%>" value="3" <%if (@checked == 3) %>checked<%end%> >
+	           <%= label :answer, :type_answer_id, "Bom" %><br>
+	           <input type="radio" name= "answer_<%=q.id%>" value="4" <%if (@checked == 4) %>checked<%end%> >
+	           <%= label :answer, :type_answer_id, "Ótimo" %><br>
+              
+
+   <%else%>
+	<textarea id="answer_<%=q.id%>" rows="20" cols="100" name="answer_<%=q.id%>" >
+
+		<%@respostas.each do |r|
+			if r.question_id == q.id%>
+				<%=r.answer%>
+			<%end%>
+		<%end%>
+	</textarea>
+   <%end%>
+<%end%>
+
+
+<div class="buttons" style="margin-top:50px;">
+   <%= submit_tag 'Salvar', :class=>'button'%>
+</div>
+
+<style language="text/css">
+select{
+margin-top:3px;
+width:200px;
+}
+label{
+margin-top:8px;
+margin-right:2px;
+}
+#responsabe_user_id_2{
+margin-top:8px;
+}
+</style>

@@ -1,0 +1,305 @@
+
+<%=render :partial => 'document/form_menus' %>
+
+
+<div class="content">
+
+
+<div class="activity-menu texto1">
+Documento: <b class="texto2"><%=@documento.doc_type.name%></b>
+<ul>
+   <li><%=link_to '', {:controller=>'document', :action => 'show', :id => @documento.id}, {:class=>'btdocument-min'}%></li>
+</ul>
+</div>
+
+<%if !@atividades.nil?%>
+<div>
+  <div class="divSelect">
+    <span role="checkbox" class="checkSelect" style="line-height: 5px;"></span>
+    <a class="linkSelect" href="javascript:mostraEsconde('selectMarcadores')"></a>
+  </div>
+
+  <div id="divMarcadores" class="divSelect" style="display:none;">
+    <span class="marcador" ></span>
+    <a class="linkSelect" href="javascript:mostraEsconde('selectMarcadores2')"></a>
+    <a href="javascript:listaLixo()"><span class="lixo" style="border-left:2px solid lightgray;"></span></a>
+  </div>
+  <div id="selectMarcadores2" class="selectMarcadores" style="margin-left: 70px;width:220px;">
+    <div class="divLabel" id="label4"><label>marcar como prioridade</label></div>
+    <div class="divLabel" id="label5"><label>marcar como feita</label></div>
+    <div class="divLabel" id="label6"><label>marcar como em andamento</label></div>
+  </div>
+
+  <div id="selectMarcadores" class="selectMarcadores">
+    <div class="divLabel" id="label1"><label>marcar todas</label></div>
+    <div class="divLabel" id="label2"><label>marcar com estrela</label></div>
+    <div class="divLabel" id="label3"><label>marcar sem estrela</label></div>
+  </div>
+
+</div>
+
+
+<table style="clear: left;">
+
+<%@atividades.each do |a|%>
+<tr id="tr<%=a.id%>">
+  <td><span class="checkSelect"></span></td>
+  <td><span name="prioridade" class="prioridade-1"></span></td>
+  <td><%=link_to a.name, "#janela"+a.id.to_s , {:titulo=> a.name, :rel=>'modal'}%></td>
+  <td><%=a.description%></td>
+  <td><%=a.deadline%></td>
+</tr>
+
+<div id="janela<%=a.id%>" class="window middle" >
+    <div class="modal-titulo">Titulo</div>
+    <div class="content">
+ 	<%@activity_shedule = a%>
+        <% form_tag :action => 'edit', :id=>@activity_shedule , :document_id=>a.document_id do %>
+
+        <%=render :partial => 'form', :locals => { :activity_shedule => @activity_shedule }%>
+
+        <div id="buttons" align="center" class="buttons">
+	   <%=link_to 'Cancelar', { }, {:id =>  'fecharWindow', :class => 'button  fecharWindow'}%>
+	   <input value='Adicionar' name='commit' type='submit' class ='button'>
+	</div>
+        <% end %>
+    </div>
+</div>
+
+
+<%end%>
+</table>
+
+<%else%>
+Sem atividades cadastradas
+<%end%>
+   <div class="listaPerfil">
+    <ul >
+        <li><%=link_to 'Nova', "#janela", {:titulo=> 'Nova Atividade', :rel=>'modal', :class=>'perfil'}%></li>
+    </ul>
+  </div>
+</div>
+<div id="janela" class="window middle" >
+    <div class="modal-titulo">Titulo</div>
+    <div class="content">
+ 	<%@activity_shedule = ActivityShedule.new%>
+
+        <% form_tag :action => 'nova', :id=>@activity_shedule , :document_id=>params[:document_id]  do %>
+
+        <%=render :partial => 'form', :locals => { :activity_shedule => @activity_shedule }%>
+
+        <div id="buttons" align="center" class="buttons">
+	   <%=link_to 'Cancelar', { }, {:id =>  'fecharWindow', :class => 'button  fecharWindow'}%>
+	   <input value='Adicionar' name='commit' type='submit' class ='button'>
+	</div>
+        <% end %>
+    </div>
+</div>
+<style>
+
+.listaPerfil{
+box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4) inset, 0px 1px 0px rgba(255, 255, 255, 0.1);
+border-radius: 5px;
+width: 100px;
+margin-top:20px;
+background:white!important;
+
+}
+
+a.perfil{
+color:#004C99!important;
+
+}
+
+.divSelect{
+float:left;
+background: none repeat scroll 0% 0% rgb(194, 232, 239);
+border-radius: 2px;
+cursor: default;
+text-align:center;
+font-size: 11px;
+font-weight: bold;
+white-space: nowrap;
+margin-right: 16px;
+height: 27px;
+line-height: 27px;
+width: 54px;
+margin-bottom: 20px;
+display:table;
+box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4) inset, 0px 1px 0px rgba(255, 255, 255, 0.1);
+}
+
+.linkSelect{
+padding-left:16px;
+background: url("../images/icons/diversos2.png") no-repeat scroll 0px -298px transparent;
+opacity:0.75;
+}
+
+
+
+.selectMarcadores{
+display:none;
+width:170px;
+background-color: white;
+border:1px solid lightgray;
+position:absolute;
+top:237px;
+height: 90px;
+}
+
+.checkSelect{
+-moz-user-select: none;
+background-color: rgba(255, 255, 255, 0.05);
+border: 1px solid rgba(155, 155, 155, 0.57);
+font-size: 1px;
+margin: 0px 4px 0px 1px;
+outline: 0px none;
+vertical-align: text-bottom;
+padding:10px 0px 0px 11px;
+line-height: 0px;
+}
+
+.checkSelect:hover{
+border:1px solid rgb(194, 232, 239);
+}
+
+.checkedSelect{
+background: url("//ssl.gstatic.com/ui/v1/menu/checkmark.png") no-repeat scroll -5px -3px transparent;
+}
+
+.divLabel:hover{
+background:lightgray;
+width:100%;
+}
+
+table td {
+border:0px;
+border-bottom:1px solid lightgray;
+}
+</style>
+
+<script>
+function mostraEscondeMarcadores(){
+	if( $('.checkSelect').hasClass('checkedSelect')){
+	  $('#divMarcadores').show();
+	}else{
+	  $('#divMarcadores').hide();
+	}
+}
+
+function changeClass(element, classe){
+
+if($(element).hasClass( classe )){
+     $(element).removeClass(classe);
+  }else{
+     $(element).addClass(classe);
+  }
+
+}
+
+$('.checkSelect').click(function(ev){
+  
+  if ($(this).parent().hasClass('divSelect')){
+     if($(this).hasClass('checkedSelect')){
+      $('.checkSelect').removeClass('checkedSelect');
+     }else{
+      $('.checkSelect').addClass('checkedSelect');
+     }
+  }else{
+    changeClass(this, 'checkedSelect');
+  }
+
+  mostraEscondeMarcadores();
+
+});
+
+$('[name=prioridade]').click(function(ev){
+  classe = $(this).attr('class').split('-');
+  cont = parseInt(classe[1]) + 1;
+  if(cont > 4){
+   cont = 1;
+  } 
+  $(this).attr('class','prioridade-'+ cont);
+});
+
+$('.divLabel').click(function(ev){
+   elementPatern = $(this).parent();
+
+   label = $(this).attr('id');
+   switch(label) {
+      case 'label1':
+        $('.checkSelect').addClass('checkedSelect');
+      break;
+      case 'label2':
+        $('.prioridade-2').each(function(ev){
+           elementP = $(this).parent().parent().attr('id');
+           $('#'+elementP+' > td span.checkSelect').addClass('checkedSelect');
+        });
+      break;
+      case 'label3':
+        $('.prioridade-1').each(function(ev){
+           elementP = $(this).parent().parent().attr('id');
+           $('#'+elementP+' > td span.checkSelect').addClass('checkedSelect');
+        });
+      break;
+      case 'label4':
+       $('.checkedSelect').each(function(ev){
+           pai = $(this).parent().hasClass('divSelect');
+	   if(!pai){
+              elementP = $(this).parent().parent().attr('id');
+              $('#'+elementP+' > td span[name=prioridade]').attr('class','prioridade-2');
+           }
+        });
+      break;
+      case 'label5':
+       $('.checkedSelect').each(function(ev){
+           pai = $(this).parent().hasClass('divSelect');
+	   if(!pai){
+             elementP = $(this).parent().parent().attr('id');
+             $('#'+elementP+' > td span[name=prioridade]').attr('class','prioridade-3');
+	   }
+        });
+      break;
+      case 'label6':
+       $('.checkedSelect').each(function(ev){
+           pai = $(this).parent().hasClass('divSelect');
+	   if(!pai){ 
+             elementP = $(this).parent().parent().attr('id');
+             $('#'+elementP+' > td span[name=prioridade]').attr('class','prioridade-4');
+	   }
+        });
+      break;
+   }    
+
+   mostraEsconde($(elementPatern).attr('id'));
+  mostraEscondeMarcadores();
+});
+
+
+$('.marcador').click(function(ev){
+mostraEsconde('selectMarcadores2');
+});
+
+$(document).click(function(event) { 
+    if($(this).not('.selectMarcadores') && $(this).not('.divLabel')){
+       if($('.selectMarcadores').is(':visible')) {
+            element = $('[id^=selectMarcadores]:visible');
+            $(element).hide();
+        }
+    }   
+});
+
+
+function listaLixo(){
+        var vetLixo = [];
+	$('.checkedSelect').each(function() {
+	    str = $(this).parent().parent().attr("id");
+	    init = str.indexOf('r');
+	    id = str.substring(init+1,str.lenght);
+	    vetLixo.push(id);
+	});
+alert(vetLixo);
+	var url = "/activity_shedule/destroy?document_id=<%=params[:document_id]%>&lixo="+vetLixo; 
+	window.location.href = url;
+}
+</script>

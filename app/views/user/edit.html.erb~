@@ -1,0 +1,22 @@
+<div class="menu-lateral">
+<%=render :partial => 'form_menu_lateral' %>
+</div>
+
+<div class="tela">
+<div class="content-header">
+
+<h1><%=@user.name%></h1>
+<div class="aba">
+<%=render :partial => 'menu' %>
+</div>
+<hr id="hr"></hr>
+
+</div>
+
+<div class="content">
+  <% form_tag :action => 'edit', :id => @user do %>
+    <%=render :partial => 'form' %>
+    <%= submit_tag 'Salvar'%>
+  <% end %>
+</div>
+

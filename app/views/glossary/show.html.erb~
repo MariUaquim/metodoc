@@ -1,0 +1,40 @@
+<%content_for :css do%>
+  <style type="text/css" media="all">
+      .glossary-menu li{
+        float:left;
+      }
+      .glossary-menu li a{
+        padding: 0 10px 0 10px;
+      }
+  </style>
+<%end%>
+
+<%content_for :content_header do%>
+  <h1>Artefato Lista de Componentes da Ontologia</h1>
+  <p>Lista com os componentes da ontologia e suas descrições</p>
+  <ul class="page-menu">
+    <li><%=link_to 'Disponibilizar em HTML', :action=>'print', :version_id=>@version_id, :term_type=>@term_type.id%></li>
+    <li><%=link_to 'Disponibilizar em XML', :action=>'print_xml', :version_id=>@version_id, :term_type=>@term_type.id%></li>
+  </ul>
+<%end%>
+
+<div class="content">
+  <ul class="glossary-menu">
+    <% @term_types.each do |t| %>
+      <li><%=link_to t[0], :action=>'show', :version_id=>@version_id, :term_type=>t[1]%></li>
+    <%end%>
+  </ul>
+  <div class="clear"></div>
+</div>
+<% if @glossary.size > 0 %>
+<% @glossary.each do |t| %>
+  <div class="content">
+    <h2><%=t.name%></h2>
+    <p><%=t.description%></p>
+  </div>
+<%end%>
+<%else%>
+  <div class="content">
+    <h2>Sem vocábulos do tipo "<%=@term_type.description%>" cadastrados(as)</h2>
+  </div>
+<%end%>

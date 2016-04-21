@@ -1,0 +1,16 @@
+<label for="version_feasibility_responsible">Responsável:</label>
+<%=text_field :version_feasibility, :responsible%><br />
+<label for="version_feasibility_opportunities">Oportunidades:</label><br />
+<%= text_area :version_feasibility, :opportunities, :rows=>10, :cols=>100%><br />
+<label for="version_feasibility_problems">Problemas:</label><br />
+<%= text_area :version_feasibility, :problems, :rows=>10, :cols=>100%><br />
+<label for="version_feasibility_solutions">Soluções Potenciais:</label><br />
+<%= text_area :version_feasibility, :solutions, :rows=>10, :cols=>100%><br />
+<label for="version_feasibility_features">Recursos:</label><br />
+<%= text_area :version_feasibility, :features, :rows=>10, :cols=>100%><br />
+<label for="version_feasibility_conclusion">Conclusão:</label><br />
+<%= text_area :version_feasibility, :conclusion, :rows=>10, :cols=>100%><br />
+<label for="version_feasibility_artefact_status_id">Status do Artefato:</label>
+<%=select :version_feasibility, :artefact_status_id, @artefact_status %><br />
+<%=hidden_field :version_feasibility, :version_id, :value =>@version_id%>
+<%= submit_tag 'Salvar', :confirm => "Salvar Documento?" %>

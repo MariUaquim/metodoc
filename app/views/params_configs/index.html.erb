@@ -1,0 +1,22 @@
+<h1>Listing params_configs</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+  </tr>
+
+<% for params_config in @params_configs %>
+  <tr>
+    <td><%=h params_config.description %></td>
+    <td><%=h params_config. %></td>
+    <td><%= link_to 'Show', params_config %></td>
+    <td><%= link_to 'Edit', edit_params_config_path(params_config) %></td>
+    <td><%= link_to 'Destroy', params_config, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New params_config', new_params_config_path %>

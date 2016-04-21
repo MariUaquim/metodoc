@@ -1,0 +1,56 @@
+<% content_for :css do %>
+  <style type="text/css" media="all">
+    table{
+      width: 100%;
+    }
+    tr th{
+      text-align: center;
+      background-color: #ddd
+    }
+  </style>
+<%end%>
+
+<%content_for :content_header do%>
+<h1>Cronograma de Atividades de <%=@version.ontology.name%> - V. <%=@version.number%></h1>
+<p>Planeje as atividades do ciclo de vida e organize em um cronograma</p>
+<ul class="page-menu">
+  <li><%=link_to 'Voltar para a Versão', :controller=>'version', :action=>'show', :id=>@version.id%></li>
+  <li><%=link_to 'Nova Atividade', :action => 'edit', :version_id => @version.id%></li>
+  <li><%=link_to 'Artefato', :action=>'show', :version_id=>@version.id%></li>
+</ul>
+<%end%>
+
+<div class="content">
+  <% if @activities.size > 0 %>
+  <table class="data">
+    <tr>
+      <th>Data</th>
+      <th>Nome</th>
+      <th>Status</th>
+      <th>Opções</th>
+    </tr>
+    <% @activities.each do |a| %>
+    <tr>
+      <td><%=my_date(a.activity_date)%></td>
+      <td><%=a.activity_name%></td>
+      <td><%=a.artefact_status.description%></td>
+      <td class="center">
+        <%=link_to image_tag("icons/edit.png",
+                              :id=>'activity_edit',
+                              :alt=>'Editar Atividade',
+                              :title=>'Editar Atividade'),
+                    :action => 'edit', :id => a.id%>
+        <%=link_to image_tag("icons/delete.png",
+                              :id=>'activity_delete',
+                              :alt=>'Excluir Atividade',
+                              :title=>'Excluir Atividade'),
+                    :action => 'destroy', :id => a.id, :version_id=>a.version_id%>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <% else %>
+  <h2>Sem atividades agendadas</h2>
+  <% end %>
+</div>
+

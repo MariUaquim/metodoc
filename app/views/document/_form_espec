@@ -1,0 +1,2 @@
+<label for="document_reference" autofocus>Faz referencia a qual documento?</label><br />
+<%=select :document, :doc_reference, @docs%><br />

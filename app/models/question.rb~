@@ -1,0 +1,8 @@
+class Question < ActiveRecord::Base
+
+belongs_to :document
+belongs-to :typeAnswer
+
+has_many :answer, :dependent => :destroy
+
+end

@@ -1,0 +1,9 @@
+<label for="methodsteps_name">Etapa:</label><br />
+<%=text_field :methodstep, :name %><br />
+<label for="methodsteps_inlifecycle">Participa do Ciclo de Vida (S/N)?</label>
+<%= check_box :methodstep, :inlifecycle%><br><br>
+<div align="center" class="buttons">
+ <%=link_to 'Cancelar', { }, {:id =>  'fecharWindow', :class => 'button'}%>
+ <%=link_to 'salvar', { }, {:type=>'submit', :class => 'button'}%>
+</div>
+

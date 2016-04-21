@@ -1,0 +1,16 @@
+<h1>Artefato: Questões de Competência</h1>
+<h2>Projeto:</h2><p><%=@version.ontology.project_name%></p>
+<h2>Nome da Ontologia:</h2><p><%=@version.ontology.name%></p>
+<h2>Data:</h2> <p><%=my_date(DateTime.now)%></p>
+<h2>Domínio:</h2><p><%=@version.ontology.domain%></p>
+<h2>Versão da Ontologia</h2><p><%=@version.number%></p>
+<h2>Questões de Competência:</h2>
+<% if @questions.size > 0 %>
+<ul>
+  <% @questions.each do |q| %>
+    <li><%=q.question%></li>
+  <%end%>
+</ul>
+<%else%>
+  <h2>Sem Questões de Competêcia</h2>
+<%end%>

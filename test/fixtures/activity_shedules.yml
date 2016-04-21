@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  description: MyString
+  deadline: 2015-10-14
+  priority: 1
+
+two:
+  name: MyString
+  description: MyString
+  deadline: 2015-10-14
+  priority: 1

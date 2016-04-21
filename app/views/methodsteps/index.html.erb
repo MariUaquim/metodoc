@@ -1,0 +1,22 @@
+<h1>Listing methodsteps</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Inlifecycle</th>
+  </tr>
+
+<% for methodstep in @methodsteps %>
+  <tr>
+    <td><%=h methodstep.name %></td>
+    <td><%=h methodstep.inlifecycle %></td>
+    <td><%= link_to 'Show', methodstep %></td>
+    <td><%= link_to 'Edit', edit_methodstep_path(methodstep) %></td>
+    <td><%= link_to 'Destroy', methodstep, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New methodstep', new_methodstep_path %>

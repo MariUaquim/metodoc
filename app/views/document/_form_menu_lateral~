@@ -1,0 +1,25 @@
+<div class="menu-lateral">
+<ul>
+   <li class="circ"><a href="/ontology/" style="color:rgb(77, 77, 77);">Nova</a>
+   <li class="circ"><a href="/ontology/" style="color:rgb(77, 77, 77);">Ontologias</a>
+	<ul>
+	<% @ontologias.each do |o|%>
+	<li class="circ"><a href="/ontology/show/<%=o.id%>" style="color:rgb(77, 77, 77);"><%=o.name%></a></li>
+	<%end%>
+	</ul>
+   </li>
+   <li class="circ"><a href="/ontology/" style="color:rgb(77, 77, 77);">Pesquisa</a>
+</ul>
+</div>
+
+<div class="tela">
+<div class="content-header">
+<%if !@documento.ontology_id.nil? %>
+   <%= link_to @documento.ontology.name, :controller=>'ontology', :action=>'show', :id=>@documento.ontology.id %> >> <%=@documento.doc_type.name%>
+   
+<%else%>
+<%= link_to @documento.version.ontology.name, :controller=>'ontology', :action=>'show', :id=>@documento.version.ontology.id %> >>
+<%= link_to 'v.'+ @documento.version.number.to_s, :controller=>'version', :action=>'show', :id=>@documento.version.id, :ontology_id=> @documento.version.ontology.id%> >> <%=@documento.doc_type.name%>
+<%end%>
+
+</div>

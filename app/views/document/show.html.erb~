@@ -1,0 +1,96 @@
+<div class="menu-lateral">
+<%=render :partial => 'form_menu_lateral' %>
+</div>
+
+<div class="tela">
+<div class="content-header">
+<%if !@documento.ontology_id.nil? %>
+   <h1><%=@documento.ontology.name%></h1>
+   <%url = "/ontology/show/" + @documento.ontology.id.to_s %>
+<%else%>
+   <h1 style="margin-bottom:0px;"><%=@documento.version.ontology.name%> - V. <%=@documento.version.number%></h1>
+   <%url = "/version/show/" + @documento.version.id.to_s + "?ontology_id=" +  @documento.version.ontology.id.to_s %>
+<%end%>
+<p>Documento: <b class="texto2"><%=@documento.doc_type.name%></b></p>
+
+
+<hr id="hr"></hr>
+<div class="menu-horizontal" style="height:30px;">
+  <ul id="abas-nav" class="page-inter">
+      <li><a class="btVoltar" href="<%=url%>" ><span><b></b>Imprimir</span></a></li>
+      <li><a class="btimprimir" href="#"><span><b></b>Imprimir</span></a></li>
+  </ul>
+</div>
+</div>
+
+<div class="content">
+	<%if @documento.ontology_id.nil? 
+	  @ontology_val = @documento.version.ontology
+	  @version_val = @documento.version
+	else
+	  @ontology_val = @documento.ontology
+	end%>
+	<div class="cabeçalho">
+		<b>Documento</b>:<%=@documento.doc_type.name%><br>
+		<b>Nome da Ontologia</b>:<%=@ontology_val.name%><br>
+		<b>Projeto</b>:<%=@ontology_val.project_name%><br>
+
+		<%if !@documento.version_id.nil?%>
+		    <b>Versão da Ontologia</b>:<%=@documento.version.number%><br>
+		<%end%>
+
+		<b>Data de Criação</b>:<%=my_date(@documento.created_at)%><br>
+		<b>Data de Atualização </b>:<%=my_date(@documento.updated_at)%><br>
+		<b>Domínio</b>:<%=@ontology_val.domain%><br>
+		<%@documento.responsable.each do |r|%>
+		    <b>Responsável<%if r.level == 2 %>(observador)<%end%></b>:<%=r.user.name%><br>
+		<%end%>
+	</div>
+	<%@documento.doc_artefact.each do |a| %>
+	    <div class="info">
+	          <div class="texto3"><%=a.params_config_type_doc.description%></div><br>
+	          <%=a.answer%><br>
+	    </div>
+	<%end%>
+</div>
+
+<style>
+div.texto3{
+border-top:2px groove gray;
+border-bottom:2px groove gray;
+line-height:1.5;
+width:98%;
+margin-bottom:10px;
+text-align: center;
+font-weight: bold;
+margin: auto;
+}
+.info{
+height-min:50px;
+margin:auto;
+}
+.cabeçalho{
+margin-bottom:20px;
+margin-top:20px;
+margin-left:10px;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

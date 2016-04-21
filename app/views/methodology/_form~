@@ -1,0 +1,4 @@
+<label for="methodologies_name">Nome da Methodologia:</label><br />
+<%=text_field :methodology, :name %><br />
+<label for="methodologies_description">Descrição da Metodologia:</label><br />
+<%= text_area :methodology, :description, :rows=>20, :cols=>100%><br />

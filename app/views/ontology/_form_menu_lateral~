@@ -1,0 +1,13 @@
+<ul>
+   <li class="circ"><a href="/ontology/" style="color:rgb(77, 77, 77);">Nova</a>
+   <li class="circ"><a href="/ontology/" style="color:rgb(77, 77, 77);">Ontologias</a>
+	<ul>
+	<% @ontologias.each do |o|%>
+	<li class="circ"><a href="/ontology/show/<%=o.id%>" style="color:rgb(77, 77, 77);"><%=o.name%></a></li>
+	<%end%>
+	</ul>
+   </li>
+   <li class="circ"><a href="/ontology/" style="color:rgb(77, 77, 77);">Pesquisa</a>
+</ul>
+
+

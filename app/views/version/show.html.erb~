@@ -1,0 +1,119 @@
+<style>
+.page-inter li a{
+color:gray;
+} 
+
+</style>
+
+
+
+<div class="menu-lateral">
+<%=render :partial => 'form_menu_lateral' %>
+</div>
+
+<div class="tela">
+<div class="content-header">
+
+<h1 style="margin-bottom:0px;"><%=@version.ontology.name%> - V. <%=@version.number%></h1>
+
+<div class="menu-horizontal" >
+  <ul id="abas-nav" class="page-inter" style="margin-top: -7px;">
+   <%@etapas.each_with_index do |e, index|%>
+      <%i = index + 1 %>
+      <li><a href="#stage<%=i%>"><%=e.name%></a></li>
+   <%end%>
+  </ul>
+</div>
+</div>
+
+
+<div id="content" class="content">
+   <%@etapas.each_with_index do |e, index|%>
+      <%i = index + 1 %>
+      <div id="stage<%=i%>" class="stage">
+          <h2><%=e.name%></h2>
+          <%e.doc_type.each do |d|%>
+             <div class="activity texto2">
+                <div class="activity-header">
+                   <b>Documento:</b><%=d.name%><br>
+                   <b>Status:</b>
+                   <%@documento = Document.find(:first,:conditions=>["documents.doc_type_id = ? and documents.version_id = ?", d.id, @version.id]) %>
+                   <%if @documento.nil?%>
+                       <span class="status nao-criado">Não Criado</span>
+                   <%else%>
+                       <span class="status <%=@documento.artefact_status.description%>">
+                           <%=@documento.artefact_status.description%>
+                       </span>
+                       <div id="projectDescriptionDetails<%=@documento.id%>" class="info-box">
+                           <b>Data de Criação:</b> <%=my_date(@documento.created_at)%><br>
+                           <b>Data de Atualização:</b> <%=my_date(@documento.updated_at)%>
+                       </div>
+	               <br>
+                       <a href="javascript:mostraEsconde('projectDescriptionDetails<%=@documento.id%>')">[...]</a>
+                   <%end%>
+                   <div class="activity-menu texto1">
+                      <ul>
+	                   <% if @documento.nil?%>
+                                <%configEspec = d.doc_type_config.first%>
+		                <%if !configEspec.nil? and !configEspec.doc_config_espec_id.nil?%>
+                                     <li><%=link_to '', "#janela"+d.id.to_s , {:titulo=> d.name, :rel=>'modal',:class=>'btdocmore'}%></li>
+			           
+                                <%else%>
+	                              <li><%=link_to '',{:controller => 'document', :action => 'edit', :doc_type=>d.id, :version_id => @version.id},{:class=>'btdocmore'} %></li>
+                                <%end%>
+	       <%else%>
+		   <%configEspec = d.doc_type_config.first%>
+		   <%if !configEspec.nil? and !configEspec.doc_config_espec_id.nil?%>
+			<%destino = configEspec.doc_config_espec.destination.split(',')%>
+                        <li><%=link_to '',{ :controller=> destino[0], :action=> destino[1] , :document_id => @documento.id, :version_id => @version.id}, {:class=>'btdocedit'} %></li>	
+		    <%else%>
+	                <li><%=link_to '', {:controller => 'document', :action => 'edit', :id => @documento.id, :version_id => @version.id}, {:class=>'btdocedit'}  %></li>
+		    <%end%>
+	           <li><%=link_to '', {:controller=>'document', :action => 'show', :id => @documento.id}, {:class=>'btdocument'}%></li>
+	       <% end %>
+            </ul>
+
+
+
+ <div id="janela<%=d.id%>" class="window middle" >
+					    <div class="modal-titulo">Titulo</div>
+					    <div class="content">
+					 	<%@documento = Document.new%>
+						<form method="post" action="/document/edit?doc_type=31&version_id=3">
+
+						<%=render :partial => 'document/form_espec', :locals => { :document => @documento }%>
+
+						<div id="buttons" align="center" class="buttons">
+						   <%=link_to 'Cancelar', { }, {:id =>  'fecharWindow', :class => 'button  fecharWindow'}%>
+						   <input value='Confirmar' name='commit' type='submit' class ='button'>
+						</div>
+						<% end %>
+					    </div>
+					</div>
+        </div> 
+        <div class="clear"></div>
+
+     		</div>
+ 	     </div>
+          <%end%>
+      </div>
+    <%end%>
+</div>
+
+
+
+<script type="text/javascript">
+
+$(".mais").click(function(ev){ 
+   texto = $(this).text();
+   if (texto == 'mais'){
+     $(this).text("menos");
+   }else{
+     $(this).text("mais");
+   }
+});
+
+
+</script>
+
+

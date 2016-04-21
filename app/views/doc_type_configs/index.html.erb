@@ -1,0 +1,20 @@
+<h1>Listing doc_type_configs</h1>
+
+<table>
+  <tr>
+    <th>Answer</th>
+  </tr>
+
+<% for doc_type_config in @doc_type_configs %>
+  <tr>
+    <td><%=h doc_type_config.answer %></td>
+    <td><%= link_to 'Show', doc_type_config %></td>
+    <td><%= link_to 'Edit', edit_doc_type_config_path(doc_type_config) %></td>
+    <td><%= link_to 'Destroy', doc_type_config, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New doc_type_config', new_doc_type_config_path %>

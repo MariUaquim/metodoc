@@ -1,0 +1,15 @@
+<h1>Artefato: Descrição do Projeto da Ontologia</h1>
+<h2>Projeto</h2>
+<p><%=@document.ontology.project_name%></p>
+<h2>Nome da Ontologia</h2>
+<p><%=@document.ontology.name%></p>
+<h2>Data de Criação</h2>
+<p><%=my_date(@document.created_at)%></p>
+<h2>Data de Atualização</h2>
+<p><%=my_date(@document.date)%></p>
+<h2>Domínio</h2>
+<p><%=@document.ontology.domain%></p>
+<h2>Propósito/Objetivo</h2>
+<p><%=@document.purpose%></p>
+<h2>Considerações Gerais:</h2>
+<p><%=@document.obs%></p>

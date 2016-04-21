@@ -1,0 +1,23 @@
+
+<label for="activity_shedule_name">Nome Atividade:</label><br />
+<%=text_field :activity_shedule , :name %><br />
+
+<label for="activity_shedule_user_id">Responsável:</label><br />
+<%=select :activity_shedule, :user_id, @users, {:include_blank => '[select]'}%><br />
+
+<label for="activity_shedule_deadline">Prazo de Entrega:</label><br>
+
+<div class="date" style="width:34%;">
+
+<input id="calendario<%=@activity_shedule.id%>" class="input-date" disabled value="<%=@activity_shedule.deadline%>"><br />
+
+</div>
+<br><br>
+<label for="activity_shedule_description">Descrição da Atividade:</label><br />
+<%= text_field :activity_shedule, :description %><br />
+
+<%= hidden_field :activity_shedule, :deadline %><br />
+<br><br>
+
+
+

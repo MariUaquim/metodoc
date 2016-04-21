@@ -1,0 +1,20 @@
+<h1>Listing params_config_type_docs</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+  </tr>
+
+<% for params_config_type_doc in @params_config_type_docs %>
+  <tr>
+    <td><%=h params_config_type_doc.description %></td>
+    <td><%= link_to 'Show', params_config_type_doc %></td>
+    <td><%= link_to 'Edit', edit_params_config_type_doc_path(params_config_type_doc) %></td>
+    <td><%= link_to 'Destroy', params_config_type_doc, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New params_config_type_doc', new_params_config_type_doc_path %>

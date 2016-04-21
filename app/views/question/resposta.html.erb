@@ -1,0 +1,18 @@
+<%=render :partial => 'document/form_menus' %>
+
+
+
+<div class="content">
+
+
+<div class="activity-menu texto1">
+Documento: <b class="texto2"><%=@documento.doc_type.name%></b>
+<ul>
+   <li><%=link_to '', {:controller=>'document', :action => 'show', :id => @documento.id}, {:class=>'btdocument-min'}%></li>
+</ul>
+</div>
+
+  <% form_tag :action => 'resposta', :document_id=>@documento.id, :version_id=>params[:version_id] do %>
+    <%=render :partial => 'form_resposta'%>
+  <% end %>
+</div>

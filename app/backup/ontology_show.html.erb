@@ -1,0 +1,117 @@
+<% content_for :content_header do %>
+  <h1><%=@ontology.name%></h1>
+  <p><%=@ontology.project_name%></p>
+   <ul class="page-menu">	
+    <li><%=link_to 'Editar', :action => 'edit', :id=>@ontology.id%></li>
+    <%if @permisionFunction%>
+    	<li><%=link_to 'Adicionar Colaborador', :action => 'add_user', :id=>@ontology.id%></li>
+    <%end%>
+  </ul>
+<%end%>
+<% content_for :scripts do %>
+  <%= javascript_include_tag 'thickbox-compressed.js' %>
+<%end%>
+<% content_for :css do%>
+  <%= stylesheet_link_tag "thickbox" %>
+<%end%>
+
+<div class="content">
+  <h2>Planejamento Inicial do Projeto</h2>
+  <div class="activity texto2">
+    <div class="activity-header">
+      <b>Documento:</b>Descrição do Projeto<br>
+      <b>Status:</b>
+        <%if @project_description.nil?%>
+          <span class="status nao-criado">Não Criado</span>
+        <%else%>
+          <span class="status <%=@project_description.artefact_status.description%>">
+            <%=@project_description.artefact_status.description%>
+          </span>
+          <div id="projectDescriptionDetails" class="info-box">
+            <b>Data de Criação:</b> <%=my_date(@project_description.created_at)%><br>
+            <b>Data de Atualização:</b> <%=my_date(@project_description.updated_at)%>
+          </div>
+	 <br>
+         <a href="javascript:mostraEsconde('projectDescriptionDetails')">...</a>
+        <%end%>
+	     <div class="activity-menu texto1">
+	      <ul>
+		<% if @project_description.nil?%>
+		  <li><%=link_to 'Criar', :controller => 'project_description', :action => 'edit', :ontology_id => @ontology.id %></li>
+		<% else %>
+		  <li><%=link_to 'Editar', :controller => 'project_description', :action => 'edit', :id => @project_description.id %></li>
+		  <li><%=link_to 'Artefato', :controller=>'project_description', :action => 'show', :id => @project_description.id%></li>
+		<% end %>
+	      </ul>
+	    </div> 
+      <div class="clear"></div>
+    </div>
+  </div>  
+
+  <div class="activity texto2">
+    <div class="activity-header">
+      <b>Documento:</b>Plano de Análise de Viabilidade do Projeto<br>
+      <b>Status:</b>
+        <%if @project_feasibility.nil?%>
+          <span class="status nao-criado">Não Criado</span>
+        <%else%>
+          <span class="status <%=@project_feasibility.artefact_status.description%>">
+            <%=@project_feasibility.artefact_status.description%>
+          </span>
+
+          <div id="projectFeasibilityDetails" class="info-box">
+            <b>Data de Criação:</b> <%=my_date(@project_feasibility.created_at)%><br>
+            <b>Data de Atualização:</b> <%=my_date(@project_feasibility.updated_at)%>
+          </div>
+	  <br>
+          <a href="javascript:mostraEsconde('projectFeasibilityDetails')">...</a>
+        <%end%>
+    <div class="activity-menu texto1">
+      <ul>
+        <% if @project_feasibility.nil? %>
+          <li><%=link_to 'Criar', :controller => 'project_feasibility', :action => 'edit', :ontology_id => @ontology.id %></li>
+        <%else%>
+          <li><%=link_to 'Editar', :controller => 'project_feasibility', :action => 'edit', :id => @project_feasibility.id %></li>
+          <li><%=link_to 'Artefato', :controller=>'project_feasibility', :action => 'show', :id => @project_feasibility.id%></li>
+        <%end%>
+      </ul>
+    </div>
+
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <h2>Versões da Ontologia</h2>
+  <%if !@project_description.nil? and !@project_feasibility.nil?%>
+    <ul class="page-menu">
+      <li>
+        <%=link_to 'Criar Nova Versão', :controller => 'version', :action => 'create', :ontology_id =>@ontology.id%>
+      </li>
+    </ul>
+    <%if @versions.size > 0 %>
+      <% @versions.each do |v|%>
+        <div class="activity texto2">
+          <div class="activity-header">
+            <h3>Versão nº. <%=v.number%></h3>
+            <h4></h4>
+          <div class="activity-menu texto1">
+            <ul>
+              <li><%=link_to 'Abrir', :controller => 'version', :action => 'show', :id => v.id%></li>
+                <% if v.number == @versions.size %>
+              <li><%=link_to 'Excluir', :controller => 'version', :action => 'destroy', :id => v.id%></li>
+                <%end%>
+            </ul>
+          </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      <%end%>
+    <%else%>
+      <p>Nenhuma versão da ontologia ainda foi criada</p>
+    <%end%>
+  <%else%>
+    <p>Você deve executar o Planejamento Inicial do Projeto</p>
+  <%end%>
+</div>

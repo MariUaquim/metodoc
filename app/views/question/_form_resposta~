@@ -1,0 +1,37 @@
+<%@questoes.each do |q|%>
+<label for="version_description_purpose"><%=q.question%></label><br />
+<%if q.answer_type == 3 %>
+     <%@type_answers.each do |t|%>
+	<input type="radio" name="answer_radio" value="<%=t.id%>"> <%=t.description%><br>
+     <%end%>
+<%else%>
+	<textarea id="answer_<%=q.id%>" rows="20" cols="100" name="answer_<%=q.id%>" >
+
+		<%@respostas.each do |r|
+			if r.question_id == q.id%>
+				<%=r.answer%>
+			<%end%>
+		<%end%>
+	</textarea>
+<%end%>
+<br />
+<%@respostas.first%>
+<%end%>
+
+<div class="buttons" style="margin-top:50px;">
+   <%= submit_tag 'Salvar', :class=>'button'%>
+</div>
+
+<style language="text/css">
+select{
+margin-top:3px;
+width:200px;
+}
+label{
+margin-top:8px;
+margin-right:2px;
+}
+#responsabe_user_id_2{
+margin-top:8px;
+}
+</style>

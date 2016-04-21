@@ -1,0 +1,15 @@
+<label for="version_schedule_activity_name">Nome da Atividade:</label><br />
+<%=text_field :version_schedule, :activity_name %><br />
+
+<label for="version_schedule_date">Data: </label><br />
+<%=text_field :version_schedule, :activity_date %><br />
+
+<label for="version_schedule_activity_description">Descrição:</label><br />
+<%= text_area :version_schedule, :activity_description, :rows=>20, :cols=>100%><br />
+
+
+<label for="version_schedule_artefact_status_id">Status da Atividade:</label>
+<%=select :version_schedule, :artefact_status_id, @artefact_status %><br />
+
+<%=hidden_field :version_schedule, :version_id, :value =>@version_id%><br />
+<%= submit_tag 'Salvar'%>

@@ -1,0 +1,116 @@
+
+
+<%=render :partial => 'document/form_menus' %>
+
+<div class="content">
+
+
+<div class="activity-menu texto1">
+Documento: <b class="texto2"><%=@documento.doc_type.name%></b>
+   <ul>
+      <li><%=link_to '', {:controller=>'document', :action => 'show', :id => @documento.id}, {:class=>'btdocument-min'}%></li>
+   </ul>
+</div>
+
+
+<%@types.each do |term_type|%>
+   <div class="lista_termos">
+       <%@termos = @glossary.select { |g| g.term_type_id == term_type.id }%>
+
+       <%if !@termos.empty?%>
+           <p class="termosfont"><b><%=term_type.description%> (<%=@termos.count%>):</b></p>
+       <%end%>
+
+       <%@termos.each do |t| %>
+           <%if term_type.id == t.term_type_id %>
+               <%=link_to t.name, "#janela"+t.id.to_s , {:titulo=> t.name, :rel=>'modal'}%>
+
+		<div id="janela<%=t.id%>" class="window middle" >
+	             <div class="modal-titulo">Titulo</div>
+	           <div class="content">
+	       	     <%@term = t %>
+	   	     <form method="post" action="/glossary/manual?document_id=<%=params[:document_id]%>&version_id=<%=t.version_id%>">
+		
+			<%=render :partial => 'form'%>
+			<div id="buttons" align="center" class="buttons">
+			      <%=link_to 'Cancelar', { }, {:id =>  'fecharWindow', :class => 'button  fecharWindow'}%>
+			      <input value='Adicionar' name='commit' type='submit' class ='button'>
+			</div>
+		     </form> 
+		   </div>
+		</div>
+
+	   <%end%>
+       <%end%>
+     
+   <div>
+<%end%>
+
+
+<div class="listaPerfil">
+    <ul>
+      <li><%=link_to 'Nova', "#janela", {:titulo=> 'Novo Termo', :rel=>'modal', :class=>'perfil'}%></li>
+    </ul>
+</div>
+
+<div id="janela" class="window middle" >
+    <div class="modal-titulo">Titulo</div>
+    <div class="content">
+ 	<%@termo = Term.new%>
+        <form method="post" action="/glossary/manual?document_id=<%=params[:document_id]%>">
+
+        <%=render :partial => 'form', :locals => { :term => @termo }%>
+
+        <div id="buttons" align="center" class="buttons">
+	   <%=link_to 'Cancelar', { }, {:id =>  'fecharWindow', :class => 'button  fecharWindow'}%>
+	   <input value='Adicionar' name='commit' type='submit' class ='button'>
+	</div>
+        </form>
+    </div>
+</div>
+
+</div>
+
+
+<style>
+
+
+
+.lista_termos{
+margin-top:15px;
+
+}
+
+.termosfont{
+color:rgb(130,100,255);
+text-size:14px;
+}
+
+p.texto{
+display:none;
+}
+table{
+text-align:center;
+}
+.aba ul{
+margin:0px!important;
+}
+.btex{
+padding: 10px 0px;
+float: right;
+}
+
+.listaPerfil{
+box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4) inset, 0px 1px 0px rgba(255, 255, 255, 0.1);
+border-radius: 5px;
+width: 100px;
+margin-top:20px;
+background:white!important;
+
+}
+
+a.perfil{
+color:#004C99!important;
+}
+</style>
+

@@ -1,0 +1,152 @@
+require "rubygems"
+require "builder"
+require "nokogiri"
+
+class GlossaryController < ApplicationController
+  before_filter :authenticate, :except => [:authenticate,:arquivo]
+  before_filter :check_permission, :except =>[:authenticate, :load_term_types, :arquivo, :manual]
+  before_filter :load_term_types, :only => [:index, :edit, :show, :manual]
+  before_filter :load_glossary, :only => [:index, :show, :print, :print_xml]
+  before_filter :load_artefact_status, :only =>  [:edit]
+  before_filter :load_ontologias
+
+
+  def index
+    @version = Version.find(@version_id)
+  end
+
+  def print
+    @version = Version.find(@version_id)
+    render :layout => 'artefact'
+  end
+
+  def print_xml
+    render :xml => @glossary
+  end
+
+def product_xml
+
+out_file = File.new("out.txt", "w")
+out_file.puts("write your stuff here")
+out_file.close
+
+end
+
+
+  def manual
+    @documento = Document.find(params[:document_id])
+    @version = Version.find(params[:version_id])
+    @glossary = Term.find(:all, :conditions=>["version_id = ?", @version.id])
+    @types = TermType.find(:all)
+
+    if request.post?
+	@termo = Term.new
+        @termo.attributes = params[:term]
+        @termo.attributes = {:version_id => 1, :artefact_status_id=>1}
+        @termo.save
+    end
+  end
+
+  def arquivo
+       @documento = Document.find(params[:document_id])
+       @glossary = Term.find(:all, :conditions=>["version_id = ?", params[:version_id]])
+    if request.post?
+       @documento = Document.find(params[:document_id])
+       name = params[:upload][:file].original_filename
+       directory = "/home/mariana/Documentos/montodoc/app/views/glossary/arquivos"
+       path = File.join(directory, name)
+       new_name = @documento.id.to_s + ".owl"
+       File.open(path, "wb") { |f| f.write(params[:upload][:file].read) 
+          File.rename(path, directory + "/" + new_name )
+          redirect_to :action=>'arquivo', :document_id=>@documento.id, :version_id=>params[:version_id]
+       }
+    end
+    flash[:notice] = "File uploaded"
+  end
+
+  def edit
+
+    @documento = Document.find(params[:document_id])
+    @version = Version.find(params[:version_id])
+
+    vClasses = params[:vClasse].split(',')
+    vPropriedade = params[:vPropriedade].split(',')
+
+    terms = Term.find(:all, :conditions=>["version_id = ?", @version.id])
+    terms.each do |t|
+	t.destroy
+    end
+
+    vClasses.each do |c| 
+       @term = Term.new
+       if vPropriedade.include?(c)
+	   type_id = 4
+       else
+ 	   type_id = 1
+       end         
+       @term.attributes = {:term_type_id => type_id, :name => c, :description => "test", :artefact_status_id=>1, :version_id => @version.id}
+       @term.save
+       
+    end 
+
+    redirect_to :action=>'arquivo', :document_id=>@documento.id, :version_id=>@version.id
+  end
+
+  def destroy
+    term = Term.find(params[:id])
+    if term.destroy
+      redirect_to :action => 'index', :version_id => params[:version_id]
+    else
+      redirect_to :controller => 'authentication', :action => 'error'
+    end
+  end
+
+  def authenticate
+    if session[:user_id].nil?
+      redirect_to :controller=>'authentication', :action =>'index', :message => 'Efetue o Login'
+    end
+  end
+
+  def check_permission
+    if params[:id]
+        unless User.permission(session[:user_id], Term.find(params[:id]).versions[0].ontology.id)
+          redirect_to :controller=>'authentication', :action => 'access_denied'
+        end
+        #if params[:version_id]
+        #  for v in Term.find(params[:id]).versions
+        #    if params[:version_id] != v.id
+        #      redirect_to :controller=>'authentication', :action => 'access_denied'
+        #    end
+        #  end
+        #end
+    else
+      if params[:version_id]
+        unless User.permission(session[:user_id], Version.find(params[:version_id]).ontology.id)
+          redirect_to :controller=>'authentication', :action => 'access_denied'
+        end
+      end
+    end
+  end
+
+  protected
+  def load_term_types
+    @term_types = TermType.all.collect { |u| [u.description, u.id] }
+  end
+
+  def load_ontologias
+    @ontologias = Ontology.all
+  end
+
+ def load_glossary
+    unless params[:term_type]
+      term_type = 1#pegar o ID de um tipo cadastrado
+    else
+      term_type = params[:term_type]
+    end
+    current_version = Version.find(params[:version_id])
+    @version_id = current_version.id
+    @glossary = Term.find_terms_by_type(current_version.id, term_type)
+    @term_type = TermType.find(term_type)
+  end
+  
+end

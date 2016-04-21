@@ -1,0 +1,7 @@
+<ul>
+    <li><a class="btcf tooltipM" href="/methodology/show/<%=@methodology.id%>"><span><b></b>Configurar Metodologia</span></a></li>
+    <li><a class="btdt tooltipM"href="/methodology/details/<%=@methodology.id%>"><span><b></b>Detalhes da Metodologia</span></a></li>
+    <li><a class="bted tooltipM" href="/methodology/edit/<%=@methodology.id%>"><span><b></b>Editar</span></a></li>
+    <li><a class="btex tooltipM" href="/methodology/destroy/<%=@methodology.id%>"><span><b></b>Destruir</span></a></li>
+</ul>
+

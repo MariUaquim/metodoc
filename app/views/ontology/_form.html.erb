@@ -1,0 +1,12 @@
+<label for="ontology_name">Nome da Ontologia:</label><br />
+<%=text_field :ontology, :name %><br />
+<label for="ontology_project_name">Nome do Projeto:</label><br />
+<%= text_field :ontology, :project_name %><br />
+<label for="ontology_domain">Domínio</label><br />
+<%= text_field :ontology, :domain %><br />
+<label for="ontology_formality_degree_id">Grau de Formalidade:</label><br />
+<%=select :ontology, :formality_degree_id, @formality_degrees%><br />
+<label for="ontology_methodology_id">Metodologia:</label><br />
+<%=select :ontology, :methodology_id, @metodologias%><br />
+<label for="ontology_visible">Visível nas pesquisas?</label>
+<%= check_box :ontology, :visible %><br />

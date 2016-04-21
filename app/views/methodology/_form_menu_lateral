@@ -1,0 +1,14 @@
+
+<ul>
+   <li class="circ"><a href="/methodology/edit/<%=Methodology.new%>" style="color:rgb(77, 77, 77);">Nova</a>
+   <li class="circ"><a href="/methodology/" style="color:rgb(77, 77, 77);">Metodologias</a>
+	<ul>
+	<% @methodologias.each do |m|%>
+	<li class="circ"><a href="/methodology/show/<%=m.id%>" style="color:rgb(77, 77, 77);"><%=m.name%></a></li>
+	<%end%>
+	</ul>
+   </li>
+   <li class="circ"><a href="/methodology/" style="color:rgb(77, 77, 77);">Pesquisa</a>
+</ul>
+
+

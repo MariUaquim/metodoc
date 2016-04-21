@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  term1: 1
+  term2: 1
+  term3: 1
+  version_id: 1
+  positionA: MyString
+  positionB: MyString
+
+two:
+  term1: 1
+  term2: 1
+  term3: 1
+  version_id: 1
+  positionA: MyString
+  positionB: MyString

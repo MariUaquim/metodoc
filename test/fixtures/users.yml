@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value
+
+matheus:
+  name: Matheus Andrade da Silva
+  mail: matheus@webcomfarinha.com
+  login: matheus
+  password: juliana
+
+juliana:
+  name: Juliana Chagas
+  mail: juliana@webcomfarinha.com
+  login: juliana
+  password: matheus

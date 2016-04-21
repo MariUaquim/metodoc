@@ -1,0 +1,18 @@
+<h1>Listing functions_papers</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for functions_papers in @functions_papers %>
+  <tr>
+    <td><%= link_to 'Show', functions_papers %></td>
+    <td><%= link_to 'Edit', edit_functions_papers_path(functions_papers) %></td>
+    <td><%= link_to 'Destroy', functions_papers, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New functions_papers', new_functions_papers_path %>

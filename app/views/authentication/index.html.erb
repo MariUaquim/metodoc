@@ -1,0 +1,50 @@
+<% content_for :css do %>
+  <style type="text/css" media="all">
+.justificativa{
+          margin:0 auto;
+          width:650px;
+          padding: 10px;
+          text-align: justify;
+	float:left;
+
+}
+      .login{
+          margin:0 auto;
+          width:300px;
+          padding: 10px;
+          text-align: center;
+	float:right;
+      }
+      .login p{
+        text-align: center;
+.login h2{
+        text-align: center;
+}
+  </style>
+<%end%>
+
+
+<div class="content">
+  <div class="justificativa">
+      <%=render :partial => 'form' %>
+  </div>
+  
+  <div class="login">
+    
+       <h2>Acesso ao Sistema</h2>
+       <p>Por favor, logue-se</p>
+    
+    <% form_tag :action=>'validate' do%>
+    <p>
+      <label for="login">Login: </label><%= text_field_tag :login %>
+    </p>
+    <p>
+      <label for="password">Senha: </label><%= password_field_tag :password %>
+    </p>
+      <%= submit_tag "OK"%>
+      <p><%=link_to 'Cadastrar-se', :controller=>'user', :action=>'edit'%></p>
+      <p><%=link_to'Esqueceu a senha?', :action=>'lost_password'%></p>
+      <p><%=@message%></p>
+    <%end%>
+  </div>
+</div>

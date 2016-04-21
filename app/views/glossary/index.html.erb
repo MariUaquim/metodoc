@@ -1,0 +1,59 @@
+<%content_for :css do%>
+  <style type="text/css" media="all">
+    .glossary-menu{
+      text-align: left;
+      font-size: 12px;
+    }
+  </style>
+<%end%>
+
+<%content_for :content_header do%>
+<h1><%=@version.ontology.name%> - Lista de Componentes (Versão <%=@version.number%>)</h1>
+<p>Construa a Lista de Componentes da Ontologia</p>
+<ul class="page-menu">
+  <li><%=link_to 'Voltar para a Versão', :controller => 'version', :action => 'show', :id=> @version_id%></li>
+  <li><%=link_to 'Novo Componente', :action => 'edit', :version_id => @version_id%></li>
+  <li><%=link_to 'Artefato', :action=>'show', :version_id=>@version_id%></li>
+</ul>
+<%end%>
+
+<div class="content">
+  <ul style="margin-top: 20px;"class="page-menu glossary-menu">
+    <% @term_types.each do |t| %>
+      <li><%=link_to t[0], :action=>'index', :version_id=>@version_id, :term_type=>t[1]%></li>
+    <%end%>
+  </ul>
+  <div class="clear"></div>
+  <% if @glossary.size > 0 %>
+  <table class="data">
+    <caption>Tabela com os componentes do tipo "<%=@term_type.description%>"</caption>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Status</th>
+      <th>Opções</th>
+    </tr>
+    <% @glossary.each do |a| %>
+    <tr>
+      <td><%=a.name %></td>
+      <td><%=a.description%></td>
+      <td><%=a.artefact_status.description%></td>
+      <td class="center">
+        <%=link_to image_tag("icons/edit.png",
+                              :id=>'term_edit',
+                              :alt=>'Editar Termo',
+                              :title=>'Editar Termo'),
+                    :action => 'edit', :id => a.id, :version_id => @version_id%>
+        <%=link_to  image_tag("icons/delete.png",
+                              :id=>'term_delete',
+                              :alt=>'Excluir Termo',
+                              :title=>'Excluir Termo'),
+                    :action => 'destroy', :id => a.id, :version_id => @version_id%>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <% else %>
+  <h2>Sem componentes do tipo "<%=@term_type.description%>" cadastrados(as)</h2>
+  <% end %>
+</div>

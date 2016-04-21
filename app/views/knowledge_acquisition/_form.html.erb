@@ -1,0 +1,8 @@
+<label for="knowledge_acquisition_sources">Fontes de Informação:</label><br />
+<%= text_area :knowledge_acquisition, :sources, :rows=>10, :cols=>100%><br />
+<label for="knowledge_acquisition_strategies">Estratégia de Análise:</label><br />
+<%= text_area :knowledge_acquisition, :strategies, :rows=>10, :cols=>100%><br />
+<label for="knowledge_acquisition_artefact_status_id">Status do Artefato:</label>
+<%=select :knowledge_acquisition, :artefact_status_id, @artefact_status %><br />
+<%=hidden_field :knowledge_acquisition, :version_id, :value =>@version_id%>
+<%= submit_tag 'Salvar', :confirm => "Salvar Documento?" %>

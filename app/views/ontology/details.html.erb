@@ -1,0 +1,38 @@
+<div class="menu-lateral">
+<%=render :partial => 'form_menu_lateral' %>
+</div>
+
+<div class="tela">
+<div class="content-header">
+
+<h1><%=@ontology.name%></h1>
+<div class="aba">
+<%=render :partial => 'menu' %>
+</div>
+
+<hr id="hr"></hr>
+
+</div>
+
+<div class="content">
+  <h2>Projeto</h2>
+  <p><%=@ontology.project_name%></p>
+  <h2>Nome da Ontologia</h2>
+  <p><%=@ontology.name%></p>
+  <h2>Domínio</h2>
+  <p><%=@ontology.domain%></p>
+  <h2>Grau de Formalidade</h2>
+  <p><%=@ontology.formality_degree.name%></p>
+  <h2>Versão Atual</h2>
+  <% if @current_version.nil? %>
+    <p>Sem versão</p>
+  <%else%>
+    <p><%=@current_version.number%></p>
+  <%end%>
+  <h2>Colaboradores</h2>
+  <ul>
+    <% @ontology.user.each do |u|%>
+      <li><%=u.name%></li>
+    <%end%>
+  </ul>
+</div>

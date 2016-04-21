@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<nex:nexml xmlns="http://www.nexml.org/1.0" xmlns:nex="http://www.nexml.org/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" generator="mesquite" xsi::schemaLocation="http://www.nexml.org/1.0 ../xsd/nexml.xsd" version="0.8">
+  <otus xml:id="taxa1" xml:base="http://example.org/" class="taxset1" label="My taxa block" xml:lang="EN" id="taxa1">
+    <!--                        The taxon element is analogous to a single label in 
+            a nexus taxa block. It may have the same additional
+            attributes (label, xml:base, xml:lang, xml:id, xlink:href
+            and class) as the taxa element.
+-->
+    <otu id="t1"/>
+    <otu id="t2"/>
+    <otu id="t3"/>
+    <otu id="t4"/>
+    <otu id="t5"/>
+  </otus>
+</nex:nexml>

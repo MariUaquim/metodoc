@@ -1,0 +1,17 @@
+<%content_for :content_header do%>
+  <h1>Opções do Usuário</h1>
+  <p>Configure o sistema com algumas alterações à sua escolha</p>
+<%end%>
+
+<div class="content">
+  <h2>Layout dos Artefatos</h2>
+  <p>
+    Escolha o modelo CSS para estilizar os artefatos de documentaçao da ontologia.
+    O layout escolhido é: <span><%=@user_option.artefact_model.name%></span>
+  </p>
+  <ul class="page-menu">
+    <% @artefact_models.each do |a| %>
+    <li><%=link_to a[0], :action=>'choose_artefact_model', :id=>a[1]%></li>
+    <%end%>
+  </ul>
+</div>

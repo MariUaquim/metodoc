@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AcompUfba - Sistema de Submissão de Projetos Finais</title>
+    <%= stylesheet_link_tag "default" %>
+    <%=yield :css%> 
+
+
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+
+
+	<link href="/javascripts/jquery-ui-1.9.2/css/base/jquery-ui-1.9.2.custom.css" rel="stylesheet">
+	<script src="/javascripts/jquery-ui-1.9.2/js/jquery-1.8.3.js"></script>
+	<script src="/javascripts/jquery-ui-1.9.2/js/jquery-ui-1.9.2.custom.js"></script>
+
+    <script src="/javascripts/default.js"></script>
+
+<!--
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?amp;sensor=false"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+
+  </head>
+
+  <body id="body">
+	
+   <div>
+
+    <div class="username">
+      <%if session[:user_name]%>
+        <p>Olá, <%=session[:user_name]%> || Configurações ||
+        <%=link_to 'Perfil', :controller=>'user', :action=>'edit', :id=>session[:user_id]%>
+          || Ajuda ||
+        <%=link_to 'Logout', :controller=>'authentication', :action=>'logout'%>
+        </p>
+      <%else%>
+        <p>&nbsp;</p>
+      <%end%>
+    </div>
+    <div id="wrap">    
+       <div id="logo">
+          <h1 class="hidden">MontoDoc</h1>
+          <p class="hidden">
+            Ferramenta para auxílio na construção e documentação de ontologias
+            seguindo a metodologia Monto
+          </p>
+        </div> 
+<div class="clear">  
+      </div> 
+<div id="mainnav">
+          <ul>
+            <li><%=link_to 'Home', :controller=>'authentication'%></li>
+            <li><%=link_to 'Perfil', :controller=>'user', :action=>'perfil', :id=>session[:user_id]%></li>
+            <li><%=link_to 'Ontologias', :controller=>'ontology'%></li>
+	    <li><%=link_to 'Metodologia', :controller=>'methodology'%></li>
+            <li><%=link_to 'Opções', :controller=>'user', :action=>'settings', :id=>session[:user_id]%></li>
+            <li><%=link_to 'Logout', :controller=>'authentication', :action=>'logout'%></li>
+
+          </ul>
+        </div>  
+      <div id="header">
+        
+        <div class="clear">  
+      </div>
+      <div class="middle">
+        <div class="content-header">
+
+          <%=yield :content_header%>
+        </div>
+        <%=yield%>
+      </div>
+      
+    </div>
+    </div>
+    <div id="mascara"></div>
+  </body>
+
+  <%= javascript_include_tag 'tiny_mce/tiny_mce.js' %>
+
+  <%= javascript_include_tag 'jquery-ui-1.9.2/js/jquery-1.8.3.js' %>
+  <%= javascript_include_tag 'jquery-ui-1.9.2/js/jquery-ui-1.9.2.custom.js' %>
+  <%= javascript_include_tag 'default.js' %>
+
+
+   <script type="text/javascript">
+      tinyMCE.init({
+      mode : "textareas",
+      theme : "advanced"
+      });
+
+    </script>
+    <!-- Script das abas das etapas da versao -->
+    <script type="text/javascript">
+
+
+$(document).ready(function(){
+var isVisible = $('.window').is(':visible');
+if (isVisible){
+
+    var alturaTela = $(document).height();
+    var larguraTela = $(window).width();
+    $('#mascara').css({'width':larguraTela,'height':alturaTela});
+    $('#mascara').fadeIn(1000);
+    $('#mascara').fadeTo("slow",0.7);
+}
+
+
+var pagina = '<%=params[:pag]%>';
+
+if (pagina.contains('stage')){
+  
+
+  init = pagina.indexOf('-');
+  pag = pagina.charAt(init-1);
+  etapa = pagina.substring(init+1,pagina.lenght);
+
+  var janela = '#janela'+etapa;
+  var titulo = $('a[href='+janela+']').attr("titulo");
+
+  openWindow(janela,titulo,etapa);
+
+  $(janela).css({'top':'40px'});
+
+  $('[class^=stage]').hide();
+ 
+  $("#"+pagina).show();
+  $("#"+pagina).focus();
+
+  $(janela+' #abas-nav li a').removeClass('page-current');
+  $(janela+' #abas-nav li a').eq(parseInt(pag)-1).addClass('page-current');
+
+}else{
+
+      $('[id^=stage1]').show();
+      $('a[href^=#stage1]').addClass('page-current');
+	
+}
+
+        
+});
+var controller = '<%=params[:controller]%>';
+if (controller.contains('authentication')){
+ $('#mainnav ul li a').removeClass('page-current');
+ $('#mainnav ul li a').eq(0).addClass('page-current');
+}
+else if (controller.contains('user')){
+ $('#mainnav ul li a').removeClass('page-current');
+ $('#mainnav ul li a').eq(1).addClass('page-current');
+}
+else if (controller.contains('methodology')){
+ $('#mainnav ul li a').removeClass('page-current');
+ $('#mainnav ul li a').eq(3).addClass('page-current');
+}
+else if (controller.contains('ontology') || controller.contains('version') || controller.contains('document')){
+ $('#mainnav ul li a').removeClass('page-current');
+ $('#mainnav ul li a').eq(2).addClass('page-current');
+}
+else{
+ $('#mainnav ul li a').removeClass('page-current');
+ $('#mainnav ul li a').eq(1).addClass('page-current');
+}
+
+var action = '<%=params[:action]%>';
+if (action.contains('show')){
+ $('.aba ul li').removeClass('aba-current');
+ $('.aba ul li a[class^=btshow]').parent().addClass('aba-current');
+}
+else if (action.contains('edit')){
+ $('.aba ul li').removeClass('aba-current');
+ $('.aba ul li a[class^=bted]').parent().addClass('aba-current');
+}
+else if (action.contains('details')){
+ $('.aba ul li').removeClass('aba-current');
+ $('.aba ul li a[class^=btdt]').parent().addClass('aba-current');
+}
+else if (action.contains('add_user')){
+ $('.aba ul li').removeClass('aba-current');
+ $('.aba ul li a[class^=btaddU]').parent().addClass('aba-current');
+}else{
+ $('.aba ul li a[class^=btcf]').parent().addClass('aba-current');
+}
+
+
+
+    </script>
+    <%=yield :scripts%>
+</html>

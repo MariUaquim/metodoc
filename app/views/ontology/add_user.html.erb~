@@ -1,0 +1,195 @@
+<%content_for :css do%>
+<style type="text/css" media="all">
+      .ontology-users{
+          float: left;
+          width: 45%
+      }
+      .users{
+        float: right;
+        width: 45%;
+      }
+      table, th, td{
+        border: 1px solid #ddd;
+      }
+      table{
+        width: 100%;
+      }
+      th, td{
+        text-align: center;
+      }
+      
+#tablePapers{
+margin:15px 15px 15px 15px;
+width:300px;
+}
+
+
+#janela1{
+width:400px;
+height:auto;
+}
+
+  </style>
+<%end%>
+
+<div class="menu-lateral">
+<%=render :partial => 'form_menu_lateral' %>
+</div>
+
+<div class="tela">
+<div class="content-header">
+
+<h1 style="margin-bottom:0px;"><%=@ontology.name%></h1>
+
+<hr id="hr"></hr>
+</div>
+
+<div class="content">
+<div style="margin-bottom:10px;">
+  <div id=Busca>
+	<div class="search">
+		<input type="text" id="strBusca" class="input-search" placeholder="Pesquisa">
+		<input type="button" id="btBusca" class="button-search">
+	</div>
+	<br><br>
+	<div>
+		<input type="radio" name="optionsBusca" id="user" value="user" <%if params[:key] == 'user'%>checked<%end%> >Usuário<br>
+		<input type="radio" name="optionsBusca" id="Paper" value="paper" <%if params[:key] == 'paper'%>checked<%end%>>Papel
+	</div>
+	
+  </div>
+  <div class="ontology-users">
+     
+	
+     <table>
+	<caption>Colaboradores da Ontologia</caption>
+      <tr>
+        <th>Nome</th>
+        <th>Papel</th>
+        <th>Opção</th>
+      </tr>
+	<%if !@ontologyUser.empty?
+	for ontology_user in @ontologyUser
+	@ontology_id = ontology_user.ontology_id
+        @userP = ontology_user.user.paper %>
+      <tr>
+        <td><%=link_to ontology_user.user.name, :controller=>'user', :action=>'show', :id=>ontology_user.user.id%></td>
+        <td id="<%=ontology_user.user_id%>-<%=ontology_user.paper_id%>"><%=ontology_user.paper.paper%></td>
+        <td>
+          
+            <%=link_to 'Editar', "#janela1", :id=>ontology_user.user.id, :titulo=> ontology_user.user.name , :rel=>'modal',:editar=>'sim'%>
+          <% if session[:user_id] != ontology_user.user.id %>
+	    /
+            <%=link_to 'Remover', :action=>'editing_user', :id=>ontology_user.ontology_id, :user_id=>ontology_user.user_id, :paper_id=>ontology_user.paper_id, :option=>'del' %>
+          <%end%>
+        </td>
+      </tr>
+      <%end%>
+     <%else%>
+	<tr><td colspan="3">Nenhum dado foi encontrado</td></tr>
+     <%end%>
+    </table>
+  </div>
+  
+  <div class="users">
+    <table>
+      <caption>Usuários do Sistema</caption>
+      <tr>
+        <th>Nome</th>
+        <th>Opção</th>
+      </tr>
+
+      <% @users.each do |u|%>
+      <tr>
+        <td><%=link_to u.name, :controller=>'user', :action=>'show', :id=>u.id%></td>
+        <td>
+          <% if @ontology.user.include?(u) %>
+            -
+          <%else%>
+            <%=link_to 'Adicionar', "#janela1", :id=>u.id, :titulo=> u.name , :rel=>'modal'%>
+          <%end%>
+        </td>
+      </tr>
+      <%end%>
+    </table>
+  </div>
+
+   
+	<div id="janela1" class="window middle" >
+	    <div class="modal-titulo">Titulo</div>
+	    <p>Desempenhando qual papel?</p>
+	    <div class="content">
+		<table id="tablePapers">
+		<% @papers.each do |p|%>
+		   <tr>
+		      <td style="text-align: left;"><input id="paper-<%=p.id%>" name="papers" type="checkbox" style="margin-right:5px;"><%=p.paper%></td>
+		   </tr>
+                <%end%>
+		</table>
+	        <div id="buttons" align="center" class="buttons">
+		   <%=link_to 'Cancelar', { }, {:id =>  'fecharWindow', :class => 'button'}%>
+		   <%=link_to 'Adicionar', { }, {:id => 'adicionar', :class => 'button'}%>
+		</div>
+	    </div>
+       </div>
+</div>
+  <div class="clear"></div>
+
+<div align="center" class="buttons">
+	<%=link_to 'Voltar', {:action=>'show' , :id=>@ontology_id},{:class=>'button'} %>
+</div>	
+</div>
+
+<SCRIPT TYPE="text/javascript">
+
+$('#btBusca').click(function(ev){
+
+  key = $("input:checked" ).val(); 
+  if (typeof(key) == "undefined"){
+	alert("Favor escolher uma das opções de busca");
+  }else{
+        string = $('#strBusca').val();
+        var url = "/ontology/add_user?option=search&id=<%=params[:id]%>&string="+string+"&key="+key; 
+        window.location.href = url;
+  }
+});
+
+$("a[editar=sim]").click( function(ev){
+	idUser = $(this).attr("id") + '-';
+
+        $("[id^="+idUser+"]").each(function(){
+
+            str = $(this).attr("id");
+	    init = str.indexOf('-');
+	    id = str.substring(init+1,str.lenght);
+            $("#paper-"+id).attr("checked",true);
+
+        });
+});
+
+    $('#adicionar').click(function(ev){
+        ev.preventDefault();
+	
+        var papersUser = [];
+        $('#tablePapers input:checked').each(function() {
+	    str = $(this).attr("id");
+	    init = str.indexOf('-');
+	    id = str.substring(init+1,str.lenght);
+            papersUser.push(id);
+	    
+        });
+	if (papersUser.length > 0){
+  	   var NestId = $(this).data('id');
+	   var url = "/ontology/editing_user?option=add&id=<%=params[:id]%>&user_id="+$('.modal-titulo').attr("id")+"&papers_ids="+papersUser; 
+	   window.location.href = url;
+	
+	}else{
+           alert("Favor escolher pelo menos um papel para concluir a adesão");
+	} 
+    });
+
+
+
+</SCRIPT>
+
+

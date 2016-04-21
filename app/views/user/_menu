@@ -1,0 +1,4 @@
+<ul>
+    <li><a class="btdt tooltipM" href="/user/perfil/<%=@user.id%>"><span><b></b>Detalhes</span></a></li>
+    <li><a class="bted tooltipM" href="/user/edit/<%=@user.id%>"><span><b></b>Editar</span></a></li>
+</ul>

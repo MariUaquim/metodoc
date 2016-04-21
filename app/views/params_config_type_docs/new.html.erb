@@ -1,0 +1,15 @@
+<h1>New params_config_type_doc</h1>
+
+<% form_for(@params_config_type_doc) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', params_config_type_docs_path %>

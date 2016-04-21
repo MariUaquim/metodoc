@@ -1,0 +1,35 @@
+De acordo com análise realizada e apresentada nos capítulos anteriores, nota­se a importância da
+
+utilização de uma metodologia para nortear, auxiliar e garantir que a ontologia atenda ao propósito
+
+de suas questões de competência para as quais está sendo construída. Percebe­se também que,
+
+somente a adoção de uma metodologia, como a própria Monto, não garante que o desenvolvedor irá
+
+organizá­la e documentá­la de uma forma mais concreta e eficiente para que, em versões posteriores
+
+da ontologia, esta possa ser melhor compreendida através da documentação gerada em ciclos de
+
+vida anteriores.
+
+Em cada etapa do ciclo de vida da Monto, um grande conjunto de informações é produzido, nos
+
+quais   a   metodologia   sugere   que   estes   dados   sejam   organizados   e   dispostos   em   artefatos   de
+
+documentação. No entanto, nem todo desenvolvedor de uma ontologia, mesmo utilizando uma
+
+metodologia, atenta­se para uma documentação mais completa do projeto ou a busca por um padrão
+
+nos artefatos gerados que possam garantir um melhor entendimento do projeto no futuro por ele
+
+mesmo ou por outros que venham a dar continuidade no desenvolvimento da ontologia ou no uso
+
+dela na integração com outros trabalhos.
+
+Soma­se a isso, a existência, em sua maioria, de ferramentas para ontologias que somente possuem
+
+a funcionalidade de formalização da mesma, satisfazendo apenas a uma etapa do processo de
+
+construção e não preocupando ou disponibilizando opções e ferramentas que contemplem outras
+
+etapas no proceso de construção de uma ontologia.

@@ -1,0 +1,279 @@
+<% content_for :content_header do %>
+  <h1><%=@version.ontology.name%> - V. <%=@version.number%></h1>
+  <p>Página principal da versão <%=@version.number%> da ontologia.</p>
+  <ul id="abas-nav" class="page-inter">
+   <%@etapas.each do |e|%>
+      <li><a href="#stage<%=e.id%>"><%e.name%></a></li>
+   <%end%>
+  </ul>
+
+  <div id="content" class="content">
+
+<%e.doc_type.each do |d|%>
+
+<div id="stage1" class="stage">
+  <h2><%=e.name%></h2>
+       <div class="activity texto2">
+        <div class="activity-header">
+          <b>Documento:</b><%=d.name%><br>
+          <b>Status:</b>
+          <%@documento = Document.find(:first,:conditions=>["documents.doc_type_id = ? and documents.ontology_id = ?", d.id, @version.id]) %>
+          <%if @documento.nil?%>
+             <span class="status nao-criado">Não Criado</span>
+          <%else%>
+             <span class="status <%=@documento.artefact_status.description%>">
+               <%=@documento.artefact_status.description%>
+             </span>
+             <div id="projectDescriptionDetails" class="info-box">
+                <b>Data de Criação:</b> <%=my_date(@documento.created_at)%><br>
+                <b>Data de Atualização:</b> <%=my_date(@documento.updated_at)%>
+             </div>
+	     <br>
+             <a href="javascript:mostraEsconde('projectDescriptionDetails')">...</a>
+        <%end%>
+	     <div class="activity-menu texto1">
+	      <ul>
+		<% if @documento.nil?%>
+		  <li><%=link_to 'Criar', :controller => 'document', :action => 'edit', :doc_type=>d.id, :version_id => @version.id %></li>
+		<% else %>
+		  <li><%=link_to 'Editar', :controller => 'document', :action => 'edit', :id => @documento.id, :version_id => @version.id  %></li>
+		  <li><%=link_to 'Artefato', :controller=>'document', :action => 'show', :id => @documento.id%></li>
+		<% end %>
+	      </ul>
+	    </div> 
+      <div class="clear"></div>
+    </div>
+  </div>  
+
+<%end%>
+
+  <div class="activity texto2">
+    <div class="activity-header">
+      <b>Documento:</b>Plano de Análise de Viabilidade do Ciclo de Vida<br>
+      <b>Status:</b>
+        <%if @version_feasibility.nil?%>
+          <span class="status nao-criado">Não Criado</span>
+        <%else%>
+          <span class="status <%=@version_feasibility.artefact_status.description%>">
+            <%=@version_feasibility.artefact_status.description%>
+          </span>
+        <br>
+        <div id="versionFeasibilityDetails" class="info-box">
+            <b>Data de Criação:</b> <%=my_date(@version_feasibility.created_at)%><br>
+            <b>Data de Atualização:</b> <%=my_date(@version_feasibility.updated_at)%>
+          </div>
+      <b><a href="javascript:mostraEsconde('versionFeasibilityDetails')">...</a></b>
+      <%end%>
+      <div class="activity-menu texto1">
+      <ul>
+        <%if @version_feasibility.nil?%>
+          <li><%=link_to 'Criar', :controller=>'version_feasibility', :action=>'edit', :version_id=>@version.id%></li>
+        <%else%>
+          <li><%=link_to 'Editar', :controller=>'version_feasibility', :action=>'edit', :id=>@version_feasibility.id%></li>
+          <li><%=link_to 'Artefato', :controller=>'version_feasibility', :action => 'show', :id =>@version_feasibility.id%></li>
+        <%end%>
+      </ul>
+    </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <div class="activity texto2">
+    <div class="activity-header">
+      <b>Documento:</b>Plano de Organização do Ciclo de Vida (Cronograma de Atividades)<br>
+      <b>Status:</b>
+          <span class="status <%=@version_schedule_general_status%>">
+            <%=@version_schedule_general_status%>
+          </span>
+      <div class="activity-menu texto1">
+      <ul>
+        <li><%=link_to 'Entrar', :controller=>'version_schedule', :version_id=>@version.id%></li>
+        <li><%=link_to 'Artefato', :controller=>'version_schedule', :action=>'show', :version_id=>@version.id%></li>
+      </ul>
+    </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <div class="activity texto2">
+    <div class="activity-header">
+      <b>documento:</b>Plano de Avaliação do Ciclo de Vida<br>
+      <b>Status:</b>
+        <%if @version_evaluation.nil?%>
+          <span class="status nao-criado">Não Criado</span>
+        <%else%>
+          <span class="status <%=@version_evaluation.artefact_status.description%>">
+            <%=@version_evaluation.artefact_status.description%>
+          </span>
+          <br>      
+          <div id="versionEvaluationDetails" class="info-box">
+            <b>Data de Criação:</b> <%=my_date(@version_evaluation.created_at)%><br>
+            <b>Data de Atualização:</b> <%=my_date(@version_evaluation.updated_at)%>
+          </div>
+          <a href="javascript:mostraEsconde('versionEvaluationDetails');">...</a>
+        <%end%>
+    <div class="activity-menu texto1">
+      <ul>
+        <%if @version_evaluation.nil? %>
+          <li><%=link_to 'Criar', :controller=>'version_evaluation', :action=>'edit', :version_id=>@version.id%></li>
+        <%else%>
+          <li><%=link_to 'Editar', :controller=>'version_evaluation', :action=>'edit', :id=> @version_evaluation.id%></li>
+          <li><%=link_to 'Artefato', :controller=>'version_evaluation', :action=>'show', :id=> @version_evaluation.id%></li>
+        <%end%>
+      </ul>
+    </div>  
+      <div class="clear"></div>
+    </div>
+    
+  </div>
+</div>
+
+
+<div id="stage2" class="stage">
+  <h2>Especificação</h2>
+  <div class="activity texto2">
+    <div class="activity-header">
+      <b>Documento:</b>Fontes de Informação do Domínio e Estratégias de Análise<br>
+      <b>Status:</b>
+          <%if @knowledge_acquisition.nil?%>
+            <span class="status nao-criado">Não Criado</span>
+          <%else%>
+            <span class="status <%=@knowledge_acquisition.artefact_status.description%>">
+              <%=@knowledge_acquisition.artefact_status.description%>
+            </span>
+	
+
+          <div id="knowledgeAcquisitionDetails" class="info-box">
+            <b>Data de Criação:</b> <%=my_date(@knowledge_acquisition.created_at)%><br>
+            <b>Data de Atualização:</b> <%=my_date(@knowledge_acquisition.updated_at)%>
+          </div>
+	  <br>
+          <a href="javascript:mostraEsconde('knowledgeAcquisitionDetails');">...</a>
+          <%end%>
+    <div class="activity-menu texto1">
+      <ul>
+        <%if @knowledge_acquisition.nil?%>
+          <li><%=link_to 'Criar', :controller=>'knowledge_acquisition', :action=>'edit', :version_id=>@version.id%></li>
+        <%else%>
+          <li><%=link_to 'Editar', :controller=>'knowledge_acquisition', :action=>'edit', :id=>@knowledge_acquisition.id%></li>
+          <li><%=link_to 'Artefato', :controller=>'knowledge_acquisition', :action=>'show', :id=>@knowledge_acquisition.id%></li>
+        <%end%>
+      </ul>
+    </div>
+
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <div class="activity texto2">
+    <div class="activity-header">
+      <b>Documento:</b>Questões de Competência<br>
+      <b>Status:</b> 
+          <span class="status <%=@competence_issue_general_status%>">
+            <%=@competence_issue_general_status%>
+          </span>
+	    <div class="activity-menu texto1">
+	      <ul>
+		<li><%=link_to 'Entrar', :controller => 'competence_issue', :version_id=>@version.id%></li>
+		<li><%=link_to 'Artefato', :controller => 'competence_issue', :action=>'show', :version_id=>@version.id%></li>
+	      </ul>
+	    </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+      
+<div id="stage3" class="stage">
+  <h2>Conceitualização</h2>
+
+  <div class="activity texto2">
+    <div class="activity-header">
+      <b>Documento:</b>Lista de Componentes da Ontologia<br>
+      <b>Status:</b>
+          <span class="status <%=@glossary_general_status%>">
+            <%=@glossary_general_status%>
+          </span>
+	    <div class="activity-menu texto1">
+	      <ul>
+		<li><%=link_to 'Editar Componentes', :controller=>'glossary', :version_id=>@version.id%></li>
+	      </ul>
+	    </div>
+
+      <div class="clear"></div>
+    </div>
+  </div>
+  <div class="activity texto2">
+    <div class="activity-header">
+      <b>Documento:</b>Hierarquia dos Componentes<br>
+      <b>Status:</b><br>
+      <div class="activity-menu texto1">
+        <ul>
+          <li><%=link_to 'Classe', :controller=>'taxonomy', :action => 'term_class', :version_id=>@version.id%></li>
+          <li><%=link_to 'Instância', :controller=>'taxonomy', :action => 'term_instance', :version_id=>@version.id%></li>
+          <li><%=link_to 'Relação', :controller=>'taxonomy', :action => 'term_relation', :version_id=>@version.id%></li>
+          <li><%=link_to 'Restrição', :controller=>'taxonomy', :action => 'term_restriction', :version_id=>@version.id%></li>
+        </ul>
+      </div>
+
+      <div class="clear"></div>
+    </div>
+    </div>
+</div>
+
+<div id="stage4" class="stage">
+  <h2>Avaliação</h2>
+  <div class="activity texto2">
+    <div class="activity-header">
+      <b>Documento:</b>Relatório de Avaliação<br>
+      <b>Status:</b>
+          <%if @version_assessment.nil?%>
+            <span class="status nao-criado">Não Criado</span>
+          <%else%>
+            <span class="status <%=@version_assessment.artefact_status.description%>">
+              <%=@version_assessment.artefact_status.description%>
+            </span>
+          <div id="versionAssessmentDetails" class="info-box">
+            <b>Data de Criação:</b> <%=my_date(@version_assessment.created_at)%><br>
+            <b>Data de Atualização:</b> <%=my_date(@version_assessment.updated_at)%>
+          </div>
+          <a></a>
+          <%end%>
+        <div class="activity-menu texto1">
+         <ul>
+        <%if @version_assessment.nil?%>
+          <li><%=link_to 'Criar', :controller=>'version_assessment', :action=>'edit', :version_id=>@version.id%></li>
+        <%else%>
+          <li><%=link_to 'Editar', :controller=>'version_assessment', :action=>'edit', :id=>@version_assessment.id%></li>
+          <li><%=link_to 'Artefato', :controller=>'version_assessment', :action=>'show', :id=>@version_assessment.id%></li>
+        <%end%>
+       </ul>
+       </div>
+      <div class="clear"></div>
+    </div>
+   
+  </div>
+</div>
+  </div>
+<%end%>
+
+<style>
+.stage{
+ display:'none';
+}
+
+</style>
+<script type="text/javascript">
+
+$(".mais").click(function(ev){ 
+   texto = $(this).text();
+   if (texto == 'mais'){
+     $(this).text("menos");
+   }else{
+     $(this).text("mais");
+   }
+});
+
+
+</script>
+
+

@@ -1,0 +1,734 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.nees.com.br/ontologies/agendaMedica.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.nees.com.br/ontologies/agendaMedica.owl">
+    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Import>http://xmlns.com/foaf/0.1/</Import>
+    <Import>http://nees.com.br/boa-moradia/crawler/Locality.owl</Import>
+    <Declaration>  <Class IRI="#Agenda"/>    </Declaration>
+    <Declaration>
+        <Class IRI="#Clinica"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Consulta"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Endereco"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Especialidade"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Medico"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Paciente"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pessoa"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Plano"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#aceita"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#aceitoPor"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#ofereceConsulta"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#temAgenda"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#temEndereco"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#temEspecialidade"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#temMedico"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#temPaciente"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#usaPlano"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#CNPJ"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#data"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#descricao"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#distancia"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#nome"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#qualificacao"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#razaoSocial"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#valor"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Clinica_1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Clinica_2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Clinica_3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Clinica_4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Clinica_5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#agenda1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#consulta1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#endereco_Mary"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#espec_fisioterapia"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#espec_odontologia"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#pessoa_Joao"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#pessoa_Manoel"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#pessoa_Mary"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#plano_Smile"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#plano_unimed"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="http://nees.com.br/boa-moradia/crawler/Locality.owl#Address"/>
+        <Class IRI="#Endereco"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="http://schema.org/Person"/>
+        <Class IRI="#Pessoa"/>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#Clinica"/>
+        <ObjectMinCardinality cardinality="1">
+            <ObjectProperty IRI="#temMedico"/>
+            <Class IRI="#Medico"/>
+        </ObjectMinCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Clinica"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#temEndereco"/>
+            <Class IRI="#Endereco"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Consulta"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#temEspecialidade"/>
+            <Class IRI="#Especialidade"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Consulta"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#temMedico"/>
+            <Class IRI="#Medico"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Medico"/>
+        <Class IRI="#Pessoa"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Medico"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#temEspecialidade"/>
+            <Class IRI="#Especialidade"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Paciente"/>
+        <Class IRI="#Pessoa"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pessoa"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#temEndereco"/>
+            <Class IRI="#Endereco"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Agenda"/>
+        <Class IRI="#Clinica"/>
+        <Class IRI="#Consulta"/>
+        <Class IRI="#Endereco"/>
+        <Class IRI="#Especialidade"/>
+        <Class IRI="#Pessoa"/>
+        <Class IRI="#Plano"/>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#Clinica"/>
+        <NamedIndividual IRI="#Clinica_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Clinica"/>
+        <NamedIndividual IRI="#Clinica_2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Clinica"/>
+        <NamedIndividual IRI="#Clinica_3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Clinica"/>
+        <NamedIndividual IRI="#Clinica_4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Clinica"/>
+        <NamedIndividual IRI="#Clinica_5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Agenda"/>
+        <NamedIndividual IRI="#agenda1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Consulta"/>
+        <NamedIndividual IRI="#consulta1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Endereco"/>
+        <NamedIndividual IRI="#endereco_Mary"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Especialidade"/>
+        <NamedIndividual IRI="#espec_fisioterapia"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Especialidade"/>
+        <NamedIndividual IRI="#espec_odontologia"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Medico"/>
+        <NamedIndividual IRI="#pessoa_Joao"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Paciente"/>
+        <NamedIndividual IRI="#pessoa_Manoel"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Paciente"/>
+        <NamedIndividual IRI="#pessoa_Mary"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Plano"/>
+        <NamedIndividual IRI="#plano_Smile"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Plano"/>
+        <NamedIndividual IRI="#plano_unimed"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#aceita"/>
+        <NamedIndividual IRI="#Clinica_1"/>
+        <NamedIndividual IRI="#plano_Smile"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#aceita"/>
+        <NamedIndividual IRI="#Clinica_1"/>
+        <NamedIndividual IRI="#plano_unimed"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#temMedico"/>
+        <NamedIndividual IRI="#Clinica_1"/>
+        <NamedIndividual IRI="#pessoa_Joao"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#aceita"/>
+        <NamedIndividual IRI="#Clinica_2"/>
+        <NamedIndividual IRI="#plano_Smile"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#aceita"/>
+        <NamedIndividual IRI="#Clinica_2"/>
+        <NamedIndividual IRI="#plano_unimed"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#aceita"/>
+        <NamedIndividual IRI="#Clinica_3"/>
+        <NamedIndividual IRI="#plano_Smile"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#aceita"/>
+        <NamedIndividual IRI="#Clinica_3"/>
+        <NamedIndividual IRI="#plano_unimed"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#aceita"/>
+        <NamedIndividual IRI="#Clinica_4"/>
+        <NamedIndividual IRI="#plano_unimed"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#aceita"/>
+        <NamedIndividual IRI="#Clinica_5"/>
+        <NamedIndividual IRI="#plano_Smile"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#aceita"/>
+        <NamedIndividual IRI="#Clinica_5"/>
+        <NamedIndividual IRI="#plano_unimed"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+        <NamedIndividual IRI="#agenda1"/>
+        <NamedIndividual IRI="#pessoa_Joao"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#temMedico"/>
+        <NamedIndividual IRI="#consulta1"/>
+        <NamedIndividual IRI="#pessoa_Joao"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#temPaciente"/>
+        <NamedIndividual IRI="#consulta1"/>
+        <NamedIndividual IRI="#pessoa_Manoel"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#usaPlano"/>
+        <NamedIndividual IRI="#pessoa_Manoel"/>
+        <NamedIndividual IRI="#plano_Smile"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#temEndereco"/>
+        <NamedIndividual IRI="#pessoa_Mary"/>
+        <NamedIndividual IRI="#endereco_Mary"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#usaPlano"/>
+        <NamedIndividual IRI="#pessoa_Mary"/>
+        <NamedIndividual IRI="#plano_unimed"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#distancia"/>
+        <NamedIndividual IRI="#Clinica_1"/>
+        <Literal datatypeIRI="&xsd;double">20.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#qualificacao"/>
+        <NamedIndividual IRI="#Clinica_1"/>
+        <Literal datatypeIRI="&xsd;string">ruim</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#razaoSocial"/>
+        <NamedIndividual IRI="#Clinica_1"/>
+        <Literal datatypeIRI="&xsd;string">Clínica Farol</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#distancia"/>
+        <NamedIndividual IRI="#Clinica_2"/>
+        <Literal datatypeIRI="&xsd;double">100.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#qualificacao"/>
+        <NamedIndividual IRI="#Clinica_2"/>
+        <Literal datatypeIRI="&xsd;string">bom</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#razaoSocial"/>
+        <NamedIndividual IRI="#Clinica_2"/>
+        <Literal datatypeIRI="&xsd;string">Pajuçara</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#qualificacao"/>
+        <NamedIndividual IRI="#Clinica_3"/>
+        <Literal datatypeIRI="&xsd;string">ruim</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#razaoSocial"/>
+        <NamedIndividual IRI="#Clinica_3"/>
+        <Literal datatypeIRI="&xsd;string">Clínica Ponta Verde</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#distancia"/>
+        <NamedIndividual IRI="#Clinica_4"/>
+        <Literal datatypeIRI="&xsd;double">10000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#qualificacao"/>
+        <NamedIndividual IRI="#Clinica_4"/>
+        <Literal datatypeIRI="&xsd;string">bom</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#razaoSocial"/>
+        <NamedIndividual IRI="#Clinica_4"/>
+        <Literal datatypeIRI="&xsd;string">Clínica São João</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#distancia"/>
+        <NamedIndividual IRI="#Clinica_5"/>
+        <Literal datatypeIRI="&xsd;double">5.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#qualificacao"/>
+        <NamedIndividual IRI="#Clinica_5"/>
+        <Literal datatypeIRI="&xsd;string">excelente</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#razaoSocial"/>
+        <NamedIndividual IRI="#Clinica_5"/>
+        <Literal datatypeIRI="&xsd;string">Clínica UFAL</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nome"/>
+        <NamedIndividual IRI="#espec_fisioterapia"/>
+        <Literal datatypeIRI="&xsd;string">Fisioterapia</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nome"/>
+        <NamedIndividual IRI="#espec_odontologia"/>
+        <Literal datatypeIRI="&xsd;string">Odontologia</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nome"/>
+        <NamedIndividual IRI="#pessoa_Joao"/>
+        <Literal datatypeIRI="&xsd;string">Joao</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nome"/>
+        <NamedIndividual IRI="#pessoa_Manoel"/>
+        <Literal datatypeIRI="&xsd;string">Manoel</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nome"/>
+        <NamedIndividual IRI="#pessoa_Mary"/>
+        <Literal datatypeIRI="&xsd;string">Mary</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nome"/>
+        <NamedIndividual IRI="#plano_Smile"/>
+        <Literal datatypeIRI="&xsd;string">Plano Smile</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nome"/>
+        <NamedIndividual IRI="#plano_unimed"/>
+        <Literal datatypeIRI="&xsd;string">Unimed</Literal>
+    </DataPropertyAssertion>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#aceitoPor"/>
+        <ObjectProperty IRI="#aceita"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+        <ObjectProperty IRI="#temAgenda"/>
+    </InverseObjectProperties>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#temAgenda"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#temEndereco"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#temPaciente"/>
+    </FunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+    </InverseFunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="#temAgenda"/>
+    </InverseFunctionalObjectProperty>
+    <SymmetricObjectProperty>
+        <ObjectProperty IRI="#ofereceConsulta"/>
+    </SymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#aceita"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#aceitoPor"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#temAgenda"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#temEndereco"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#temEspecialidade"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#temMedico"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#temPaciente"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#usaPlano"/>
+    </AsymmetricObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#aceita"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#aceitoPor"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#ofereceConsulta"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#temAgenda"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#temEndereco"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#temEspecialidade"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#temMedico"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#temPaciente"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#usaPlano"/>
+    </IrreflexiveObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#aceita"/>
+        <Class IRI="#Clinica"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#aceitoPor"/>
+        <Class IRI="#Plano"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+        <Class IRI="#Agenda"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ofereceConsulta"/>
+        <Class IRI="#Clinica"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#temAgenda"/>
+        <Class IRI="#Medico"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#temEndereco"/>
+        <ObjectUnionOf>
+            <Class IRI="#Clinica"/>
+            <Class IRI="#Pessoa"/>
+        </ObjectUnionOf>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#temEspecialidade"/>
+        <ObjectUnionOf>
+            <Class IRI="#Consulta"/>
+            <Class IRI="#Medico"/>
+        </ObjectUnionOf>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#temMedico"/>
+        <ObjectUnionOf>
+            <Class IRI="#Clinica"/>
+            <Class IRI="#Consulta"/>
+        </ObjectUnionOf>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#temPaciente"/>
+        <Class IRI="#Consulta"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#usaPlano"/>
+        <Class IRI="#Pessoa"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#aceita"/>
+        <Class IRI="#Plano"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#aceitoPor"/>
+        <Class IRI="#Clinica"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+        <Class IRI="#Medico"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ofereceConsulta"/>
+        <Class IRI="#Consulta"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#temAgenda"/>
+        <Class IRI="#Agenda"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#temEndereco"/>
+        <Class IRI="#Endereco"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#temEspecialidade"/>
+        <Class IRI="#Especialidade"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#temMedico"/>
+        <Class IRI="#Medico"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#temPaciente"/>
+        <Class IRI="#Paciente"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#usaPlano"/>
+        <Class IRI="#Plano"/>
+    </ObjectPropertyRange>
+    <EquivalentDataProperties>
+        <DataProperty IRI="#nome"/>
+        <DataProperty IRI="http://xmlns.com/foaf/0.1/name"/>
+    </EquivalentDataProperties>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#CNPJ"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#descricao"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#distancia"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#nome"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#qualificacao"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#razaoSocial"/>
+    </FunctionalDataProperty>
+    <DataPropertyDomain>
+        <DataProperty IRI="#CNPJ"/>
+        <Class IRI="#Clinica"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#data"/>
+        <Class IRI="#Agenda"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#distancia"/>
+        <Class IRI="#Clinica"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#nome"/>
+        <ObjectUnionOf>
+            <Class IRI="#Especialidade"/>
+            <Class IRI="#Pessoa"/>
+            <Class IRI="#Plano"/>
+        </ObjectUnionOf>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#qualificacao"/>
+        <Class IRI="#Clinica"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#razaoSocial"/>
+        <Class IRI="#Clinica"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#valor"/>
+        <Class IRI="#Plano"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#CNPJ"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#data"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#descricao"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#distancia"/>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#nome"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#qualificacao"/>
+        <DataOneOf>
+            <Literal datatypeIRI="&rdf;PlainLiteral">bom</Literal>
+            <Literal datatypeIRI="&rdf;PlainLiteral">excelente</Literal>
+            <Literal datatypeIRI="&rdf;PlainLiteral">moderado</Literal>
+            <Literal datatypeIRI="&rdf;PlainLiteral">péssimo</Literal>
+            <Literal datatypeIRI="&rdf;PlainLiteral">ruim</Literal>
+        </DataOneOf>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#razaoSocial"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#valor"/>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </DataPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

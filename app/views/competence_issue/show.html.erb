@@ -1,0 +1,23 @@
+<%content_for :content_header do%>
+<h1>Questões de Competência de <%=@version.ontology.name%> - V. <%=@version.number%></h1>
+<p>Crie ou edite as questões de competência da versão da ontologia</p>
+<ul class="page-menu">
+  <li><%=link_to 'Disponibilizar em HTML', :action=>'print', :version_id=>@version.id%></li>
+  <li><%=link_to 'Disponibilizar em XML', :action=>'print_xml', :version_id=>@version.id%></li>
+</ul>
+<%end%>
+
+<% if @questions.size > 0 %>
+
+<% @questions.each do |q| %>
+  <div class="content">
+    <h2><%=q.question%></h2>
+  </div>
+<%end%>
+
+<%else%>
+<div class="content">
+  <h2>Sem Questões de Competêcia</h2>
+</div>
+
+<%end%>

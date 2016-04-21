@@ -1,0 +1,128 @@
+class DocumentController < ApplicationController
+  before_filter :load_artefact_status, :only => [:edit]
+  before_filter :load_users, :only => [:edit]
+  before_filter :load_ontologias
+
+  def show
+    @documento = Document.find(params[:id])
+  end
+
+  def edit
+    
+    if request.post?
+      if params[:id]
+	      @documento = Document.find(params[:id])
+	      @documento.attributes = params[:documento]
+	      @documento.save
+	
+	      @documento.doc_artefact.each do |d|
+		param = d.params_config_type_doc_id
+		@str=params["answer_#{param}"] 
+		DocArtefact.find_by_sql(['update doc_artefacts set answer = ? where document_id=? and params_config_type_doc_id = ?',@str, @documento.id, param])
+	      end
+
+	      if params[:responsable1]
+                @responsable1 = Responsable.find(:first, :conditions =>['responsables.level=1 and responsables.document_id=?',@documento.id])
+		if @responsable1.nil?
+		   @responsable1 = Responsable.new
+		   @responsable1.attributes = {:document_id=>@documento.id, :level=>1}
+		   @responsable1.save
+		end
+		Responsable.find_by_sql(['update responsables set user_id = ? where document_id=? and level = 1',params[:responsable1][:user_id], @documento.id])
+
+	      end
+              if params[:responsable2]
+                @responsable2 = Responsable.find(:first, :conditions =>['responsables.level=2 and responsables.document_id=?',@documento.id])
+		if @responsable2.nil?
+		   @responsable2 = Responsable.new
+		   @responsable2.attributes = {:document_id=>@documento.id, :level=>2}
+		   @responsable2.save
+		end
+
+		Responsable.find_by_sql(['update responsables set user_id = ? where document_id=? and level = 2',params[:responsable2][:user_id], @documento.id])
+
+	      end      
+      if @documento.version_id.nil?
+         redirect_to :controller=>'ontology', :action => 'show', :id=> @documento.ontology_id
+      else
+         redirect_to :controller=>'version', :action => 'show', :id=> @documento.version_id, :ontology_id=>@documento.version.ontology_id
+      end
+    end
+     
+    elsif params[:id]
+
+      @documento = Document.find(params[:id])
+      @permisionFunction = Function.deUsuario(params[:ontology_id], session[:user_id]).include?(Function.find(1)) 
+      @docArtefacts = DocArtefact.find(:all, :conditions =>["doc_artefacts.document_id=?",@documento.id])
+      @responsable1 = Responsable.find(:first, :conditions =>['responsables.level=1 and responsables.document_id=?',@documento.id])
+      @responsable2 = Responsable.find(:first, :conditions =>['responsables.level=2 and responsables.document_id=?',@documento.id])
+	
+    else
+      @documento = Document.new
+      if params[:version_id] 
+         @documento.attributes = { :doc_type_id => params[:doc_type], :version_id => params[:version_id], :artefact_status_id => 1 }
+      else
+         @documento.attributes = { :doc_type_id => params[:doc_type], :ontology_id => params[:ontology_id], :artefact_status_id => 1 }
+      end
+      @documento.save
+
+      @doc_type = DocType.find(params[:doc_type])
+      configEspec = @doc_type.doc_type_config.first
+
+      if !configEspec.nil? and !configEspec.doc_config_espec_id.nil?
+
+         destino = configEspec.doc_config_espec.destination.split(',')
+         @documento.attributes = params[:document]
+         @documento.save
+
+         if params[:version_id] 
+            redirect_to :controller=> destino[0], :action=> destino[1] , :document_id => @documento.id, :ontology_id => params[:ontology_id], :version_id => params[:version_id]
+         else
+            redirect_to :controller=> destino[0], :action=> destino[1] , :document_id => @documento.id, :ontology_id => params[:ontology_id], :ontology_id => params[:ontology_id]
+         end
+      else
+         @doc_type.doc_type_config.each do |d|
+            @docArtefact = DocArtefact.new
+            @docArtefact.attributes = { :document_id => @documento.id, :params_config_type_doc_id => d.params_config_Type_Doc_id, :answer=>d.params_config_Type_Doc.text_start}
+            @docArtefact.save
+         end
+         redirect_to :action => 'edit', :id=> @documento.id, :ontology_id => params[:ontology_id]
+      end
+
+    end
+
+  end
+
+  def destroy
+    @document = Document.find(params[:id])
+    @document.destroy
+
+  end
+
+ def authenticate
+    if session[:user_id].nil?
+      redirect_to :controller=>'authentication', :action =>'index', :fail => true
+    end
+  end
+
+  def load_ontologias
+    @ontologias = Ontology.all
+  end
+
+  def load_users
+    if params[:id]
+	    @documento = Document.find(params[:id])  
+	    if !@documento.ontology_id.nil?
+		ontology_id = @documento.ontology_id
+	    else
+		ontology_id = @documento.version.ontology_id
+	    end
+    else
+            @version = Version.find(params[:version_id])
+	    ontology_id =  @version.ontology_id
+    end
+    @users = User.find(:all, :include=>'ontology',:conditions=>['ontology_users.ontology_id = ?', ontology_id]).collect { |u| [u.name, u.id] }
+  end
+
+
+end

@@ -1,0 +1,39 @@
+<style>
+.content{
+margin-left: 60px;
+width: 92%;
+}
+</style>
+
+<div class="menu-lateral">
+<%=render :partial => 'form_menu_lateral' %>
+</div>
+
+<div class="tela">
+   <div class="content-header">
+        <h1 style="margin-bottom: 0px;" >Metodologias</h1>
+        <hr id="hr"></hr>
+  </div>
+
+  <% if @methodologias.size > 0 %>
+     <% @methodologias.each do |m| %>
+        <div class="content">
+           <h2><%=m.name%></h2>
+           <%@methodology = m%>
+
+           <div class="page-menu">
+              <%=render :partial => 'menu' %>
+           </div>
+          
+        </div>
+
+     <%end%>
+  <% else %>
+     <div class="content">
+        <h2>Sem metodologia cadastradas</h2>
+         <p>Ainda não existem metodologias cadastradas
+     </div>
+  <% end %>
+
+</div>
+

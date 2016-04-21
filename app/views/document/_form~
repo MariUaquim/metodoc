@@ -1,0 +1,47 @@
+
+<%@docArtefacts.each do |a|%>
+<label for="version_description_purpose"><%=a.params_config_type_doc.description%></label><br />
+<textarea id="answer_<%=a.params_config_type_doc.id%>" rows="20" cols="100" name="answer_<%=a.params_config_type_doc.id%>" >
+<%=a.answer%>
+</textarea>
+<br />
+<%end%>
+
+<input type="hidden" name="id" value="<%=params[:id]%>">
+<input type="hidden" name="ontology_id" value="<%=params[:ontology_id]%>">
+
+<div style="margin-top:10px;margin-bottom:10px;float:left;">
+	<label for="document_artefact_status_id">Status:</lable><br>
+	<label for="document_responsable_1">Responsável:</lable><br>
+	<label for="document_responsable_2" style="margin-top: 8px;">
+		Responsável:<br>
+		(<a href="javascript:mostraEscondeTime('observ')">observador</a>)
+	</lable> 
+</div>
+<div style="margin-top:10px;margin-bottom:10px;">
+	<%=select :documento, :artefact_status_id, @artefact_status %><br>
+	<%=select :responsable1, :user_id, @users , {:include_blank => '[select]'}%><br>
+	<%=select :responsable2, :user_id, @users , {:include_blank => '[select]'} %>
+</div>
+
+<div id="observ" style="height: 25px;float: left;border: 1px solid gray;padding: 2px;color:blue;display:none;">
+	O responsável observador não tem permissão de edição, apenas de leitura
+</div>
+
+<div class="buttons" style="margin-top:50px;">
+   <%= submit_tag 'Salvar', :class=>'button'%>
+</div>
+
+<style language="text/css">
+select{
+margin-top:3px;
+width:200px;
+}
+label{
+margin-top:8px;
+margin-right:2px;
+}
+#responsabe_user_id_2{
+margin-top:8px;
+}
+</style>

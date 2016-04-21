@@ -1,0 +1,28 @@
+<%content_for :content_header do%>
+<h1>Detalhes da Ontologia</h1>
+<p>Confira detalhes da Ontologia de Domínio</p>
+<%=render :partial=>"menu"%></ul>
+<%end%>
+
+<div class="content">
+  <h2>Projeto</h2>
+  <p><%=@ontology.project_name%></p>
+  <h2>Nome da Ontologia</h2>
+  <p><%=@ontology.name%></p>
+  <h2>Domínio</h2>
+  <p><%=@ontology.domain%></p>
+  <h2>Grau de Formalidade</h2>
+  <p><%=@ontology.formality_degree.name%></p>
+  <h2>Versão Atual</h2>
+  <% if @current_version.nil? %>
+    <p>Sem versão</p>
+  <%else%>
+    <p><%=@current_version.number%></p>
+  <%end%>
+  <h2>Colaboradores</h2>
+  <ul>
+    <% @ontology.user.each do |u|%>
+      <li><%=u.name%></li>
+    <%end%>
+  </ul>
+</div>

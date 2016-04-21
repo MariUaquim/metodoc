@@ -1,0 +1,98 @@
+<style>
+p.texto{
+display:none;
+}
+table{
+text-align:center;
+}
+.aba ul{
+margin:0px!important;
+}
+.btex{
+padding: 10px 0px;
+float: right;
+}
+</style>
+
+
+
+<%=render :partial => 'document/form_menus' %>
+
+<div class="content">
+
+<div class="activity-menu texto1">
+Documento: <b class="texto2"><%=@documento.doc_type.name%></b>
+<ul>
+   <li><%=link_to '', {:controller=>'document', :action => 'show', :id => @documento.id}, {:class=>'btdocument-min'}%></li>
+</ul>
+</div>
+
+<%if !@questoes.nil? %>
+
+<table style="clear: left;">
+
+<%@questoes.each do |q|%>
+<tr id="tr<%=q.id%>">
+  <td><%=link_to q.question, "#janela"+q.id.to_s , {:titulo=> q.question, :rel=>'modal'}%></td>
+  <td><a class="btex tooltipM" href="/question/destroy/<%=q.id%>"><span><b></b>Destruir</span></a></td>
+</tr>
+<div id="janela<%=q.id%>" class="window middle" >
+    <div class="modal-titulo">Titulo</div>
+    <div class="content">
+ 	<%@question = q%>
+        <% form_tag :action => 'edit', :id=>@question , :document_id=>params[:document_id] do %>
+           <%=render :partial => 'form', :locals => { :question => @question }%>
+           <div id="buttons" align="center" class="buttons">
+	      <%=link_to 'Cancelar', { }, {:id =>  'fecharWindow', :class => 'button  fecharWindow'}%>
+	      <input value='Adicionar' name='commit' type='submit' class ='button'>
+	   </div>
+        <%end%>  
+    </div>
+</div>
+<% end %>
+</table>
+<%else%>
+<p>Sem Questões cadastradas</p>
+<%end%>
+
+  <div class="listaPerfil">
+    <ul >
+        <li><%=link_to 'Nova', "#janela", {:titulo=> 'Nova Questão', :rel=>'modal', :class=>'perfil'}%></li>
+    </ul>
+  </div>
+</div>
+<div id="janela" class="window middle" >
+    <div class="modal-titulo">Titulo</div>
+    <div class="content">
+ 	<%@question = Question.new%>
+        <% form_tag :action => 'novo', :id=>@question , :document_id=>params[:document_id] do %>
+
+        <%=render :partial => 'form', :locals => { :question => @question }%>
+
+        <div id="buttons" align="center" class="buttons">
+	   <%=link_to 'Cancelar', { }, {:id =>  'fecharWindow', :class => 'button  fecharWindow'}%>
+	   <input value='Adicionar' name='commit' type='submit' class ='button'>
+	</div>
+        <%end%>
+    </div>
+</div>
+
+<br />
+
+</div>
+
+
+<style>
+.listaPerfil{
+box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4) inset, 0px 1px 0px rgba(255, 255, 255, 0.1);
+border-radius: 5px;
+width: 100px;
+margin-top:20px;
+background:white!important;
+
+}
+
+a.perfil{
+color:#004C99!important;
+}
+</style>

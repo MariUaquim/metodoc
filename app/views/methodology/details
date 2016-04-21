@@ -1,0 +1,22 @@
+<div class="menu-lateral">
+<%=render :partial => 'form_menu_lateral' %>
+</div>
+
+<div class="tela">
+<div class="content-header">
+
+<h1><%=@methodology.name%></h1>
+<div class="aba">
+
+  <%=render :partial => 'menu' %>
+</div>
+<hr id="hr"></hr>
+
+</div>
+
+<div class="content">
+
+<div class="texto1" style="padding:5px 20px 40px 20px;">
+<%=@methodology.description%>
+</div>
+</div>

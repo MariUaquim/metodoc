@@ -1,0 +1,8 @@
+<label for="competence_issue_question">questão:</label><br />
+<%=text_field :competence_issue, :question, :size=>50%><br />
+
+<label for="competence_issue_artefact_status_id">Status do Artefato:</label>
+<%=select :competence_issue, :artefact_status_id, @artefact_status %><br />
+
+<%=hidden_field :competence_issue, :version_id, :value =>@version_id%><br />
+<%= submit_tag 'Salvar'%>

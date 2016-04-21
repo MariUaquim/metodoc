@@ -1,0 +1,9 @@
+<h2>Componentes Cadastrados:</h2>
+<% if @glossary.size > 0 %>
+  <% @glossary.each do |t| %>
+    <h3><%=t.name%></h3>
+    <p><%=t.term_type.description%></p>
+  <%end%>
+<%else%>
+  
+<%end%>

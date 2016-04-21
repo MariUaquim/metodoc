@@ -1,0 +1,47 @@
+<%content_for :content_header do%>
+<h1>Pesquisa de Ontologias</h1>
+<p>Encontre ontologias disponíveis no sistema</p>
+
+<%end%>
+
+<div class="content">
+  <% form_tag :action => 'search' do %>
+   <div class="search">
+	<input type="text" id="strBusca" name="string[key]" class="input-search" placeholder="Pesquisar">
+	<input type="submit" name="commit" value="" id="btBusca" class="button-search">
+   </div>
+  <br>
+  <ul>
+    <li>
+      <%=radio_button_tag :ontology, :name, :checked=>true%>
+      <label for="ontology_name">Nome da Ontologia</label>
+    </li>
+    <li>
+      <%=radio_button_tag :ontology, :project_name%>
+      <label for="ontology_project_name">Nome do Projeto</label>
+    </li>
+    <li>
+      <%=radio_button_tag :ontology, :domain%>
+      <label for="ontology_domain">Domínio da Ontologia</label>
+    </li>
+  </ul>
+<% end %>
+</div>
+<% if @ontologies %>
+  <%if @ontologies.size > 0%>
+    <% @ontologies.each do |o| %>
+      <div class="content">
+        <h2><%=o.name%></h2>
+        <p><span>Projeto: </span><%=o.project_name%></p>
+        <ul class="page-menu">
+          <li><%=link_to 'Detalhes', :action=>'details', :id=>o.id%></li>
+        </ul>
+      </div>
+    <%end%>
+  <%else%>
+    <div class="content">
+      <h2>Não encontrado</h2>
+      <p>Desculpe, mas nenhuma ontologia foi encontrada para a palavra <%=@like%></p>
+    </div>
+  <%end%>
+<%end%>

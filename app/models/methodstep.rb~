@@ -1,0 +1,8 @@
+
+
+class Methodstep < ActiveRecord::Base
+
+belongs_to  :methodology
+
+
+end

@@ -1,0 +1,34 @@
+
+<div class="menu-window">
+	<div class="new" style="width:auto;">
+	     <input type="text" id="text-new" class="input-new" placeholder="Novo tipo de documento">
+	     <input type="button" id="btad-new" class="button-input btnew">
+	</div>
+</div>
+
+<table style="margin:15px;">
+<%
+if !@methodstep.doc_type.empty?  
+
+  @methodstep.doc_type.each do |doc_type|%>
+
+     <tr>
+	<td>
+	  <lable id="lable-<%=doc_type.id%>" class="lable-edit"><%=doc_type.name%></lable>
+	  <input id="text-<%=doc_type.id%>" class="input-edit" type="text" value="<%=doc_type.name%>">
+        </td>
+	<td><input id="btcf-<%=doc_type.id%>" type="button" class="button-input btcf" value=""></td>
+	<td><input id="bted-<%=doc_type.id%>" type="button" class="button-input bted" value=""></td>
+	<td><input id="btex-<%=doc_type.id%>" type="button" class="button-input btex" value=""></td>
+     </tr>   
+  <%end%>
+
+<%else%>
+    <tr><td>Não Existem Tipos de Documento Cadastrados para essa Etapa</td></tr>
+<%end%>
+</table>
+
+<script language="javascript">
+
+
+</script>

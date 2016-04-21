@@ -1,0 +1,181 @@
+<style text="css">
+.menu-window{
+  border-bottom: 2px solid rgb(204, 204, 204);
+  padding:10px;
+  text-aligne:left;
+  height:50px;
+}
+.input-edit{
+ display:none;
+}
+
+.content{
+padding-bottom:20px;
+}
+a.btex{
+float:right;
+padding:7px;
+border:0px;
+}
+.change{
+float:right;
+padding:12px;
+opacity: 1;
+border:0px;
+}
+</style>
+<div class="menu-lateral">
+<%=render :partial => 'form_menu_lateral' %>
+</div>
+
+<div class="tela">
+<div class="content-header">
+
+<h1><%=@methodology.name%></h1>
+<div class="aba">
+
+  <%=render :partial => 'menu' %>
+</div>
+<hr id="hr"></hr>
+
+</div>
+
+<div class="content">
+
+<div id="tabs">
+	  <ul>
+	    <% @methodology.methodstep.each_with_index do |etapa, index|%>
+	       <li><a href="#tabs-<%=index%>"><%=etapa.name%></a></li>
+	    <%end%>
+	    <li><a href="#tabs-nova">+</a></li>
+	  </ul>
+	<% @methodology.methodstep.each_with_index do |etapa, index|%>
+
+	<div id="tabs-<%=index%>">
+	   <%@methodstep = etapa%>
+           <a class="btex tooltipM" href="/methodology/destroyEtapa/<%=@methodology.id%>?etapa_id=<%=etapa.id%>"><span>Destruir</span></a>
+	   
+<% form_tag (:action => 'config', :id => @methodology.id, :etapa_id =>etapa.id) do %>
+           <%=render :partial => 'formEtapa' %>
+	   <%=render :partial => 'formEtapa2' %>
+	    <div id="buttons" class="buttons">
+         	 <%= submit_tag 'Salvar', :class => 'button' %>
+	    </div>
+<%end%>
+	</div>
+	<%end%>
+        <div id="tabs-nova" style="height:100px;">
+         <% form_tag (:action => 'newetapa', :id=>@methodology.id) do %>
+	  <div class="new" style="width:auto;">
+	     <input id="new-etapa" type="text" class="input-new" placeholder="Nova etapa ">
+	     <input id="btnew-etapa" type="button" class="button-input btnew">
+	    </div>
+        <%end%>
+        </div>
+</div>
+
+<script language="javascript">
+
+$( "#new-etapa" ).keypress(function( event ) {
+   if ( event.which == 13 ) {
+        valor = $(this).val();
+     	add = "?name="+valor;
+        action = $(this).closest("form").attr("action");
+        newAction = action + add;
+        $(this).closest("form").attr('action', newAction);
+        $(this).closest("form").submit();
+   }
+});
+$("#btnew-etapa").click(function(event){
+     valor = $("#new-etapa").val();
+     add = "?name="+valor;
+     action = $(this).closest("form").attr("action");
+     newAction = action + add;
+     $(this).closest("form").attr('action', newAction);
+     $(this).closest("form").submit();
+
+});
+
+
+$('form').submit(function(ev){
+           var action = $(this).attr('action');
+	   etapa0 = action.split('=');
+           etapa = etapa0[1];
+
+           var configs = [];
+           var espec = [];
+
+	    $('input[id^='+etapa+']:radio:checked').each(function() {
+		id1 = $(this).attr('id')
+		etapa1 = id1.split('-');
+		if(etapa == etapa1[0]){
+		   id1 = etapa1[1] + '-' + etapa1[2];
+		   espec.push(id1);
+		}
+	    });
+
+            $('[id^=parametrosDiv] input:checked').each(function() {
+	       id1 = $(this).attr("id");
+	       etapa1 = id1.split('-');
+	       if(etapa == etapa1[0]){
+		id1 = etapa1[1] + '-' + etapa1[2];
+		if(!contains(etapa1[1], espec)){
+                    configs.push(id1);
+		}
+	       }
+            });
+
+	    if (configs.length > 0){
+	       aditionUrl = "&configs_ids="+configs; 
+	    }
+	    if(espec.length > 0){
+	       aditionUrl = aditionUrl + "&especs_ids="+espec; 
+	    } 
+
+newAction = action + aditionUrl
+$(this).attr('action', newAction);
+
+      
+    });
+
+function troca(item1, item2){
+
+   $("#"+item1).animate({bottom:200, opacity:"toggle"}, 700);
+   $("#"+item2).animate({bottom:200, opacity:"toggle"}, 700);
+}
+
+function contains(like, vetor){
+    for (var i = 0; i < vetor.length; i++) {
+      obj = vetor[i].split('-');
+      if (obj[0] === like) {
+            return true;
+      }
+    }
+return false;
+}
+
+$("[id^=btcf]").click( function (ev){
+
+   var str = $(this).attr("id");
+   var init = str.indexOf('-');
+   var id = str.substring(init+1,str.lenght);
+
+   mostraEsconde('parametrosDiv'+id);
+});
+
+$("[id^=btex]").click( function (ev){
+   var str = $(this).attr("id");
+   var init = str.indexOf('-');
+   var id = str.substring(init+1,str.lenght);
+
+   newAction = "/methodology/crudDoc/2?doc_type_id="+id+"&nameDT=destroy";
+
+   $(this).closest("form").attr('action', newAction);
+   $(this).closest("form").submit();
+
+});
+function teste(){
+   $("#text-new").animate({left:200, opacity:"toggle"}, 1500);
+   $("#lable-new").hide();
+}
+</script>

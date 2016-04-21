@@ -1,0 +1,39 @@
+class MethodologiesController < ApplicationController
+  
+  def index
+    @methodologies = Methodology.find(:all)
+  end
+
+  def show
+    @methodology = Methodology.find(params[:id])
+
+   
+  end
+
+
+  def new
+    @methodology = Methodology.new
+  end
+
+
+  def edit
+    @methodology = Methodology.find(params[:id])
+  end
+
+  def create
+    @methodology = Methodology.new(params[:methodology])
+
+  end
+
+  def update
+    @methodology = Methodology.find(params[:id])
+    
+  end
+
+  def destroy
+    @methodology = Methodology.find(params[:id])
+    @methodology.destroy
+
+    
+  end
+end

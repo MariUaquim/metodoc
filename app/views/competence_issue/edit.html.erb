@@ -1,0 +1,13 @@
+<%content_for :content_header do%>
+<h1>
+  <% if @competence_issue.new_record? %>Criando<% else %>Editando<% end %>
+  Questão de Competência
+</h1>
+<p>Formule uma questão de competência para a versão da ontologia</p>
+<%end%>
+
+<div class="content">
+  <% form_tag :action => 'edit', :id => @competence_issue do %>
+    <%=render :partial => 'form' %>
+  <% end %>
+</div>

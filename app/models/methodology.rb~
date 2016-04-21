@@ -1,0 +1,4 @@
+class Methodology < ActiveRecord::Base
+has_many :methodstep, :dependent => :destroy
+
+end

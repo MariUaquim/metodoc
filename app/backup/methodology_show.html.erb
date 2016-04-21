@@ -1,0 +1,177 @@
+<style text="css">
+.menu-window{
+  border-bottom: 2px solid rgb(204, 204, 204);
+  padding:10px;
+  text-aligne:left;
+  height:50px;
+}
+.input-edit{
+ display:none;
+}
+
+.content{
+padding-bottom:20px;
+}
+a.btex{
+float:right;
+padding:7px;
+border:0px;
+}
+.change{
+float:right;
+padding:12px;
+opacity: 1;
+border:0px;
+}
+</style>
+<div class="menu-lateral">
+<%=render :partial => 'form_menu_lateral' %>
+</div>
+
+<div class="tela">
+<div class="content-header">
+
+<h1><%=@methodology.name%></h1>
+<div class="aba">
+
+  <%=render :partial => 'menu' %>
+</div>
+<hr id="hr"></hr>
+
+</div>
+
+<div class="content">
+
+    <div class="menu-window">
+    <% form_tag ({:controller=>'methodstep',:action => 'new', :methodology_id=>@methodology.id},{:id=>"etapa-form"}) do %>
+	<div class="new" style="width:auto;">
+	     <input id="new-etapa" type="text" class="input-new" placeholder="Nova etapa ">
+	     <input id="btnew-etapa" type="button" class="button-input btnew">
+	</div>
+      <%end%>
+   </div>
+
+<% @methodology.methodstep.each do |etapa|%>
+<%@janela = "#janela"
+  @janela = @janela + etapa.id.to_s%>
+  <div class="like-table">
+    <lable id="lable-etapa-<%=etapa.id%>"><%=link_to etapa.name, @janela, :id=>etapa.id, :titulo=> etapa.name , :rel=>'modal'%></lable>
+    <%=link_to ' ', {:controller=>'methodstep', :action => 'destroy', :id => etapa.id, :methodology_id=>@methodology.id}, {:class=>'btex'}%>
+  </div>
+
+  <br>
+	<div id="janela<%=etapa.id%>" class="window middle" >
+	    <div class="modal-titulo">Titulo</div>
+            <div class="content">
+	    <p>Preencha o formulário para editar essa etapa da metodologia</p>
+            <div class="menu-horizontal" >
+	      <ul id="abas-nav" class="page-inter" style="margin-top: -13px;">
+	         <li><%=link_to "Etapa", "#stage1-"+etapa.id.to_s, :pag=>"#stage1-"+etapa.id.to_s   %></li>
+	         <li><%=link_to "Documento", "#stage2-"+etapa.id.to_s, :pag=>"#stage2-"+etapa.id.to_s   %></li>
+	         <li><%=link_to "Configuração de documentos", "#stage3-"+etapa.id.to_s, :pag=>"#stage3-"+etapa.id.to_s   %></li>
+	      </ul>
+            </div>
+	    
+		<%@methodstep = etapa%>
+		<% form_tag ({:action => 'config', :id => @methodology.id},{:id=>"formEtapa"+etapa.id.to_s}) do %>
+
+		    <div id="stage1-<%=etapa.id%>" class="stage">
+                         <%=render :partial => 'formEtapa' %>
+		    </div>
+		    <div id="stage2-<%=etapa.id%>" class="stage">
+                         <%=render :partial => 'formEtapa2' %>
+		    </div>
+		    <div id="stage3-<%=etapa.id%>" class="stage">
+                         <%=render :partial => 'formEtapa3' %>
+		    </div>
+  		    <div id="buttons" align="center" class="buttons">
+			 <%=link_to 'Cancelar', { }, {:id =>  'fecharWindow', :class => 'button fecharWindow'}%>
+                 	 <%= submit_tag 'Salvar', :class => 'button' %>
+		    </div>
+		<%end%>
+	    </div>
+       </div>
+<%end%>
+</div>
+</div>
+
+<script language="javascript">
+
+    $('input[name=commit]').click(function(ev){
+	var isVisible = $('[id^=stage3]').is(':visible');
+
+        if(isVisible){
+
+           pagina = $('[id^=stage3]:visible').attr('id');
+  	   init = pagina.indexOf('-');
+           etapa = pagina.substring(init+1,pagina.lenght);
+           var configs = [];
+           var espec = [];
+
+	    $('input[id^='+etapa+']:radio:checked').each(function() {
+		id1 = $(this).attr('id')
+		etapa1 = id1.split('-');
+		if(etapa == etapa1[0]){
+		   id1 = etapa1[1] + '-' + etapa1[2];
+		   espec.push(id1);
+		}
+	    });
+
+            $('[id^=parametrosDiv] input:checked').each(function() {
+	       id1 = $(this).attr("id");
+	       etapa1 = id1.split('-');
+	       if(etapa == etapa1[0]){
+		id1 = etapa1[1] + '-' + etapa1[2];
+		if(!contains(etapa1[1], espec)){
+                    configs.push(id1);
+		}
+	       }
+            });
+
+	    if (configs.length > 0){
+	       aditionUrl = "&configs_ids="+configs; 
+	    }
+	    if(espec.length > 0){
+	       aditionUrl = aditionUrl + "&especs_ids="+espec; 
+	    } 
+
+        }
+    });
+
+$("#btnew-etapa").click(function(event){
+     valor = $("#new-etapa").val();
+     idForm = $("#etapa-form").attr("id");
+     action = $("#etapa-form").attr("action");
+     $("#etapa-form").attr("action", action + "&name="+valor);
+     document.getElementById(idForm).submit();
+
+});
+
+$( "#new-etapa" ).keypress(function( event ) {
+   if ( event.which == 13 ) {
+     valor = $(this).val();
+     idForm = $("#etapa-form").attr("id");
+     action = $("#etapa-form").attr("action");
+     $("#etapa-form").attr("action", action + "&name="+valor);
+     document.getElementById(idForm).submit();
+   }
+});
+
+
+function troca(item1, item2){
+
+   $("#"+item1).animate({bottom:200, opacity:"toggle"}, 700);
+   $("#"+item2).animate({bottom:200, opacity:"toggle"}, 700);
+}
+
+function contains(like, vetor){
+    for (var i = 0; i < vetor.length; i++) {
+      obj = vetor[i].split('-');
+      if (obj[0] === like) {
+            return true;
+      }
+    }
+return false;
+}
+
+</script>

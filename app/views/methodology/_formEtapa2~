@@ -1,0 +1,57 @@
+
+
+<table style="margin:3px;">
+<tr><td colspan="4" style="background:none repeat scroll 0% 0% rgb(194, 232, 239);"><b>Documentos Previstos nesta Etapa</b></td></tr>
+<%
+if !@methodstep.doc_type.empty?  
+
+  @methodstep.doc_type.each do |doc_type|%>
+     <%configEspec = doc_type.doc_type_config.first%>
+     <tr>
+	<td>
+	  <lable id="lable-<%=doc_type.id%>" class="lable-edit"><%=doc_type.name%></lable>
+	  <input id="text-<%=doc_type.id%>" class="input-edit" type="text" value="<%=doc_type.name%>">
+
+        </td>
+	<td><input id="btcf-<%=doc_type.id%>" type="button" class="button-input btcf" value=""></td>
+	<td><input id="bted-<%=doc_type.id%>" type="button" class="button-input bted" value=""></td>
+	<td><input id="btex-<%=doc_type.id%>" type="button" class="button-input btex" value=""></td>
+     </tr>
+     <tr>
+        <td colspan="4">
+	   <div id="parametrosDiv<%=doc_type.id%>" class="info-box">
+	      <a href="javascript:troca('parametrosDiv<%=doc_type.id%>','especDiv<%=doc_type.id%>');" class="change"></a><br>
+		<%config ||= Array.new
+		doc_type.doc_type_config.each do |d|
+		  config.push(d.params_config_Type_Doc_id);
+		end
+		%>
+		<%@parametros.each do |p|%>
+			<input type="checkbox" name="doc_type_config" id="<%=@methodstep.id%>-<%=doc_type.id%>-<%=p.id%>" <%if config.include?(p.id)%>checked<%end%> >
+			<%=p.description%><br>
+		<%end%>
+
+	     </div>
+	     <div id="especDiv<%=doc_type.id%>" class="info-box">
+		<a href="javascript:troca('especDiv<%=doc_type.id%>', 'parametrosDiv<%=doc_type.id%>');" class="change"></a><br>
+		<%@docEspec.each do |p|%>
+			<input type="radio" value='<%=p.id%>' name="radio<%=doc_type.id%>" id="<%=@methodstep.id%>-<%=doc_type.id%>-<%=p.id%>" <%if !configEspec.nil? and configEspec.doc_config_espec_id == p.id%>checked<%end%> >
+			<%=p.name%><br>
+		<%end%>
+
+	     </div>
+	</td>
+     </tr> 
+  <%end%>
+
+<%else%>
+    <tr><td>Não Existem Tipos de Documento Cadastrados para essa Etapa</td></tr>
+<%end%>
+<tr>
+   <td colspan="4">
+      <lable id="lable-new" class="lable-edit"><a href="javascript: teste()">Nova</a></lable>
+      <input id="text-new" class="input-edit" type="text" value="Nova">
+   </td>
+</tr>
+
+</table>
