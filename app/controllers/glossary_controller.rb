@@ -26,9 +26,59 @@ class GlossaryController < ApplicationController
 
 def product_xml
 
-out_file = File.new("out.txt", "w")
-out_file.puts("write your stuff here")
-out_file.close
+@types = TermType.find(:all)
+@glossary = Term.find(:all, :conditions=>["version_id = ?", 1])
+@ontology = Ontology.find(1)
+
+builder = Nokogiri::XML::Builder.new do |xml|
+
+  xml.ontology(:xmlns=>"http://www.w3.org/2002/07/owl#",
+     :ontologyIRI=>"http://www.nees.com.br/ontologies/"+ @ontology.name+".owl") do
+
+      xml.prefix(:name=>"", :iri=>"http://www.w3.org/2002/07/owl#")
+      xml.prefix(:name=>"owl", :iri=>"http://www.w3.org/2002/07/owl#")
+      xml.prefix(:name=>"rdf", :iri=>"http://www.w3.org/1999/02/22-rdf-syntax-ns#")
+      xml.prefix(:name=>"xsd", :iri=>"http://www.w3.org/2001/XMLSchema#")
+      xml.prefix(:name=>"rdfs", :iri=>"http://www.w3.org/2000/01/rdf-schema#")
+
+      @glossary.each do |termo|
+        case termo.term_type_id
+        when 1..4
+		xml.declaration{
+		   case termo.term_type_id
+		        when 1
+		          xml.class_ (:iri=>"#"+termo.name)
+			when 2
+			  xml.dataProperty_ (:iri=>"#"+termo.name)
+			when 3
+			  xml.namedIndividual_ (:iri=>"#"+termo.name)
+			else
+			  xml.objectProperty_ (:iri=>"#"+termo.name)
+			end
+		}
+	when 5
+	       #restrição de classe
+	when 6
+		#termo a definir
+	when 7
+		#termo abandonado
+	when 8
+		#função
+	when 9
+		#axioma
+	end     
+      end
+  end
+end
+textxml = builder.to_xml
+directory = "/home/mariana/Documentos/metodoc/app/views/glossary/arquivos/textxml.xml"
+File.open(directory, "w") { 
+|f| f.write(textxml) 
+
+}
+
+redirect_to :action=>'manual', :document_id=>26, :version_id=>1
+
 
 end
 
@@ -53,7 +103,7 @@ end
     if request.post?
        @documento = Document.find(params[:document_id])
        name = params[:upload][:file].original_filename
-       directory = "/home/mariana/Documentos/montodoc/app/views/glossary/arquivos"
+       directory = "/home/mariana/Documentos/metodoc/app/views/glossary/arquivos"
        path = File.join(directory, name)
        new_name = @documento.id.to_s + ".owl"
        File.open(path, "wb") { |f| f.write(params[:upload][:file].read) 
