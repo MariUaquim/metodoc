@@ -50,6 +50,9 @@ Documento: <b class="texto2"><%=@documento.doc_type.name%></b>
 <div class="listaPerfil">
     <ul>
       <li><%=link_to 'Nova', "#janela", {:titulo=> 'Novo Termo', :rel=>'modal', :class=>'perfil'}%></li>
+
+      <li><%=link_to 'Gerar xml', :action=>'product_xml',{ :target=>'_blank'}%></li>
+
     </ul>
 </div>
 

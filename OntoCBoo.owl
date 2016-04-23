@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+  <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+  <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+  <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+  <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+  <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+  <Declaration>
+    <Class IRI="#Agenda"/>
+  </Declaration>
+  <Declaration>
+    <Class IRI="#Clinica"/>
+  </Declaration>
+  <Declaration>
+    <Class IRI="#Consulta"/>
+  </Declaration>
+  <Declaration>
+    <Class IRI="#Endereco"/>
+  </Declaration>
+  <Declaration>
+    <Class IRI="#Especialidade"/>
+  </Declaration>
+  <Declaration>
+    <Class IRI="#Medico"/>
+  </Declaration>
+  <Declaration>
+    <Class IRI="#Paciente"/>
+  </Declaration>
+  <Declaration>
+    <Class IRI="#Pessoa"/>
+  </Declaration>
+  <Declaration>
+    <Class IRI="#Plano"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#aceita"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#aceitoPor"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#agendaPertenceA"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#ofereceConsulta"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#temAgenda"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#temEndereco"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#temEspecialidade"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#temMedico"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#temPaciente"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#usaPlano"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#usaPlano"/>
+  </Declaration>
+</Ontology>

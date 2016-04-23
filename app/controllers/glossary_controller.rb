@@ -1,28 +1,25 @@
 require "rubygems"
 require "builder"
 require "nokogiri"
+require 'open-uri'
 
 class GlossaryController < ApplicationController
-  before_filter :authenticate, :except => [:authenticate,:arquivo]
-  before_filter :check_permission, :except =>[:authenticate, :load_term_types, :arquivo, :manual]
-  before_filter :load_term_types, :only => [:index, :edit, :show, :manual]
-  before_filter :load_glossary, :only => [:index, :show, :print, :print_xml]
+  before_filter :authenticate, :except => [:authenticate,:arquivo, :integracao]
+  before_filter :check_permission, :except =>[:authenticate, :load_term_types, :arquivo, :manual, :integracao]
+  before_filter :load_term_types, :only => [ :edit, :show, :manual, :integracao]
+  before_filter :load_glossary, :only => [ :show]
   before_filter :load_artefact_status, :only =>  [:edit]
   before_filter :load_ontologias
 
 
-  def index
-    @version = Version.find(@version_id)
-  end
+def integracao
+if params[:string]
+pesquisa = params[:string]
+doc = Nokogiri::HTML(open("http://prefix.cc/"+pesquisa))
 
-  def print
-    @version = Version.find(@version_id)
-    render :layout => 'artefact'
-  end
-
-  def print_xml
-    render :xml => @glossary
-  end
+@entries = doc.css('.namespace-link')
+end
+end
 
 def product_xml
 
@@ -31,29 +28,32 @@ def product_xml
 @ontology = Ontology.find(1)
 
 builder = Nokogiri::XML::Builder.new do |xml|
+  
+  xml.Ontology(:xmlns=>"http://www.w3.org/2002/07/owl#",
+               'xmlns:rdfs'=>"http://www.w3.org/2000/01/rdf-schema#",
+               'xmlns:xsd'=>"http://www.w3.org/2001/XMLSchema#",
+               'xmlns:rdf'=>"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+               'xmlns:xml'=>"http://www.w3.org/XML/1998/namespace") do 
 
-  xml.ontology(:xmlns=>"http://www.w3.org/2002/07/owl#",
-     :ontologyIRI=>"http://www.nees.com.br/ontologies/"+ @ontology.name+".owl") do
-
-      xml.prefix(:name=>"", :iri=>"http://www.w3.org/2002/07/owl#")
-      xml.prefix(:name=>"owl", :iri=>"http://www.w3.org/2002/07/owl#")
-      xml.prefix(:name=>"rdf", :iri=>"http://www.w3.org/1999/02/22-rdf-syntax-ns#")
-      xml.prefix(:name=>"xsd", :iri=>"http://www.w3.org/2001/XMLSchema#")
-      xml.prefix(:name=>"rdfs", :iri=>"http://www.w3.org/2000/01/rdf-schema#")
+      xml.Prefix(:name=>"", :IRI=>"http://www.w3.org/2002/07/owl#")
+      xml.Prefix(:name=>"owl", :IRI=>"http://www.w3.org/2002/07/owl#")
+      xml.Prefix(:name=>"rdf", :IRI=>"http://www.w3.org/1999/02/22-rdf-syntax-ns#")
+      xml.Prefix(:name=>"xsd", :IRI=>"http://www.w3.org/2001/XMLSchema#")
+      xml.Prefix(:name=>"rdfs", :IRI=>"http://www.w3.org/2000/01/rdf-schema#")
 
       @glossary.each do |termo|
         case termo.term_type_id
         when 1..4
-		xml.declaration{
+		xml.Declaration{
 		   case termo.term_type_id
 		        when 1
-		          xml.class_ (:iri=>"#"+termo.name)
+		          xml.Class_ (:IRI=>"#"+termo.name)
 			when 2
-			  xml.dataProperty_ (:iri=>"#"+termo.name)
+			  xml.DataProperty_ (:IRI=>"#"+termo.name)
 			when 3
-			  xml.namedIndividual_ (:iri=>"#"+termo.name)
+			  xml.NamedIndividual_ (:IRI=>"#"+termo.name)
 			else
-			  xml.objectProperty_ (:iri=>"#"+termo.name)
+			  xml.ObjectProperty_ (:IRI=>"#"+termo.name)
 			end
 		}
 	when 5
@@ -71,10 +71,9 @@ builder = Nokogiri::XML::Builder.new do |xml|
   end
 end
 textxml = builder.to_xml
-directory = "/home/mariana/Documentos/metodoc/app/views/glossary/arquivos/textxml.xml"
+directory = "/home/mariana/Documentos/metodoc/app/views/glossary/arquivos/"+@ontology.name+".owl"
 File.open(directory, "w") { 
 |f| f.write(textxml) 
-
 }
 
 redirect_to :action=>'manual', :document_id=>26, :version_id=>1

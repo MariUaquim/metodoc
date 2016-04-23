@@ -1,0 +1,50 @@
+<style>
+.follow{
+margin-top:100px;
+}
+.examples{
+margin-top: 0.7em;
+}
+small{
+font-size:85%;
+}
+</style>
+
+
+
+<div class="content">
+	<div class="activity-menu texto1">
+	Documento: <b class="texto2"></b>
+	   <ul>
+	      <li></li>
+	   </ul>
+	</div>
+
+	<div class="search">
+	    <input id="strBusca" class="input-search" type="text" placeholder="Pesquisa"></input>
+	    <input id="btBusca" class="button-search" type="button"></input>
+	</div>
+	
+	<div class="follow">
+	<%if !@entries.nil? %>
+	     <%@entries.each do |entry|%>
+		<a href="<%=entry['href']%>" target="_blank"><%=entry['href']%></a><br>	
+	     <%end%>
+        <%else%>
+	    <p>Nada foi encontrado</p>
+        <%end%>
+	</div>
+</div>
+
+<script language="javascript">
+
+$("#btBusca").click(function(ev){
+        string = $('#strBusca').val();
+        var url = "/glossary/integracao?string="+string; 
+        window.location.href = url;
+
+});
+
+
+</script>
+

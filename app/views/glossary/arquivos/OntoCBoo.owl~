@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<ontology ontologyIRI="http://www.nees.com.br/ontologies/OntoCBoo.owl" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xml:base="http://www.nees.com.br/ontologies/OntoCBoo.owl" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+  <prefix iri="http://www.w3.org/2002/07/owl#" name=""/>
+  <prefix iri="http://www.w3.org/2002/07/owl#" name="owl"/>
+  <prefix iri="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="rdf"/>
+  <prefix iri="http://www.w3.org/2001/XMLSchema#" name="xsd"/>
+  <prefix iri="http://www.w3.org/2000/01/rdf-schema#" name="rdfs"/>
+  <declaration>
+    <class iri="#Agenda"/>
+  </declaration>
+  <declaration>
+    <class iri="#Clinica"/>
+  </declaration>
+  <declaration>
+    <class iri="#Consulta"/>
+  </declaration>
+  <declaration>
+    <class iri="#Endereco"/>
+  </declaration>
+  <declaration>
+    <class iri="#Especialidade"/>
+  </declaration>
+  <declaration>
+    <class iri="#Medico"/>
+  </declaration>
+  <declaration>
+    <class iri="#Paciente"/>
+  </declaration>
+  <declaration>
+    <class iri="#Pessoa"/>
+  </declaration>
+  <declaration>
+    <class iri="#Plano"/>
+  </declaration>
+  <declaration>
+    <objectProperty iri="#aceita"/>
+  </declaration>
+  <declaration>
+    <objectProperty iri="#aceitoPor"/>
+  </declaration>
+  <declaration>
+    <objectProperty iri="#agendaPertenceA"/>
+  </declaration>
+  <declaration>
+    <objectProperty iri="#ofereceConsulta"/>
+  </declaration>
+  <declaration>
+    <objectProperty iri="#temAgenda"/>
+  </declaration>
+  <declaration>
+    <objectProperty iri="#temEndereco"/>
+  </declaration>
+  <declaration>
+    <objectProperty iri="#temEspecialidade"/>
+  </declaration>
+  <declaration>
+    <objectProperty iri="#temMedico"/>
+  </declaration>
+  <declaration>
+    <objectProperty iri="#temPaciente"/>
+  </declaration>
+  <declaration>
+    <objectProperty iri="#usaPlano"/>
+  </declaration>
+  <declaration>
+    <objectProperty iri="#usaPlano"/>
+  </declaration>
+</ontology>
